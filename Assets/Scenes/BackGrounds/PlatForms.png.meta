@@ -1,0 +1,1270 @@
+fileFormatVersion: 2
+guid: 7f7a7c8e14731dc4483570a634477111
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1423129316291052066
+    second: PlatForms_0
+  - first:
+      213: -5089186535606268510
+    second: PlatForms_1
+  - first:
+      213: 5782476950619769093
+    second: PlatForms_2
+  - first:
+      213: 397736438797262794
+    second: PlatForms_3
+  - first:
+      213: 8221096138680308589
+    second: PlatForms_4
+  - first:
+      213: 1362314426271836837
+    second: PlatForms_5
+  - first:
+      213: -987681921727977719
+    second: PlatForms_6
+  - first:
+      213: 6158022986834565398
+    second: PlatForms_7
+  - first:
+      213: 2241068699432556434
+    second: PlatForms_8
+  - first:
+      213: 4146786342347955073
+    second: PlatForms_9
+  - first:
+      213: -818636600199501536
+    second: PlatForms_10
+  - first:
+      213: 7173758458071416014
+    second: PlatForms_11
+  - first:
+      213: 329741249624741793
+    second: PlatForms_12
+  - first:
+      213: -4434066471042982003
+    second: PlatForms_13
+  - first:
+      213: -4108758876958651462
+    second: PlatForms_14
+  - first:
+      213: -2872633259744273593
+    second: PlatForms_15
+  - first:
+      213: 4598759290062412311
+    second: PlatForms_16
+  - first:
+      213: -7473336558398672592
+    second: PlatForms_17
+  - first:
+      213: 7743001552937123442
+    second: PlatForms_18
+  - first:
+      213: -6151171879513925799
+    second: PlatForms_19
+  - first:
+      213: 3558879444695672422
+    second: PlatForms_20
+  - first:
+      213: -6815073337744449065
+    second: PlatForms_21
+  - first:
+      213: 3327274043973652141
+    second: PlatForms_22
+  - first:
+      213: -738891273950452067
+    second: PlatForms_23
+  - first:
+      213: 4475568423397843830
+    second: PlatForms_24
+  - first:
+      213: -8600647180548167657
+    second: PlatForms_25
+  - first:
+      213: 4679647886873754890
+    second: PlatForms_26
+  - first:
+      213: -8245311267722122137
+    second: PlatForms_27
+  - first:
+      213: -6602065644908383817
+    second: PlatForms_28
+  - first:
+      213: 882102947369243780
+    second: PlatForms_29
+  - first:
+      213: 6680894895219250005
+    second: PlatForms_30
+  - first:
+      213: -7272265795501753490
+    second: PlatForms_31
+  - first:
+      213: 7525856037369154318
+    second: PlatForms_32
+  - first:
+      213: -7631257203737965643
+    second: PlatForms_33
+  - first:
+      213: 6739349224962236666
+    second: PlatForms_34
+  - first:
+      213: 5366594988717361367
+    second: PlatForms_35
+  - first:
+      213: 2272616761281749763
+    second: PlatForms_36
+  - first:
+      213: 1358424308120133044
+    second: PlatForms_37
+  - first:
+      213: -7582020682997493611
+    second: PlatForms_38
+  - first:
+      213: -8193205176569120297
+    second: PlatForms_39
+  - first:
+      213: -4733632457926413905
+    second: PlatForms_40
+  - first:
+      213: 801117003886025742
+    second: PlatForms_41
+  - first:
+      213: 4045692474888676053
+    second: PlatForms_42
+  - first:
+      213: -5899121298695268522
+    second: PlatForms_43
+  - first:
+      213: 6380741718216673526
+    second: PlatForms_44
+  - first:
+      213: 8120979050608860024
+    second: PlatForms_45
+  - first:
+      213: 8250823356571958149
+    second: PlatForms_46
+  - first:
+      213: -1892306552655591212
+    second: PlatForms_47
+  - first:
+      213: 2948305542497098432
+    second: PlatForms_48
+  - first:
+      213: -9155110541396994386
+    second: PlatForms_49
+  - first:
+      213: 5422502440206543547
+    second: PlatForms_50
+  - first:
+      213: -7010006557492015598
+    second: PlatForms_51
+  - first:
+      213: -1749091207260239869
+    second: PlatForms_52
+  - first:
+      213: 888635029636147106
+    second: PlatForms_53
+  - first:
+      213: -3186011900131677642
+    second: PlatForms_54
+  - first:
+      213: 8995572147116372666
+    second: PlatForms_55
+  - first:
+      213: 5913379324356231846
+    second: PlatForms_56
+  - first:
+      213: -5227009980509136296
+    second: PlatForms_57
+  - first:
+      213: -8454225178081954716
+    second: PlatForms_58
+  - first:
+      213: -5056319834713075981
+    second: PlatForms_59
+  - first:
+      213: 5237149679565129425
+    second: PlatForms_60
+  - first:
+      213: 8994687087985518787
+    second: PlatForms_61
+  - first:
+      213: -619236542245964656
+    second: PlatForms_62
+  - first:
+      213: -1714848407481738291
+    second: PlatForms_63
+  - first:
+      213: -165628219801893681
+    second: PlatForms_64
+  - first:
+      213: -4119730492437495282
+    second: PlatForms_65
+  - first:
+      213: -9123226886538530823
+    second: PlatForms_66
+  - first:
+      213: -2604027517073588271
+    second: PlatForms_67
+  - first:
+      213: -3644341127792439653
+    second: PlatForms_68
+  - first:
+      213: 6828624172893601369
+    second: PlatForms_69
+  - first:
+      213: 4009818357680690681
+    second: PlatForms_70
+  - first:
+      213: -6120387721970745839
+    second: PlatForms_71
+  - first:
+      213: 7008224937605150397
+    second: PlatForms_72
+  - first:
+      213: -7905868816696008146
+    second: PlatForms_73
+  - first:
+      213: -7214013026636623335
+    second: PlatForms_74
+  - first:
+      213: -178655111606556112
+    second: PlatForms_75
+  - first:
+      213: -139125535804335514
+    second: PlatForms_76
+  - first:
+      213: 1917299002595383770
+    second: PlatForms_77
+  - first:
+      213: 1269860371812885331
+    second: PlatForms_78
+  - first:
+      213: -2420603882157276983
+    second: PlatForms_79
+  - first:
+      213: -6877493319119617225
+    second: PlatForms_80
+  - first:
+      213: 1870760765963003087
+    second: PlatForms_81
+  - first:
+      213: 7251450375805040559
+    second: PlatForms_82
+  - first:
+      213: 9090179464643705644
+    second: PlatForms_83
+  - first:
+      213: 7617791109341134169
+    second: PlatForms_84
+  - first:
+      213: 4077352377975766689
+    second: PlatForms_85
+  - first:
+      213: 3648417309810118668
+    second: PlatForms_86
+  - first:
+      213: 7347067000140676219
+    second: PlatForms_87
+  - first:
+      213: 7338954144882024890
+    second: PlatForms_88
+  - first:
+      213: -8141573947708038587
+    second: PlatForms_89
+  - first:
+      213: -7072958602264905781
+    second: PlatForms_90
+  - first:
+      213: -4182607749171837602
+    second: PlatForms_91
+  - first:
+      213: 229982764928984238
+    second: PlatForms_92
+  - first:
+      213: -3553552533986590169
+    second: PlatForms_93
+  - first:
+      213: -7214299750924929607
+    second: PlatForms_94
+  - first:
+      213: 5962626840161960464
+    second: PlatForms_95
+  - first:
+      213: -74319617323370001
+    second: PlatForms_96
+  - first:
+      213: -4396107785734547511
+    second: PlatForms_97
+  - first:
+      213: 7776686086464753675
+    second: PlatForms_98
+  - first:
+      213: -4891148614121159672
+    second: PlatForms_99
+  - first:
+      213: -6199280191496294725
+    second: PlatForms_100
+  - first:
+      213: 7966182686554010500
+    second: PlatForms_101
+  - first:
+      213: -248555249374391046
+    second: PlatForms_102
+  - first:
+      213: -825268338103221150
+    second: PlatForms_103
+  - first:
+      213: 715859302176529191
+    second: PlatForms_104
+  - first:
+      213: -1113179976405669932
+    second: PlatForms_105
+  - first:
+      213: -6774182611752462828
+    second: PlatForms_106
+  - first:
+      213: -7752408252379376656
+    second: PlatForms_107
+  - first:
+      213: -5069364802108601311
+    second: PlatForms_108
+  - first:
+      213: -2095222844781192317
+    second: PlatForms_109
+  - first:
+      213: -2398808093327102618
+    second: PlatForms_110
+  - first:
+      213: -3772043210345526590
+    second: PlatForms_111
+  - first:
+      213: 8917496805850490500
+    second: PlatForms_112
+  - first:
+      213: 7273843038244502924
+    second: PlatForms_113
+  - first:
+      213: -5556314602352268532
+    second: PlatForms_114
+  - first:
+      213: 217530790567422725
+    second: PlatForms_115
+  - first:
+      213: 8579601649674700152
+    second: PlatForms_116
+  - first:
+      213: 5564103783635727946
+    second: PlatForms_117
+  - first:
+      213: -2904646301100789799
+    second: PlatForms_118
+  - first:
+      213: 375503415040909928
+    second: PlatForms_119
+  - first:
+      213: 7127239435381952430
+    second: PlatForms_120
+  - first:
+      213: 6702582540464009646
+    second: PlatForms_121
+  - first:
+      213: -1148548256062951866
+    second: PlatForms_122
+  - first:
+      213: -8402551656127174070
+    second: PlatForms_123
+  - first:
+      213: 5625632751724716328
+    second: PlatForms_124
+  - first:
+      213: -6980443841752521167
+    second: PlatForms_125
+  - first:
+      213: -7863581822527928849
+    second: PlatForms_126
+  - first:
+      213: -1245295178793354377
+    second: PlatForms_127
+  - first:
+      213: -1982788453368791102
+    second: PlatForms_128
+  - first:
+      213: -7617423870434431914
+    second: PlatForms_129
+  - first:
+      213: -1186593334598560388
+    second: PlatForms_130
+  - first:
+      213: 6356098492536369568
+    second: PlatForms_131
+  - first:
+      213: -7812581114550282217
+    second: PlatForms_132
+  - first:
+      213: -5965441165759166494
+    second: PlatForms_133
+  - first:
+      213: 8115484585508959606
+    second: PlatForms_134
+  - first:
+      213: -9186953858248976457
+    second: PlatForms_135
+  - first:
+      213: -8969542108591710716
+    second: PlatForms_136
+  - first:
+      213: -7482607293519673813
+    second: PlatForms_137
+  - first:
+      213: -2445886377661161862
+    second: PlatForms_138
+  - first:
+      213: -1648181412171805788
+    second: PlatForms_139
+  - first:
+      213: 5466518605743278155
+    second: PlatForms_140
+  - first:
+      213: 1104085509532442242
+    second: PlatForms_141
+  - first:
+      213: -6721277207237894173
+    second: PlatForms_142
+  - first:
+      213: -5656291868601062887
+    second: PlatForms_143
+  - first:
+      213: -840581455627594118
+    second: PlatForms_144
+  - first:
+      213: 3369140083615777285
+    second: PlatForms_145
+  - first:
+      213: -1816317534584714602
+    second: PlatForms_146
+  - first:
+      213: 1036062351859586353
+    second: PlatForms_147
+  - first:
+      213: 1244232485708459642
+    second: PlatForms_148
+  - first:
+      213: 7845194302086669116
+    second: PlatForms_149
+  - first:
+      213: -9176081289384430645
+    second: PlatForms_150
+  - first:
+      213: -6678001349224382682
+    second: PlatForms_151
+  - first:
+      213: -3646581990786757562
+    second: PlatForms_152
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 2
+    aniso: 1
+    mipBias: 0
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 16384
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: PlatForms_0
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 911
+        width: 419
+        height: 79
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22209f6b298ffb310800000000000000
+      internalID: 1423129316291052066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlatForms_1
+      rect:
+        serializedVersion: 2
+        x: 510
+        y: 901
+        width: 108
+        height: 101
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2adcc7d3fc39f59b0800000000000000
+      internalID: -5089186535606268510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlatForms_2
+      rect:
+        serializedVersion: 2
+        x: 673
+        y: 881
+        width: 823
+        height: 115
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5094393562c7f3050800000000000000
+      internalID: 5782476950619769093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlatForms_3
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 722
+        width: 344
+        height: 138
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: acf5dbc0f2b058500800000000000000
+      internalID: 397736438797262794
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlatForms_4
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 500
+        width: 246
+        height: 132
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6310628163371270800000000000000
+      internalID: 8221096138680308589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlatForms_5
+      rect:
+        serializedVersion: 2
+        x: 310
+        y: 500
+        width: 103
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5aaa25ab0c9e7e210800000000000000
+      internalID: 1362314426271836837
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlatForms_6
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 738
+        width: 327
+        height: 124
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9072450768c0b42f0800000000000000
+      internalID: -987681921727977719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlatForms_10
+      rect:
+        serializedVersion: 2
+        x: 463
+        y: 501
+        width: 79
+        height: 132
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 029a9f4795e93a4f0800000000000000
+      internalID: -818636600199501536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlatForms_15
+      rect:
+        serializedVersion: 2
+        x: 583
+        y: 493
+        width: 80
+        height: 184
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 74b58f6254b5228d0800000000000000
+      internalID: -2872633259744273593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlatForms_24
+      rect:
+        serializedVersion: 2
+        x: 699
+        y: 503
+        width: 94
+        height: 194
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 673659cb4c96c1e30800000000000000
+      internalID: 4475568423397843830
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlatForms_25
+      rect:
+        serializedVersion: 2
+        x: 774
+        y: 728
+        width: 723
+        height: 132
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 71826fc15fc54a880800000000000000
+      internalID: -8600647180548167657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlatForms_27
+      rect:
+        serializedVersion: 2
+        x: 806
+        y: 506
+        width: 214
+        height: 191
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 76ca5e86615c29d80800000000000000
+      internalID: -8245311267722122137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlatForms_33
+      rect:
+        serializedVersion: 2
+        x: 1040
+        y: 505
+        width: 153
+        height: 175
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5bbce8d5104581690800000000000000
+      internalID: -7631257203737965643
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlatForms_40
+      rect:
+        serializedVersion: 2
+        x: 1250
+        y: 514
+        width: 227
+        height: 158
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa179000c52ce4eb0800000000000000
+      internalID: -4733632457926413905
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlatForms_41
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 286
+        width: 249
+        height: 173
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0cd628aba32e1b00800000000000000
+      internalID: 801117003886025742
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlatForms_42
+      rect:
+        serializedVersion: 2
+        x: 297
+        y: 286
+        width: 222
+        height: 174
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d2e534fedf252830800000000000000
+      internalID: 4045692474888676053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlatForms_43
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 274
+        width: 329
+        height: 206
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 657d3580f6c122ea0800000000000000
+      internalID: -5899121298695268522
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlatForms_44
+      rect:
+        serializedVersion: 2
+        x: 870
+        y: 259
+        width: 335
+        height: 209
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f802dd39c2fc8850800000000000000
+      internalID: 6380741718216673526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlatForms_45
+      rect:
+        serializedVersion: 2
+        x: 873
+        y: 423
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 87b1ee37b6383b070800000000000000
+      internalID: 8120979050608860024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlatForms_46
+      rect:
+        serializedVersion: 2
+        x: 1217
+        y: 293
+        width: 284
+        height: 175
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 58bb7f8c020d08270800000000000000
+      internalID: 8250823356571958149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlatForms_69
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 25
+        width: 376
+        height: 237
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 95ef7f1718524ce50800000000000000
+      internalID: 6828624172893601369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlatForms_98
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 56
+        width: 532
+        height: 175
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b0054710bc65ceb60800000000000000
+      internalID: 7776686086464753675
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlatForms_108
+      rect:
+        serializedVersion: 2
+        x: 1165
+        y: 69
+        width: 283
+        height: 158
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 12cc275329ff5a9b0800000000000000
+      internalID: -5069364802108601311
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlatForms_7
+      rect:
+        serializedVersion: 2
+        x: 399
+        y: 55
+        width: 192
+        height: 196
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 167fdf0fe430d5749a4a23150fe9a3c9
+      internalID: 6158022986834565398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 94cc2d80b6d55554b8fd9418fc2fb77c
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      PlatForms_0: 1423129316291052066
+      PlatForms_1: -5089186535606268510
+      PlatForms_10: -818636600199501536
+      PlatForms_100: -6199280191496294725
+      PlatForms_101: 7966182686554010500
+      PlatForms_102: -248555249374391046
+      PlatForms_103: -825268338103221150
+      PlatForms_104: 715859302176529191
+      PlatForms_105: -1113179976405669932
+      PlatForms_106: -6774182611752462828
+      PlatForms_107: -7752408252379376656
+      PlatForms_108: -5069364802108601311
+      PlatForms_109: -2095222844781192317
+      PlatForms_11: 7173758458071416014
+      PlatForms_110: -2398808093327102618
+      PlatForms_111: -3772043210345526590
+      PlatForms_112: 8917496805850490500
+      PlatForms_113: 7273843038244502924
+      PlatForms_114: -5556314602352268532
+      PlatForms_115: 217530790567422725
+      PlatForms_116: 8579601649674700152
+      PlatForms_117: 5564103783635727946
+      PlatForms_118: -2904646301100789799
+      PlatForms_119: 375503415040909928
+      PlatForms_12: 329741249624741793
+      PlatForms_120: 7127239435381952430
+      PlatForms_121: 6702582540464009646
+      PlatForms_122: -1148548256062951866
+      PlatForms_123: -8402551656127174070
+      PlatForms_124: 5625632751724716328
+      PlatForms_125: -6980443841752521167
+      PlatForms_126: -7863581822527928849
+      PlatForms_127: -1245295178793354377
+      PlatForms_128: -1982788453368791102
+      PlatForms_129: -7617423870434431914
+      PlatForms_13: -4434066471042982003
+      PlatForms_130: -1186593334598560388
+      PlatForms_131: 6356098492536369568
+      PlatForms_132: -7812581114550282217
+      PlatForms_133: -5965441165759166494
+      PlatForms_134: 8115484585508959606
+      PlatForms_135: -9186953858248976457
+      PlatForms_136: -8969542108591710716
+      PlatForms_137: -7482607293519673813
+      PlatForms_138: -2445886377661161862
+      PlatForms_139: -1648181412171805788
+      PlatForms_14: -4108758876958651462
+      PlatForms_140: 5466518605743278155
+      PlatForms_141: 1104085509532442242
+      PlatForms_142: -6721277207237894173
+      PlatForms_143: -5656291868601062887
+      PlatForms_144: -840581455627594118
+      PlatForms_145: 3369140083615777285
+      PlatForms_146: -1816317534584714602
+      PlatForms_147: 1036062351859586353
+      PlatForms_148: 1244232485708459642
+      PlatForms_149: 7845194302086669116
+      PlatForms_15: -2872633259744273593
+      PlatForms_150: -9176081289384430645
+      PlatForms_151: -6678001349224382682
+      PlatForms_152: -3646581990786757562
+      PlatForms_16: 4598759290062412311
+      PlatForms_17: -7473336558398672592
+      PlatForms_18: 7743001552937123442
+      PlatForms_19: -6151171879513925799
+      PlatForms_2: 5782476950619769093
+      PlatForms_20: 3558879444695672422
+      PlatForms_21: -6815073337744449065
+      PlatForms_22: 3327274043973652141
+      PlatForms_23: -738891273950452067
+      PlatForms_24: 4475568423397843830
+      PlatForms_25: -8600647180548167657
+      PlatForms_26: 4679647886873754890
+      PlatForms_27: -8245311267722122137
+      PlatForms_28: -6602065644908383817
+      PlatForms_29: 882102947369243780
+      PlatForms_3: 397736438797262794
+      PlatForms_30: 6680894895219250005
+      PlatForms_31: -7272265795501753490
+      PlatForms_32: 7525856037369154318
+      PlatForms_33: -7631257203737965643
+      PlatForms_34: 6739349224962236666
+      PlatForms_35: 5366594988717361367
+      PlatForms_36: 2272616761281749763
+      PlatForms_37: 1358424308120133044
+      PlatForms_38: -7582020682997493611
+      PlatForms_39: -8193205176569120297
+      PlatForms_4: 8221096138680308589
+      PlatForms_40: -4733632457926413905
+      PlatForms_41: 801117003886025742
+      PlatForms_42: 4045692474888676053
+      PlatForms_43: -5899121298695268522
+      PlatForms_44: 6380741718216673526
+      PlatForms_45: 8120979050608860024
+      PlatForms_46: 8250823356571958149
+      PlatForms_47: -1892306552655591212
+      PlatForms_48: 2948305542497098432
+      PlatForms_49: -9155110541396994386
+      PlatForms_5: 1362314426271836837
+      PlatForms_50: 5422502440206543547
+      PlatForms_51: -7010006557492015598
+      PlatForms_52: -1749091207260239869
+      PlatForms_53: 888635029636147106
+      PlatForms_54: -3186011900131677642
+      PlatForms_55: 8995572147116372666
+      PlatForms_56: 5913379324356231846
+      PlatForms_57: -5227009980509136296
+      PlatForms_58: -8454225178081954716
+      PlatForms_59: -5056319834713075981
+      PlatForms_6: -987681921727977719
+      PlatForms_60: 5237149679565129425
+      PlatForms_61: 8994687087985518787
+      PlatForms_62: -619236542245964656
+      PlatForms_63: -1714848407481738291
+      PlatForms_64: -165628219801893681
+      PlatForms_65: -4119730492437495282
+      PlatForms_66: -9123226886538530823
+      PlatForms_67: -2604027517073588271
+      PlatForms_68: -3644341127792439653
+      PlatForms_69: 6828624172893601369
+      PlatForms_7: 6158022986834565398
+      PlatForms_70: 4009818357680690681
+      PlatForms_71: -6120387721970745839
+      PlatForms_72: 7008224937605150397
+      PlatForms_73: -7905868816696008146
+      PlatForms_74: -7214013026636623335
+      PlatForms_75: -178655111606556112
+      PlatForms_76: -139125535804335514
+      PlatForms_77: 1917299002595383770
+      PlatForms_78: 1269860371812885331
+      PlatForms_79: -2420603882157276983
+      PlatForms_8: 2241068699432556434
+      PlatForms_80: -6877493319119617225
+      PlatForms_81: 1870760765963003087
+      PlatForms_82: 7251450375805040559
+      PlatForms_83: 9090179464643705644
+      PlatForms_84: 7617791109341134169
+      PlatForms_85: 4077352377975766689
+      PlatForms_86: 3648417309810118668
+      PlatForms_87: 7347067000140676219
+      PlatForms_88: 7338954144882024890
+      PlatForms_89: -8141573947708038587
+      PlatForms_9: 4146786342347955073
+      PlatForms_90: -7072958602264905781
+      PlatForms_91: -4182607749171837602
+      PlatForms_92: 229982764928984238
+      PlatForms_93: -3553552533986590169
+      PlatForms_94: -7214299750924929607
+      PlatForms_95: 5962626840161960464
+      PlatForms_96: -74319617323370001
+      PlatForms_97: -4396107785734547511
+      PlatForms_98: 7776686086464753675
+      PlatForms_99: -4891148614121159672
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
