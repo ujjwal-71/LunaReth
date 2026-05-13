@@ -9,13 +9,13 @@ public class Movement : MonoBehaviour
         RB = GetComponent<Rigidbody2D>();
     }
 
-    public float thrust = 1;
+    public float thrust = 10;
     // Update is called once per frame
     void FixedUpdate()
     {
         if (Input.GetKey(KeyCode.D))
         {
-            RB.AddForceX(transform.up *thrust);
+            RB.AddForceX(transform.position.x *thrust);
         }
     }
 }
