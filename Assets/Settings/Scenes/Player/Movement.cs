@@ -17,43 +17,63 @@ public class Movement : MonoBehaviour
 
     public float speed=4f;
     public float jump=1f;
+    private int direc;
+    private bool dashing;
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKey(KeyCode.D)){
-            RB.linearVelocityX = speed;
-            sprite.flipX = false;
-        }
-        if (Input.GetKey(KeyCode.A)){
-            RB.linearVelocityX = -speed;
-            sprite.flipX = true;
-        }
-        if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
-            RB.linearVelocityX = 0f;
+        if(dash){
+            if(sprite.flipX)
+                direc= -1;
+            else
+                direc= 1;
 
-
-        if(Input.GetKey(KeyCode.Space)){
-            if(jump<16f && isGrounded){
-                RB.linearVelocityY = jump;
-                jump+=0.5f;
+            if (Input.GetKeyDown(KeyCode.X))
+            {
+                dashing = true;
+                Debug.Log("DASHED");
+                RB.linearVelocityX = direc*13;
+                dash = false;
             }
-            else{
-                isGrounded = false;
-                jump= 1;
+            else
+                dashing = false;
+        }
+        if(!dashing){
+            if(Input.GetKey(KeyCode.D)){
+                RB.linearVelocityX = speed;
+                sprite.flipX = false;
+            }
+            if (Input.GetKey(KeyCode.A)){
+                RB.linearVelocityX = -speed;
+                sprite.flipX = true;
+            }
+            if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
+                RB.linearVelocityX = 0f;
+
+
+            if(Input.GetKey(KeyCode.Space)){
+                if(jump<16f && isGrounded){
+                    RB.linearVelocityY = jump;
+                    jump+=0.5f;
+                }
+                else{
+                    isGrounded = false;
+                    jump= 1;
+                }
             }
         }
-
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            RB.AddForce(Vector2.up * 20, ForceMode2D.Impulse);
-        }
-
     }
 
     private bool isGrounded = true;
-    void OnTriggerEnter2D()
+    private bool dash = true;
+    void OnTriggerEnter2D(Collider2D collider)
     {
         isGrounded=true;
+        dash = true;
         jump = 1;
+    }
+    void OnTriggerStay2D(Collider2D collider)
+    {
+        dash = true;
     }
 }
