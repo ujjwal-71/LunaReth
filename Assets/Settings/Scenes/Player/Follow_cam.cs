@@ -11,10 +11,27 @@ public class Follow_cam : MonoBehaviour
     }
 
     // Update is called once per frame
-        void Update()
+    void Update()
+    {
+        Vector3 pos = transform.position;
+        if(player.position.x>= 5 && player.position.x <=14)
         {
-            Vector3 pos = transform.position;
-            pos.x = player.position.x;
+            pos.x = player.position.x - 5;
             transform.position = pos;
         }
+
+        Vector3 screenPos = Camera.main.WorldToViewportPoint(player.position);
+        
+
+        if(screenPos.y > 0.7)
+        {
+            pos.y += 10f * Time.deltaTime;
+            transform.position = pos;
+        }
+        else if(screenPos.y < 0.2)
+        {
+            pos.y -= 10f *  Time.deltaTime;
+            transform.position = pos;
+        }
+    }
 }

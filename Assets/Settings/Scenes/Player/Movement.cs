@@ -19,6 +19,7 @@ public class Movement : MonoBehaviour
     public float jump=1f;
     private int direc;
     private bool dashing;
+    private float dashTimer;
     // Update is called once per frame
     void Update()
     {
@@ -32,12 +33,18 @@ public class Movement : MonoBehaviour
             {
                 dashing = true;
                 Debug.Log("DASHED");
-                RB.linearVelocityX = direc*13;
+                RB.linearVelocityX = direc*10;
                 dash = false;
             }
-            else
-                dashing = false;
+            if(dashing){
+                dashTimer += Time.fixedDeltaTime;
+            }
+            
         }
+        if(dashTimer> 3f){
+                dashing = false;
+                dashTimer = 0;
+            }
         if(!dashing){
             if(Input.GetKey(KeyCode.D)){
                 RB.linearVelocityX = speed;
