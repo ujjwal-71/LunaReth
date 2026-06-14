@@ -4,6 +4,10 @@ using UnityEngine.UIElements;
 public class Follow_cam : MonoBehaviour
 {
     private Transform player;
+    public float UP_X=0;
+    public float LW_X=0;
+    public float UP_Y=0;
+    public float LW_Y=0;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -13,25 +17,59 @@ public class Follow_cam : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 pos = transform.position;
-        if(player.position.x>= 5 && player.position.x <=14)
-        {
-            pos.x = player.position.x - 5;
-            transform.position = pos;
-        }
-
         Vector3 screenPos = Camera.main.WorldToViewportPoint(player.position);
-        
+        Vector3 pos = transform.position;
 
-        if(screenPos.y > 0.7)
+        if(pos.x <= LW_X)
         {
-            pos.y += 10f * Time.deltaTime;
-            transform.position = pos;
+            if (screenPos.x > 0.6)
+            {
+                pos.x += 15 * Time.deltaTime;
+            }
         }
-        else if(screenPos.y < 0.2)
+        else if(pos.x >= UP_X)
         {
-            pos.y -= 10f *  Time.deltaTime;
-            transform.position = pos;
+            if(screenPos.x < 0.4)
+            {
+                pos.x -= 15 * Time.deltaTime;    
+            }
         }
+        else
+        {
+            if(screenPos.x < 0.45)
+            {
+                pos.x -= 16 * Time.deltaTime;
+            }
+            else if(screenPos.x > 0.55)
+            {
+                pos.x += 16 * Time.deltaTime;
+            }
+        }
+        if(pos.y < LW_Y)
+        {
+            if (screenPos.y >= 0.6)
+            {
+                pos.y += 15 * Time.deltaTime;
+            }
+        }
+        else if(pos.y >= UP_Y)
+        {
+            if(screenPos.y < 0.4)
+            {
+                pos.y -= 15 * Time.deltaTime;
+            }
+        }
+        else
+        {
+            if(screenPos.y < 0.25)
+            {
+                pos.y -= 16 * Time.deltaTime;
+            }
+            else if(screenPos.y > 0.65)
+            {
+                pos.y += 16 * Time.deltaTime;
+            }
+        }
+        transform.position = pos;
     }
 }

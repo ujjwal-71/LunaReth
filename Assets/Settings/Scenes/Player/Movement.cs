@@ -17,34 +17,40 @@ public class Movement : MonoBehaviour
 
     public float speed=4f;
     public float jump=1f;
+    private bool isGrounded = true;
     private int direc;
     private bool dashing;
+    private bool dash;
     private float dashTimer;
     // Update is called once per frame
     void Update()
     {
-        if(dash){
+        if(dash && Input.GetKeyDown(KeyCode.X))
+        {
+            dashing = true;
             if(sprite.flipX)
                 direc= -1;
             else
                 direc= 1;
-
-            if (Input.GetKeyDown(KeyCode.X))
-            {
-                dashing = true;
-                Debug.Log("DASHED");
-                RB.linearVelocityX = direc*10;
-                dash = false;
-            }
-            if(dashing){
-                dashTimer += Time.fixedDeltaTime;
-            }
-            
         }
-        if(dashTimer> 3f){
+        if (dashing)
+        {
+            if(dashTimer> 0.2f)
+            {
+                RB.linearVelocity = new Vector2 (0,0);
                 dashing = false;
                 dashTimer = 0;
+                Debug.Log("DASHED");
             }
+            else
+            {
+                dash = false;
+                dashTimer += Time.deltaTime;
+                RB.linearVelocity = new Vector2 (direc*20,0);
+            }
+        }
+        
+
         if(!dashing){
             if(Input.GetKey(KeyCode.D)){
                 RB.linearVelocityX = speed;
@@ -71,8 +77,6 @@ public class Movement : MonoBehaviour
         }
     }
 
-    private bool isGrounded = true;
-    private bool dash = true;
     void OnTriggerEnter2D(Collider2D collider)
     {
         isGrounded=true;
