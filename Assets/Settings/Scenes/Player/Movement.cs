@@ -7,6 +7,7 @@ public class Movement : MonoBehaviour
 {
     private SpriteRenderer sprite;
     private Rigidbody2D RB;
+    public Animator anim;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -40,7 +41,6 @@ public class Movement : MonoBehaviour
                 RB.linearVelocity = new Vector2 (0,0);
                 dashing = false;
                 dashTimer = 0;
-                Debug.Log("DASHED");
             }
             else
             {
@@ -55,14 +55,19 @@ public class Movement : MonoBehaviour
             if(Input.GetKey(KeyCode.D)){
                 RB.linearVelocityX = speed;
                 sprite.flipX = false;
+                anim.SetBool("isRunning", true);
             }
             if (Input.GetKey(KeyCode.A)){
                 RB.linearVelocityX = -speed;
                 sprite.flipX = true;
+                anim.SetBool("isRunning", true);
             }
             if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
+            {
                 RB.linearVelocityX = 0f;
-
+                anim.SetBool("isRunning", false);
+                Debug.Log(anim.GetBool("isRunning"));
+            }
 
             if(Input.GetKey(KeyCode.Space)){
                 if(jump<16f && isGrounded){
