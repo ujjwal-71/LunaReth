@@ -6,6 +6,7 @@ using UnityEngine.Rendering.Universal;
 public class Movement : MonoBehaviour
 {
     private SpriteRenderer sprite;
+    private ParticleSystem DashEff;
     private Rigidbody2D RB;
     public Animator anim;
 
@@ -14,6 +15,7 @@ public class Movement : MonoBehaviour
     {
         RB = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
+        DashEff = GetComponent<ParticleSystem>();
     }
 
     public float speed=4f;
@@ -28,6 +30,7 @@ public class Movement : MonoBehaviour
     {
         if(dash && Input.GetKeyDown(KeyCode.X))
         {
+            DashEff.Play();
             dashing = true;
             if(sprite.flipX)
                 direc= -1;
@@ -41,6 +44,7 @@ public class Movement : MonoBehaviour
                 RB.linearVelocity = new Vector2 (0,0);
                 dashing = false;
                 dashTimer = 0;
+                DashEff.Stop();
             }
             else
             {
@@ -55,18 +59,15 @@ public class Movement : MonoBehaviour
             if(Input.GetKey(KeyCode.D)){
                 RB.linearVelocityX = speed;
                 sprite.flipX = false;
-                anim.SetBool("isRunning", true);
             }
             if (Input.GetKey(KeyCode.A)){
                 RB.linearVelocityX = -speed;
                 sprite.flipX = true;
-                anim.SetBool("isRunning", true);
             }
             if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
             {
                 RB.linearVelocityX = 0f;
                 anim.SetBool("isRunning", false);
-                Debug.Log(anim.GetBool("isRunning"));
             }
 
             if(Input.GetKey(KeyCode.Space)){
@@ -75,21 +76,38 @@ public class Movement : MonoBehaviour
                     jump+=0.5f;
                 }
                 else{
+                    anim.SetBool("isJUMPED", false);
                     isGrounded = false;
                     jump= 1;
                 }
             }
+            if (Input.GetKeyUp(KeyCode.Space))
+                jump = 17;
         }
+        if((Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)) && isGrounded)
+            anim.SetBool("isRunning", true);
+        else
+            anim.SetBool("isRunning", false);
+
     }
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        isGrounded=true;
+        isGrounded = true;
         dash = true;
         jump = 1;
+        anim.SetBool("isJUMPED", false);
+        anim.SetBool("isGROUNDED", true);
     }
     void OnTriggerStay2D(Collider2D collider)
     {
         dash = true;
+        isGrounded = true;
+        anim.SetBool("isGROUNDED", true);
+    }
+
+    void OnTriggerExit2D(Collider2D collider)
+    {
+        anim.SetBool("isJUMPED", true);
     }
 }
