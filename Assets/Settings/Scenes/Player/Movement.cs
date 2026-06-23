@@ -6,13 +6,17 @@ using UnityEngine.Rendering.Universal;
 public class Movement : MonoBehaviour
 {
     private SpriteRenderer sprite;
+    public GameObject attacker;
     private ParticleSystem DashEff;
     private Rigidbody2D RB;
     public Animator anim;
+    public SpriteRenderer Attack_Sprite;
+    public Transform Attack_Transform;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        attacker.SetActive(false);
         RB = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
         DashEff = GetComponent<ParticleSystem>();
@@ -25,12 +29,12 @@ public class Movement : MonoBehaviour
     private bool dashing;
     private bool dash;
     private float dashTimer;
+    private float attacktimer = 0;
     // Update is called once per frame
     void Update()
     {
         if(dash && Input.GetKeyDown(KeyCode.X))
         {
-            DashEff.Play();
             dashing = true;
             if(sprite.flipX)
                 direc= -1;
@@ -39,7 +43,7 @@ public class Movement : MonoBehaviour
         }
         if (dashing)
         {
-            if(dashTimer> 0.2f)
+            if(dashTimer> 0.1f)
             {
                 RB.linearVelocity = new Vector2 (0,0);
                 dashing = false;
@@ -48,9 +52,10 @@ public class Movement : MonoBehaviour
             }
             else
             {
+                DashEff.Play();
                 dash = false;
                 dashTimer += Time.deltaTime;
-                RB.linearVelocity = new Vector2 (direc*20,0);
+                RB.linearVelocity = new Vector2 (direc*50,0);
             }
         }
         
@@ -88,6 +93,30 @@ public class Movement : MonoBehaviour
             anim.SetBool("isRunning", true);
         else
             anim.SetBool("isRunning", false);
+
+        if (Input.GetKeyDown(KeyCode.E) && attacktimer <= 0 )
+        {
+            if (sprite.flipX)
+            {
+                Attack_Transform.localPosition = new Vector3(-0.3f,0.1f,0);
+                Attack_Sprite.flipX = true;
+            }
+            else
+            {
+                Attack_Transform.localPosition = new Vector3(0.3f,0.1f,0);
+                Attack_Sprite.flipX = false;
+            }
+            attacker.SetActive(true);
+            attacktimer =0.25f;
+        }
+        if (attacktimer > 0)
+        {
+            attacktimer -= Time.deltaTime;
+            if (attacktimer <= 0) {
+                attacker.SetActive(false);
+        }
+        }
+
 
     }
 
