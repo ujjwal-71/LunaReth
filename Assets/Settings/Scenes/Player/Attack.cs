@@ -7,16 +7,17 @@ public class Attack : MonoBehaviour
 
     void Start()
     {
-        enemy.GetComponent<Enemy_AI>();
+        
     }
 
     void Update()
     {
-        
     }
 
     void OnTriggerEnter2D(Collider2D enemy)
     {
-    
+        Enemy_AI enemyAI = enemy.GetComponent<Enemy_AI>();
+        if(enemyAI != null)
+        enemy.GetComponent<Enemy_AI>().Damaging(20);
     }
 }
