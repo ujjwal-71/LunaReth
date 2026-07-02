@@ -5,6 +5,7 @@ public class Enemy_AI : MonoBehaviour
 {
     public Collider2D Attack_Box;
     private SpriteRenderer sprite_enemy;
+    private Rigidbody2D RB_enemy;
     public int Max_Health = 100;
     int Current_Health = 100;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -12,6 +13,7 @@ public class Enemy_AI : MonoBehaviour
     {
         Current_Health = Max_Health;
         sprite_enemy = GetComponent<SpriteRenderer>();
+        RB_enemy = GetComponent<Rigidbody2D>();
     }
     public void Damaging(int Damage)
     {

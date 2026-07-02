@@ -13,7 +13,6 @@ public class Movement : MonoBehaviour
     public SpriteRenderer Attack_Sprite;
     public Transform Attack_Transform;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         attacker.SetActive(false);
@@ -30,7 +29,6 @@ public class Movement : MonoBehaviour
     private bool dash;
     private float dashTimer;
     private float attacktimer = 0;
-    // Update is called once per frame
     void Update()
     {
         if(dash && Input.GetKeyDown(KeyCode.X))
