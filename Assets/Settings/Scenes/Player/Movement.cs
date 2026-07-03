@@ -124,7 +124,6 @@ public class Movement : MonoBehaviour
         dash = true;
         jump = 1;
         anim.SetBool("isJUMPED", false);
-        anim.SetBool("isGROUNDED", true);
     }
     void OnTriggerStay2D(Collider2D collider)
     {
@@ -135,6 +134,7 @@ public class Movement : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D collider)
     {
+        anim.SetBool("isGROUNDED", false);
         anim.SetBool("isJUMPED", true);
     }
 }
