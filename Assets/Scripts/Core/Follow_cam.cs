@@ -15,7 +15,7 @@ public class Follow_cam : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         Vector3 screenPos = Camera.main.WorldToViewportPoint(player.position);
         Vector3 pos = transform.position;

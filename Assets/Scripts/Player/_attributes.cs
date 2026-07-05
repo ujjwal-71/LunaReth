@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class _attributes : MonoBehaviour
 {
     public int _MaxHealth=100;
-    public int _CurrentHealth;
+    private int _CurrentHealth;
     public Slider HealthSlider;
     void Start()
     {
@@ -13,6 +13,6 @@ public class _attributes : MonoBehaviour
     }
     void Update()
     {
-        HealthSlider.value = _CurrentHealth;
+        
     }
 }

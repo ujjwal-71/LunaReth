@@ -16,15 +16,22 @@ public class Movement : MonoBehaviour
 
     [Header("Movement Stats")]
     public float speed = 4f;
-    public float jump = 1f;
+    private float jump = 1f;
+    private float jumpTimer=0f;
+    private bool jumping;
+    public float jumpPower = 1f;
 
     [Header("State")]
+    public LayerMask Ground;
+    public Transform FeetPosition;
     private bool isGrounded = true;
+    private bool wasGrounded;
     private int direc;
     private bool dashing;
     private bool dash;
     private float dashTimer;
     private float attacktimer = 0;
+    
 
     void Start()
     {
@@ -36,11 +43,15 @@ public class Movement : MonoBehaviour
 
     void Update()
     {
+        isGrounded = Physics2D.OverlapCircle(FeetPosition.position,0.15f,Ground);
+        GroundCheck();
         HandleDashing();
         HandleMovement();
         HandleJumping();
         HandleAttacking();
     }
+
+        // This function only runs in the Unity Editor Scene view so you can see your invisible shapes!
 
     private void HandleDashing()
     {
@@ -105,20 +116,32 @@ public class Movement : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.Space))
             {
-                if (jump < 16f && isGrounded)
+                jumpTimer += Time.deltaTime;
+                if (jumpTimer <= 0.18f)
                 {
-                    RB.linearVelocityY = jump;
-                    jump += 0.5f;
+                    if (isGrounded && Input.GetKeyDown(KeyCode.Space))
+                        jumping = true;
+
+                    if (jumping){
+                        RB.linearVelocityY = jump;
+
+                    if (jump<16)
+                        jump += jumpPower;
+                    }
                 }
+                
                 else
                 {
-                    anim.SetBool("isJUMPED", false);
-                    isGrounded = false;
-                    jump = 1;
+                    jump = 0;
+                    jumping = false;
                 }
             }
-            if (Input.GetKeyUp(KeyCode.Space))
-                jump = 17;
+            else
+            {
+                jumpTimer = 0;
+                jump = 0;
+                jumping = false;
+            }
         }
     }
 
@@ -150,23 +173,19 @@ public class Movement : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D(Collider2D collider)
+    void GroundCheck()
     {
-        isGrounded = true;
-        dash = true;
-        jump = 1;
-        anim.SetBool("isJUMPED", false);
-    }
-    void OnTriggerStay2D(Collider2D collider)
-    {
-        dash = true;
-        isGrounded = true;
-        anim.SetBool("isGROUNDED", true);
-    }
+        if (isGrounded && !wasGrounded)
+        {
+            jump = 0;
+            jumpTimer = 0;
+        }
+        if (isGrounded && !dashing)
+            dash = true;
 
-    void OnTriggerExit2D(Collider2D collider)
-    {
-        anim.SetBool("isGROUNDED", false);
-        anim.SetBool("isJUMPED", true);
+        anim.SetBool("isGROUNDED", isGrounded);
+        anim.SetBool("isJUMPED", !isGrounded);
+
+        wasGrounded = isGrounded;
     }
 }
