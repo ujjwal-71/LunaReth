@@ -11,8 +11,9 @@ public class _attributes : MonoBehaviour
         _CurrentHealth = _MaxHealth;
         HealthSlider.maxValue = _MaxHealth;
     }
-    void Update()
+
+    public void GetDamage()
     {
         
-    }
+    }  
 }
