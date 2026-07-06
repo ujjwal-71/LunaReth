@@ -1997,7 +1997,7 @@ MonoBehaviour:
   Attack_Sprite: {fileID: 611091138}
   Attack_Transform: {fileID: 611091136}
   speed: 6
-  jumpPower: 0.25
+  jumpPower: 0.2
   Ground:
     serializedVersion: 2
     m_Bits: 8
