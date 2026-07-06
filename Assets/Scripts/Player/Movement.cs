@@ -16,6 +16,7 @@ public class Movement : MonoBehaviour
 
     [Header("Movement Stats")]
     public float speed = 4f;
+    private float prevXPos;
     private float jump = 1f;
     private float jumpTimer=0f;
     private bool jumping;
@@ -108,6 +109,12 @@ public class Movement : MonoBehaviour
             anim.SetBool("isRUNNING", true);
         else
             anim.SetBool("isRUNNING", false);
+
+        if (prevXPos == 0)
+        {
+            RB.linearVelocityX = 0;
+        }
+        float prevPos = transform.position.x; 
     }
 
     private void HandleJumping()
