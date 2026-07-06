@@ -19,7 +19,7 @@ public class Movement : MonoBehaviour
     private float jump = 1f;
     private float jumpTimer=0f;
     private bool jumping;
-    public float jumpPower = 1f;
+    public float jumpPower;
 
     [Header("State")]
     public LayerMask Ground;
@@ -100,14 +100,14 @@ public class Movement : MonoBehaviour
             if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
             {
                 RB.linearVelocityX = 0f;
-                anim.SetBool("isRunning", false);
+                anim.SetBool("isRUNNING", false);
             }
         }
 
         if ((Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)) && isGrounded)
-            anim.SetBool("isRunning", true);
+            anim.SetBool("isRUNNING", true);
         else
-            anim.SetBool("isRunning", false);
+            anim.SetBool("isRUNNING", false);
     }
 
     private void HandleJumping()
@@ -117,7 +117,7 @@ public class Movement : MonoBehaviour
             if (Input.GetKey(KeyCode.Space))
             {
                 jumpTimer += Time.deltaTime;
-                if (jumpTimer <= 0.18f)
+                if (jumpTimer <= 0.4f)
                 {
                     if (isGrounded && Input.GetKeyDown(KeyCode.Space))
                         jumping = true;
@@ -126,7 +126,7 @@ public class Movement : MonoBehaviour
                         RB.linearVelocityY = jump;
 
                     if (jump<16)
-                        jump += jumpPower;
+                        jump += jumpPower * Time.deltaTime;
                     }
                 }
                 
@@ -183,8 +183,24 @@ public class Movement : MonoBehaviour
         if (isGrounded && !dashing)
             dash = true;
 
-        anim.SetBool("isGROUNDED", isGrounded);
-        anim.SetBool("isJUMPED", !isGrounded);
+        if (RB.linearVelocityY < -0.1f)
+        {
+            anim.SetBool("isJUMPED", false);
+            anim.SetBool("isGROUNDED", false);
+            anim.SetBool("isFALLING", true);
+        }
+        else if (RB.linearVelocityY > 0.1f)
+        {
+            anim.SetBool("isJUMPED", true);
+            anim.SetBool("isGROUNDED", false);
+            anim.SetBool("isFALLING", false);
+        }
+        else
+        {
+            anim.SetBool("isJUMPED", false);
+            anim.SetBool("isGROUNDED", true);
+            anim.SetBool("isFALLING", false);
+        }
 
         wasGrounded = isGrounded;
     }

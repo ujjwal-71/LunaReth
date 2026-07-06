@@ -1899,7 +1899,7 @@ GameObject:
   - component: {fileID: 792362628}
   m_Layer: 0
   m_Name: Player_0
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1997,7 +1997,7 @@ MonoBehaviour:
   Attack_Sprite: {fileID: 611091138}
   Attack_Transform: {fileID: 611091136}
   speed: 6
-  jumpPower: 0.8
+  jumpPower: 0.25
   Ground:
     serializedVersion: 2
     m_Bits: 8
@@ -7042,8 +7042,8 @@ RectTransform:
   m_GameObject: {fileID: 1009015520}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.53, y: 0.53, z: 0.53}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 306177016}
   - {fileID: 1058436665}
@@ -7051,7 +7051,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 39, y: -23}
+  m_AnchoredPosition: {x: 86, y: -257}
   m_SizeDelta: {x: -604, y: -296}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1009015522
