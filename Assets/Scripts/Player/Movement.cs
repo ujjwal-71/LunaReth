@@ -34,7 +34,7 @@ public class Movement : MonoBehaviour
     private float attacktimer = 0;
     
 
-    void Start()
+    private void Awake()
     {
         attacker.SetActive(false);
         RB = GetComponent<Rigidbody2D>();
@@ -57,29 +57,23 @@ public class Movement : MonoBehaviour
     private void HandleDashing()
     {
         if (dash && Input.GetKeyDown(KeyCode.X))
-        {
             dashing = true;
-            if (sprite.flipX)
-                direc = -1;
-            else
-                direc = 1;
-        }
 
         if (dashing)
         {
             if (dashTimer > 0.1f)
             {
+                DashEff.Stop();
                 RB.linearVelocity = new Vector2(0, 0);
                 dashing = false;
                 dashTimer = 0;
-                DashEff.Stop();
             }
             else
             {
-                DashEff.Play();
                 dash = false;
                 dashTimer += Time.deltaTime;
-                RB.linearVelocity = new Vector2(direc * 50, 0);
+                RB.linearVelocity = transform.right * 40;
+                DashEff.Play();
             }
         }
     }
@@ -91,12 +85,12 @@ public class Movement : MonoBehaviour
             if (Input.GetKey(KeyCode.D))
             {
                 RB.linearVelocityX = speed;
-                sprite.flipX = false;
+                transform.rotation = Quaternion.Euler(0,0,0);
             }
             if (Input.GetKey(KeyCode.A))
             {
                 RB.linearVelocityX = -speed;
-                sprite.flipX = true;
+                transform.rotation = Quaternion.Euler(0,-180f,0);
             }
             if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
             {
@@ -109,12 +103,6 @@ public class Movement : MonoBehaviour
             anim.SetBool("isRUNNING", true);
         else
             anim.SetBool("isRUNNING", false);
-
-        if (prevXPos == 0)
-        {
-            RB.linearVelocityX = 0;
-        }
-        float prevPos = transform.position.x; 
     }
 
     private void HandleJumping()
@@ -156,16 +144,6 @@ public class Movement : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E) && attacktimer <= 0)
         {
-            if (sprite.flipX)
-            {
-                Attack_Transform.localPosition = new Vector3(-0.3f, 0.1f, 0);
-                Attack_Sprite.flipX = true;
-            }
-            else
-            {
-                Attack_Transform.localPosition = new Vector3(0.3f, 0.1f, 0);
-                Attack_Sprite.flipX = false;
-            }
             attacker.SetActive(true);
             attacktimer = 0.25f;
         }
