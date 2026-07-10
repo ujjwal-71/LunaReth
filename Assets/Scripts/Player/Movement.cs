@@ -15,6 +15,7 @@ public class Movement : MonoBehaviour
     private ParticleSystem DashEff;
 
     [Header("Movement Stats")]
+    private float moveHorizontal;
     public float speed = 4f;
     private float prevXPos;
     private float jump = 1f;
@@ -25,14 +26,14 @@ public class Movement : MonoBehaviour
     [Header("State")]
     public LayerMask Ground;
     public Transform FeetPosition;
+    private float coyoteTimer = 0f;
+    private float jumpBuffer = 0f;
     private bool isGrounded = true;
-    private bool wasGrounded;
-    private int direc;
     private bool dashing;
     private bool dash;
     private float dashTimer;
     private float attacktimer = 0;
-    
+
 
     private void Awake()
     {
@@ -45,6 +46,7 @@ public class Movement : MonoBehaviour
     void Update()
     {
         isGrounded = Physics2D.OverlapCircle(FeetPosition.position,0.15f,Ground);
+        moveHorizontal = Input.GetAxis("Horizontal");
         GroundCheck();
         HandleDashing();
         HandleMovement();
@@ -56,7 +58,7 @@ public class Movement : MonoBehaviour
 
     private void HandleDashing()
     {
-        if (dash && Input.GetKeyDown(KeyCode.X))
+        if (dash && Input.GetButtonDown("Dash"))
             dashing = true;
 
         if (dashing)
@@ -64,7 +66,7 @@ public class Movement : MonoBehaviour
             if (dashTimer > 0.1f)
             {
                 DashEff.Stop();
-                RB.linearVelocity = new Vector2(0, 0);
+                RB.linearVelocity = Vector2.zero;
                 dashing = false;
                 dashTimer = 0;
             }
@@ -82,55 +84,42 @@ public class Movement : MonoBehaviour
     {
         if (!dashing)
         {
-            if (Input.GetKey(KeyCode.D))
-            {
-                RB.linearVelocityX = speed;
+            RB.linearVelocityX = speed * moveHorizontal;
+
+            if (moveHorizontal < -0.1f)
+                transform.rotation = Quaternion.Euler(0,180,0);
+
+            else if (moveHorizontal > 0.1f)
                 transform.rotation = Quaternion.Euler(0,0,0);
-            }
-            if (Input.GetKey(KeyCode.A))
-            {
-                RB.linearVelocityX = -speed;
-                transform.rotation = Quaternion.Euler(0,-180f,0);
-            }
-            if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
-            {
-                RB.linearVelocityX = 0f;
-                anim.SetBool("isRUNNING", false);
-            }
         }
-
-        if ((Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)) && isGrounded)
-            anim.SetBool("isRUNNING", true);
-        else
-            anim.SetBool("isRUNNING", false);
     }
-
     private void HandleJumping()
     {
         if (!dashing)
         {
-            if (Input.GetKey(KeyCode.Space))
-            {
-                jumpTimer += Time.deltaTime;
+            if (Input.GetButtonDown("Jump"))
+                jumpBuffer = 0.15f;
+            else
+                jumpBuffer -= Time.deltaTime;
+
+            if (coyoteTimer > 0 && jumpBuffer > 0)
+                jumping = true;
+
+            if ( jumping && Input.GetButton("Jump"))
                 if (jumpTimer <= 0.4f)
                 {
-                    if (isGrounded && Input.GetKeyDown(KeyCode.Space))
-                        jumping = true;
-
-                    if (jumping){
-                        RB.linearVelocityY = jump;
-
+                    jumpTimer += Time.deltaTime;
+                    jumpBuffer = 0;
+                    coyoteTimer = 0;
+                    RB.linearVelocityY = jump;
                     if (jump<16)
                         jump += jumpPower * Time.deltaTime;
-                    }
                 }
-                
                 else
                 {
                     jump = 0;
                     jumping = false;
                 }
-            }
             else
             {
                 jumpTimer = 0;
@@ -142,7 +131,7 @@ public class Movement : MonoBehaviour
 
     private void HandleAttacking()
     {
-        if (Input.GetKeyDown(KeyCode.E) && attacktimer <= 0)
+        if (Input.GetButtonDown("Attack") && attacktimer <= 0)
         {
             attacker.SetActive(true);
             attacktimer = 0.25f;
@@ -158,16 +147,18 @@ public class Movement : MonoBehaviour
         }
     }
 
-    void GroundCheck()
+    private void GroundCheck()
     {
-        if (isGrounded && !wasGrounded)
+        if (isGrounded)
         {
-            jump = 0;
-            jumpTimer = 0;
+            coyoteTimer = 0.1f;
+            if (!dashing)
+                dash = true;
         }
-        if (isGrounded && !dashing)
-            dash = true;
-
+        else
+            coyoteTimer -= Time.deltaTime;
+        
+        // ANIMATIONS HANDLING
         if (RB.linearVelocityY < -0.1f)
         {
             anim.SetBool("isJUMPED", false);
@@ -187,6 +178,10 @@ public class Movement : MonoBehaviour
             anim.SetBool("isFALLING", false);
         }
 
-        wasGrounded = isGrounded;
+        if (isGrounded && (moveHorizontal > 0.1f || moveHorizontal < -0.1f))
+            anim.SetBool("isRUNNING",true);
+
+        else
+            anim.SetBool("isRUNNING",false);
     }
 }

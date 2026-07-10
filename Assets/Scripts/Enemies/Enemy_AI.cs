@@ -6,23 +6,25 @@ public class Enemy_AI : MonoBehaviour
     [Header("Components")]
     public Collider2D Attack_Box;
     private SpriteRenderer sprite_enemy;
-    private Rigidbody2D RB_enemy;
+    public Transform PlayerTransform;
+    private Rigidbody2D EnemyRB;
 
     [Header("Stats")]
     public int Max_Health = 100;
     private int Current_Health = 100;
 
-    void Start()
+    private void Awake()
     {
         Current_Health = Max_Health;
         sprite_enemy = GetComponent<SpriteRenderer>();
-        RB_enemy = GetComponent<Rigidbody2D>();
+        EnemyRB = GetComponent<Rigidbody2D>();
     }
 
     public void Damaging(int Damage)
     {
         Current_Health -= Damage;
         sprite_enemy.color = new Color(1, 0.2f, 0.3f, 1);
+        EnemyRB.linearVelocity = new Vector2(PlayerTransform.right.x * 5, 10.5f) ;
         
         if (Current_Health <= 0)
         {
