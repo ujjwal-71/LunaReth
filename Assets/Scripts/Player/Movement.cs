@@ -32,6 +32,8 @@ public class Movement : MonoBehaviour
     private bool dashing;
     private bool dash;
     private float dashTimer;
+    private float dashPauseTimer;
+    private bool dashPause;
     private float attacktimer = 0;
 
 
@@ -49,12 +51,14 @@ public class Movement : MonoBehaviour
         moveHorizontal = Input.GetAxis("Horizontal");
         GroundCheck();
         HandleDashing();
-        HandleMovement();
-        HandleJumping();
-        HandleAttacking();
+        if (!dashPause)
+        {
+            AnimHAndle();
+            HandleMovement();
+            HandleJumping();
+            HandleAttacking();
+        }
     }
-
-        // This function only runs in the Unity Editor Scene view so you can see your invisible shapes!
 
     private void HandleDashing()
     {
@@ -69,6 +73,7 @@ public class Movement : MonoBehaviour
                 RB.linearVelocity = Vector2.zero;
                 dashing = false;
                 dashTimer = 0;
+                dashPauseTimer = 0.3f;
             }
             else
             {
@@ -78,6 +83,13 @@ public class Movement : MonoBehaviour
                 DashEff.Play();
             }
         }
+        if (dashPauseTimer > 0)
+        {
+            dashPause = true;
+            dashPauseTimer -= Time.deltaTime;
+        }
+        else
+            dashPause = false;
     }
 
     private void HandleMovement()
@@ -157,8 +169,10 @@ public class Movement : MonoBehaviour
         }
         else
             coyoteTimer -= Time.deltaTime;
-        
-        // ANIMATIONS HANDLING
+    }
+
+    private void AnimHAndle()
+    {
         if (RB.linearVelocityY < -0.1f)
         {
             anim.SetBool("isJUMPED", false);
