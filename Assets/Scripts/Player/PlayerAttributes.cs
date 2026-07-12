@@ -32,12 +32,12 @@ public class _attributes : MonoBehaviour
         if (invinsTimer>0)
         {
             invinsTimer -= Time.deltaTime;
-            playerSprite.color = new Color(1-invinsTimer,0.5f,0.5f,1);
+            playerSprite.color = new Color(1-invinsTimer,0.5f,0.5f);
         }
         else
         {
             isInvinsible = false;
-            playerSprite.color = new Color(1,1,1,1);
+            playerSprite.color = new Color(1,1,1);
         }
 
         if (stunTimer>0)
@@ -46,7 +46,10 @@ public class _attributes : MonoBehaviour
             isStunned = false;
 
         if (isStunned)
+        {
+            GetComponent<Movement>().InterruptAction();
             GetComponent<Movement>().enabled = false;
+        }
         else
             GetComponent<Movement>().enabled = true;
     }
@@ -57,17 +60,16 @@ public class _attributes : MonoBehaviour
         {
             currentHealth -= damage;
             HealthSlider.value = currentHealth;
-            GetComponent<Movement>().enabled = false;
-            Vector2 pushDirection = (transform.position - enemyTransform.position).normalized;
-            RB.linearVelocity = pushDirection * new Vector2(35,10);
-            invinsTimer = invinsTime;
-            stunTimer = 0.2f;
             isInvinsible = true;
             isStunned = true;
+            invinsTimer = invinsTime;
+            stunTimer = 0.2f;
+            Vector2 pushDirection = (transform.position - enemyTransform.position).normalized;
+            RB.linearVelocity = new Vector2(pushDirection.x * 8f, 10f);
         }
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag(tagFilter))
         {

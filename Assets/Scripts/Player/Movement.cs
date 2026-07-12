@@ -60,6 +60,18 @@ public class Movement : MonoBehaviour
         }
     }
 
+    public void InterruptAction()
+    {
+        jumping = false;
+        jump = 0;
+        jumpTimer = 0;
+        
+        dashing = false;
+        dashTimer = 0;
+        
+        attacktimer = 0;
+        attacker.SetActive(false);
+    }
     private void HandleDashing()
     {
         if (dash && Input.GetButtonDown("Dash"))
@@ -72,7 +84,7 @@ public class Movement : MonoBehaviour
                 DashEff.Stop();
                 RB.linearVelocity = Vector2.zero;
                 dashing = false;
-                dashTimer = 0;
+                InterruptAction();
                 dashPauseTimer = 0.3f;
             }
             else
@@ -118,7 +130,7 @@ public class Movement : MonoBehaviour
                 jumping = true;
 
             if ( jumping && Input.GetButton("Jump"))
-                if (jumpTimer <= 0.4f)
+                if (jumpTimer <= 0.3f)
                 {
                     jumpTimer += Time.deltaTime;
                     jumpBuffer = 0;
