@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,13 +15,15 @@ public class _attributes : MonoBehaviour
     private float invinsTimer = 0;
     private float stunTimer = 0;
     public float invinsTime = 1;
-    
     private int currentHealth;
     private bool isInvinsible;
     private bool isStunned;
+    private float reSpawnTimer;
+    private Vector3 checkPoint;
     
     private void Awake()
     {
+        checkPoint = new Vector3(-22,-23,0);
         currentHealth = maxHealth;
         HealthSlider.maxValue = maxHealth;
         RB = GetComponent<Rigidbody2D>();
@@ -29,10 +32,15 @@ public class _attributes : MonoBehaviour
 
     void Update()
     {
-        if (invinsTimer>0)
+        PlayerHealthCheck();
+        if (invinsTimer>0 && reSpawnTimer == 0)
         {
             invinsTimer -= Time.deltaTime;
-            playerSprite.color = new Color(1-invinsTimer,0.5f,0.5f);
+            playerSprite.color = new Color(invinsTimer,0.5f,0.5f);
+        }
+        else if (reSpawnTimer != 0)
+        {
+            
         }
         else
         {
@@ -45,13 +53,15 @@ public class _attributes : MonoBehaviour
         else
             isStunned = false;
 
-        if (isStunned)
+        if (isStunned || reSpawnTimer > 0)
         {
             GetComponent<Movement>().InterruptAction();
             GetComponent<Movement>().enabled = false;
         }
         else
+        {
             GetComponent<Movement>().enabled = true;
+        }
     }
 
     public void MobContactDamage(int damage, Transform enemyTransform)
@@ -75,5 +85,38 @@ public class _attributes : MonoBehaviour
         {
             MobContactDamage(10,collision.transform);
         }
+    }
+
+    public void PlayerHealthCheck()
+    {
+        if (currentHealth <= 0)
+        {
+            reSpawnTimer = 2f;
+            currentHealth = maxHealth;
+        }
+        if (reSpawnTimer > 0.1f)
+        {
+            PlayerDeath(reSpawnTimer);
+            reSpawnTimer -= Time.deltaTime;
+        }
+        if (reSpawnTimer <= 0.1f && reSpawnTimer != 0)
+            PlayerRespawn();
+    }
+
+    public void PlayerDeath(float timer)
+    {
+        playerSprite.color = new Color(255,255,255,(float)Math.Pow(timer/2,2));
+        GetComponent<Movement>().InterruptAction();
+        RB.linearVelocity = new Vector2(0,0);
+    }
+
+    public void PlayerRespawn()
+    {
+        reSpawnTimer = 0;
+        currentHealth = maxHealth;
+        HealthSlider.value = currentHealth;
+        playerSprite.color = new Color(1,1,1,1);
+        GetComponent<Movement>().InterruptAction();
+        transform.position = checkPoint;
     }
 }

@@ -65,12 +65,17 @@ public class Movement : MonoBehaviour
         jumping = false;
         jump = 0;
         jumpTimer = 0;
-        
+
         dashing = false;
         dashTimer = 0;
-        
+
         attacktimer = 0;
         attacker.SetActive(false);
+
+        anim.SetBool("isRUNNING",false);
+        anim.SetBool("isGROUNDED",true);
+        anim.SetBool("isJUMPED",false);
+        anim.SetBool("isFALLING",false);
     }
     private void HandleDashing()
     {
