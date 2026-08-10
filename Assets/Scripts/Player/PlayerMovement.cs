@@ -21,7 +21,6 @@ public class Movement : MonoBehaviour
     private float jump = 1f;
     private float jumpTimer=0f;
     private bool jumping;
-    public float jumpPower;
 
     [Header("State")]
     public LayerMask Ground;
@@ -59,6 +58,7 @@ public class Movement : MonoBehaviour
             HandleAttacking();
         }
     }
+
 
     public void InterruptAction()
     {
@@ -112,9 +112,8 @@ public class Movement : MonoBehaviour
     private void HandleMovement()
     {
         if (!dashing)
-        {
+        {                
             RB.linearVelocityX = speed * moveHorizontal;
-
             if (moveHorizontal < -0.1f)
                 transform.rotation = Quaternion.Euler(0,180,0);
 
@@ -141,18 +140,18 @@ public class Movement : MonoBehaviour
                     jumpBuffer = 0;
                     coyoteTimer = 0;
                     RB.linearVelocityY = jump;
-                    if (jump<16)
-                        jump += jumpPower * Time.deltaTime;
+                    if (jump<16 && jump > 0)
+                        jump -= 4.5f;
                 }
                 else
                 {
-                    jump = 0;
+                    jump = 15;
                     jumping = false;
                 }
             else
             {
                 jumpTimer = 0;
-                jump = 0;
+                jump = 16;
                 jumping = false;
             }
         }

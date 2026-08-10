@@ -1,3 +1,4 @@
+using System;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem.Controls;
@@ -6,6 +7,7 @@ public class Enemy_AI : MonoBehaviour
 {
     [Header("Components")]
     public Collider2D Attack_Box;
+    public Animator enemyAnimator;
     private SpriteRenderer sprite_enemy;
     public Transform PlayerTransform;
     private Rigidbody2D EnemyRB;
@@ -23,6 +25,7 @@ public class Enemy_AI : MonoBehaviour
         Chasing,
         Attacking,
         Healing,
+        getDamage,
     }
 
     private enemyState currentState;
@@ -40,11 +43,18 @@ public class Enemy_AI : MonoBehaviour
         EnemyRB = GetComponent<Rigidbody2D>();
     }
 
-    private float playerDistance;
+    private float playerDistanceX;
+    private float playerDistanceY;
     void Update()
     {
-        currentState = enemyState.Chasing;
-        playerDistance = PlayerTransform.position.x - transform.position.x;
+        playerDistanceX = transform.position.x - PlayerTransform.position.x;
+        playerDistanceY = PlayerTransform.position.y - transform.position.y;
+
+        if (playerDistanceX < 8 && playerDistanceY < 5)
+            currentState = enemyState.Chasing;
+        else
+            currentState = enemyState.Patrol;
+
         switch (currentState)
         {
             case enemyState.Patrol:
@@ -59,6 +69,8 @@ public class Enemy_AI : MonoBehaviour
             case enemyState.Attacking:
                 Attacking();
                 break;
+            case enemyState.getDamage:
+                break;
             default:
                 break;
         }
@@ -70,12 +82,13 @@ public class Enemy_AI : MonoBehaviour
     private void Patrol()
     {
         distance = wayPoints[wayPointsIndex].position.x - transform.position.x;
-        
         if (distance < 0.2 && distance > -0.2)
         {
             if (waitTimer < 1f)
             {
                 EnemyRB.linearVelocityX = 0;
+                enemyAnimator.SetBool("isMOVING",false);
+                enemyAnimator.SetBool("isCHASING",false);
                 waitTimer += Time.deltaTime;
             }
             else
@@ -95,14 +108,35 @@ public class Enemy_AI : MonoBehaviour
                 transform.rotation = Quaternion.Euler(0,180,0);
 
             EnemyRB.linearVelocityX = Mathf.Sign(distance) * speed;
+            enemyAnimator.SetBool("isMOVING",true);
+            enemyAnimator.SetBool("isCHASING",false);
         }
+        
     }
     private void Chasing()
     {
-        if (playerDistance > 0.2f || playerDistance < -0.2f)
+        if (playerDistanceX > 0.5f || playerDistanceX < -0.5f)
         {
-            EnemyRB.linearVelocityX = Mathf.Sign(playerDistance) * speed;
+            EnemyRB.linearVelocityX = -Mathf.Sign(playerDistanceX) * speed * 1.8f;
+
+            if (Mathf.Sign(-playerDistanceX) == -1)
+                transform.rotation = Quaternion.Euler(0,0,0);
+            else
+                transform.rotation = Quaternion.Euler(0,180,0);
         }
+        if (Mathf.Abs(EnemyRB.linearVelocityX) > 4)
+        {
+            enemyAnimator.SetBool("isCHASING",true);
+            enemyAnimator.SetBool("isMOVING",false);
+        }
+        else if(Mathf.Abs(EnemyRB.linearVelocityX) < 4 && Mathf.Abs(EnemyRB.linearVelocityX) > 1f)
+        {
+            enemyAnimator.SetBool("isCHASING",false);
+            enemyAnimator.SetBool("isMOVING",true);
+        }
+        else
+            enemyAnimator.SetBool("isCHASING",false);
+            enemyAnimator.SetBool("isMOVING",false);
     }
 
     private void Healing()
@@ -114,22 +148,4 @@ public class Enemy_AI : MonoBehaviour
     {
         
     }
-
-    public void Damaging(int Damage)
-    {
-        Current_Health -= Damage;
-        sprite_enemy.color = new Color(1, 0.2f, 0.3f, 1);
-        EnemyRB.linearVelocity = new Vector2(PlayerTransform.right.x * 5, 10.5f) ;
-        
-        if (Current_Health <= 0)
-        {
-            Destroy(gameObject);
-        }
-    }
-
-    public void _Damaged()
-    {
-        sprite_enemy.color = new Color(1, 1, 1, 1);
-    }
-
 }
