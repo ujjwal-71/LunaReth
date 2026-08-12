@@ -79,6 +79,7 @@ public class Enemy_AI : MonoBehaviour
     private int wayPointsIndex = 0;
     private float waitTimer = 0;
     private float distance;
+    
     private void Patrol()
     {
         distance = wayPoints[wayPointsIndex].position.x - transform.position.x;

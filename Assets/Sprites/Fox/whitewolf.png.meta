@@ -1,0 +1,1456 @@
+fileFormatVersion: 2
+guid: f4ac3487b38f3074c9a44723b2d39d97
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1278036195566014730
+    second: whitewolf_0
+  - first:
+      213: -6111617486122320241
+    second: whitewolf_1
+  - first:
+      213: -6456507466884358377
+    second: whitewolf_2
+  - first:
+      213: -1406847760214802958
+    second: whitewolf_3
+  - first:
+      213: 1525418078995834763
+    second: whitewolf_4
+  - first:
+      213: 3505711610295109544
+    second: whitewolf_5
+  - first:
+      213: -5903199902928806997
+    second: whitewolf_6
+  - first:
+      213: -6285133916862213745
+    second: whitewolf_7
+  - first:
+      213: 272984933898541050
+    second: whitewolf_8
+  - first:
+      213: 148035523469458107
+    second: whitewolf_9
+  - first:
+      213: 1919837990312238538
+    second: whitewolf_10
+  - first:
+      213: 2469654652248602867
+    second: whitewolf_11
+  - first:
+      213: 2885523855202868773
+    second: whitewolf_12
+  - first:
+      213: 4013747507979277450
+    second: whitewolf_13
+  - first:
+      213: -7168211447016137455
+    second: whitewolf_14
+  - first:
+      213: -6408465589362785179
+    second: whitewolf_15
+  - first:
+      213: 7674477898478596567
+    second: whitewolf_16
+  - first:
+      213: 1738096380739720623
+    second: whitewolf_17
+  - first:
+      213: -279001966251593074
+    second: whitewolf_18
+  - first:
+      213: 3037874126251941976
+    second: whitewolf_19
+  - first:
+      213: 772274936577769387
+    second: whitewolf_20
+  - first:
+      213: 5682227986815833421
+    second: whitewolf_21
+  - first:
+      213: 2839731099321481360
+    second: whitewolf_22
+  - first:
+      213: -1360154069852757075
+    second: whitewolf_23
+  - first:
+      213: 6446115115700758968
+    second: whitewolf_24
+  - first:
+      213: -2802025880706440936
+    second: whitewolf_25
+  - first:
+      213: -950916511522375299
+    second: whitewolf_26
+  - first:
+      213: -3728960472923456376
+    second: whitewolf_27
+  - first:
+      213: 1205645774053245159
+    second: whitewolf_28
+  - first:
+      213: -7542682398028293511
+    second: whitewolf_29
+  - first:
+      213: -2700360694893458267
+    second: whitewolf_30
+  - first:
+      213: 530098992967189020
+    second: whitewolf_31
+  - first:
+      213: -5267606663449081793
+    second: whitewolf_32
+  - first:
+      213: 6885391197861362439
+    second: whitewolf_33
+  - first:
+      213: 3191625945376003947
+    second: whitewolf_34
+  - first:
+      213: -3160211329476560247
+    second: whitewolf_35
+  - first:
+      213: 849191343913075434
+    second: whitewolf_36
+  - first:
+      213: 5728718501838334379
+    second: whitewolf_37
+  - first:
+      213: 1256083184679941019
+    second: whitewolf_38
+  - first:
+      213: -8061030417783951169
+    second: whitewolf_39
+  - first:
+      213: -7899443327488734088
+    second: whitewolf_40
+  - first:
+      213: 3973234921888205934
+    second: whitewolf_41
+  - first:
+      213: 5433565939107505171
+    second: whitewolf_42
+  - first:
+      213: -9178188476149078268
+    second: whitewolf_43
+  - first:
+      213: 30801782867478531
+    second: whitewolf_44
+  - first:
+      213: -1167340998609973651
+    second: whitewolf_45
+  - first:
+      213: -8899050565128726982
+    second: whitewolf_46
+  - first:
+      213: 8729507268069635146
+    second: whitewolf_47
+  - first:
+      213: -8122531077475171458
+    second: whitewolf_48
+  - first:
+      213: -8131961827694444170
+    second: whitewolf_49
+  - first:
+      213: 1667724789627422512
+    second: whitewolf_50
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: whitewolf_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 383
+        width: 62
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a01ddc6062f7cb110800000000000000
+      internalID: 1278036195566014730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whitewolf_1
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 383
+        width: 60
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f8efc90f64c2f2ba0800000000000000
+      internalID: -6111617486122320241
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whitewolf_2
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 383
+        width: 62
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 71f53babaa0e566a0800000000000000
+      internalID: -6456507466884358377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whitewolf_3
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 383
+        width: 60
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2fdb7577a6fd97ce0800000000000000
+      internalID: -1406847760214802958
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whitewolf_4
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 383
+        width: 59
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b87618c29af5b2510800000000000000
+      internalID: 1525418078995834763
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whitewolf_5
+      rect:
+        serializedVersion: 2
+        x: 325
+        y: 383
+        width: 59
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a74a90b22ac6a030800000000000000
+      internalID: 3505711610295109544
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whitewolf_6
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 383
+        width: 61
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: babdecbf6fe931ea0800000000000000
+      internalID: -5903199902928806997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whitewolf_7
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 386
+        width: 64
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f811bafa008b6c8a0800000000000000
+      internalID: -6285133916862213745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whitewolf_8
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 319
+        width: 62
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af75e0ed956d9c300800000000000000
+      internalID: 272984933898541050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whitewolf_9
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 319
+        width: 59
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bba3986368ded0200800000000000000
+      internalID: 148035523469458107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whitewolf_10
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 319
+        width: 61
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: acd5cdefa72a4aa10800000000000000
+      internalID: 1919837990312238538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whitewolf_11
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 322
+        width: 66
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f83b2942d9f54220800000000000000
+      internalID: 2469654652248602867
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whitewolf_12
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 319
+        width: 62
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52e584c78a07b0820800000000000000
+      internalID: 2885523855202868773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whitewolf_13
+      rect:
+        serializedVersion: 2
+        x: 322
+        y: 319
+        width: 61
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a84d63fb712b3b730800000000000000
+      internalID: 4013747507979277450
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whitewolf_14
+      rect:
+        serializedVersion: 2
+        x: 386
+        y: 319
+        width: 61
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 11dd6b1faa5658c90800000000000000
+      internalID: -7168211447016137455
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whitewolf_15
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 319
+        width: 61
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 56487beff7e8017a0800000000000000
+      internalID: -6408465589362785179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whitewolf_16
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 255
+        width: 61
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d1376fccf8318a60800000000000000
+      internalID: 7674477898478596567
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whitewolf_17
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 255
+        width: 61
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa5126f0375fe1810800000000000000
+      internalID: 1738096380739720623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whitewolf_18
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 255
+        width: 61
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8230fd9039c02cf0800000000000000
+      internalID: -279001966251593074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whitewolf_19
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 255
+        width: 61
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 850e8972c62b82a20800000000000000
+      internalID: 3037874126251941976
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whitewolf_20
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 255
+        width: 61
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bafb7af86fba7ba00800000000000000
+      internalID: 772274936577769387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whitewolf_21
+      rect:
+        serializedVersion: 2
+        x: 322
+        y: 255
+        width: 58
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d45d0fe8f345bde40800000000000000
+      internalID: 5682227986815833421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whitewolf_22
+      rect:
+        serializedVersion: 2
+        x: 386
+        y: 255
+        width: 61
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 098bfa8a360c86720800000000000000
+      internalID: 2839731099321481360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whitewolf_23
+      rect:
+        serializedVersion: 2
+        x: 449
+        y: 258
+        width: 63
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da3ef927413cf1de0800000000000000
+      internalID: -1360154069852757075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whitewolf_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 194
+        width: 64
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b9ae947b83357950800000000000000
+      internalID: 6446115115700758968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whitewolf_25
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 197
+        width: 61
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 811aa09ae443d19d0800000000000000
+      internalID: -2802025880706440936
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whitewolf_26
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 195
+        width: 58
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d79b7af887aadc2f0800000000000000
+      internalID: -950916511522375299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whitewolf_27
+      rect:
+        serializedVersion: 2
+        x: 221
+        y: 195
+        width: 36
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88cbcede432104cc0800000000000000
+      internalID: -3728960472923456376
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whitewolf_28
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 196
+        width: 54
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e0056791705bb010800000000000000
+      internalID: 1205645774053245159
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whitewolf_29
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 194
+        width: 63
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 97a9ee36252035790800000000000000
+      internalID: -7542682398028293511
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whitewolf_30
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 194
+        width: 64
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5acc27f4144668ad0800000000000000
+      internalID: -2700360694893458267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whitewolf_31
+      rect:
+        serializedVersion: 2
+        x: 449
+        y: 197
+        width: 61
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c120a9bb93a4b5700800000000000000
+      internalID: 530098992967189020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whitewolf_32
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 131
+        width: 57
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f3803a806a3b5e6b0800000000000000
+      internalID: -5267606663449081793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whitewolf_33
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 131
+        width: 36
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 70bb02860d2dd8f50800000000000000
+      internalID: 6885391197861362439
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whitewolf_34
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 132
+        width: 54
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b679e0a23eeea4c20800000000000000
+      internalID: 3191625945376003947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whitewolf_35
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 133
+        width: 61
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 98a72631a8ca424d0800000000000000
+      internalID: -3160211329476560247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whitewolf_36
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 127
+        width: 61
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae28640370fe8cb00800000000000000
+      internalID: 849191343913075434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whitewolf_37
+      rect:
+        serializedVersion: 2
+        x: 322
+        y: 127
+        width: 57
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba92848102f708f40800000000000000
+      internalID: 5728718501838334379
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whitewolf_38
+      rect:
+        serializedVersion: 2
+        x: 388
+        y: 127
+        width: 60
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b93703f50018e6110800000000000000
+      internalID: 1256083184679941019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whitewolf_39
+      rect:
+        serializedVersion: 2
+        x: 452
+        y: 127
+        width: 60
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb07e505b87712090800000000000000
+      internalID: -8061030417783951169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whitewolf_40
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 63
+        width: 57
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 87c44bd852a8f5290800000000000000
+      internalID: -7899443327488734088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whitewolf_41
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 63
+        width: 62
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e6cc2504c14c32730800000000000000
+      internalID: 3973234921888205934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whitewolf_42
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 63
+        width: 60
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3142a20fe67e76b40800000000000000
+      internalID: 5433565939107505171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whitewolf_43
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 63
+        width: 61
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 407ec85853680a080800000000000000
+      internalID: -9178188476149078268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whitewolf_44
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 64
+        width: 56
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 308c34eee0e6d6000800000000000000
+      internalID: 30801782867478531
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whitewolf_45
+      rect:
+        serializedVersion: 2
+        x: 321
+        y: 64
+        width: 55
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6e4a1eeb85cccfe0800000000000000
+      internalID: -1167340998609973651
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whitewolf_46
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 63
+        width: 56
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a36534309a8308480800000000000000
+      internalID: -8899050565128726982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whitewolf_47
+      rect:
+        serializedVersion: 2
+        x: 451
+        y: 63
+        width: 59
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a443b710c90752970800000000000000
+      internalID: 8729507268069635146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whitewolf_48
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 0
+        width: 57
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7385022509f64f80800000000000000
+      internalID: -8122531077475171458
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whitewolf_49
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 0
+        width: 57
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6718c3d7dc7752f80800000000000000
+      internalID: -8131961827694444170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whitewolf_50
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 0
+        width: 57
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0370bd43cd2f42710800000000000000
+      internalID: 1667724789627422512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      whitewolf_0: 1278036195566014730
+      whitewolf_1: -6111617486122320241
+      whitewolf_10: 1919837990312238538
+      whitewolf_11: 2469654652248602867
+      whitewolf_12: 2885523855202868773
+      whitewolf_13: 4013747507979277450
+      whitewolf_14: -7168211447016137455
+      whitewolf_15: -6408465589362785179
+      whitewolf_16: 7674477898478596567
+      whitewolf_17: 1738096380739720623
+      whitewolf_18: -279001966251593074
+      whitewolf_19: 3037874126251941976
+      whitewolf_2: -6456507466884358377
+      whitewolf_20: 772274936577769387
+      whitewolf_21: 5682227986815833421
+      whitewolf_22: 2839731099321481360
+      whitewolf_23: -1360154069852757075
+      whitewolf_24: 6446115115700758968
+      whitewolf_25: -2802025880706440936
+      whitewolf_26: -950916511522375299
+      whitewolf_27: -3728960472923456376
+      whitewolf_28: 1205645774053245159
+      whitewolf_29: -7542682398028293511
+      whitewolf_3: -1406847760214802958
+      whitewolf_30: -2700360694893458267
+      whitewolf_31: 530098992967189020
+      whitewolf_32: -5267606663449081793
+      whitewolf_33: 6885391197861362439
+      whitewolf_34: 3191625945376003947
+      whitewolf_35: -3160211329476560247
+      whitewolf_36: 849191343913075434
+      whitewolf_37: 5728718501838334379
+      whitewolf_38: 1256083184679941019
+      whitewolf_39: -8061030417783951169
+      whitewolf_4: 1525418078995834763
+      whitewolf_40: -7899443327488734088
+      whitewolf_41: 3973234921888205934
+      whitewolf_42: 5433565939107505171
+      whitewolf_43: -9178188476149078268
+      whitewolf_44: 30801782867478531
+      whitewolf_45: -1167340998609973651
+      whitewolf_46: -8899050565128726982
+      whitewolf_47: 8729507268069635146
+      whitewolf_48: -8122531077475171458
+      whitewolf_49: -8131961827694444170
+      whitewolf_5: 3505711610295109544
+      whitewolf_50: 1667724789627422512
+      whitewolf_6: -5903199902928806997
+      whitewolf_7: -6285133916862213745
+      whitewolf_8: 272984933898541050
+      whitewolf_9: 148035523469458107
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
