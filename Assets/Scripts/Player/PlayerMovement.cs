@@ -46,7 +46,7 @@ public class Movement : MonoBehaviour
 
     void Update()
     {
-        isGrounded = Physics2D.OverlapCircle(FeetPosition.position,0.15f,Ground);
+        isGrounded = Physics2D.OverlapCircle(FeetPosition.position,0.25f,Ground);
         moveHorizontal = Input.GetAxis("Horizontal");
         GroundCheck();
         HandleDashing();
