@@ -1,15 +1,9 @@
-using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.Rendering.Universal;
 
 public class Movement : MonoBehaviour
 {
     [Header("Components")]
     public Animator anim;
-    public GameObject attacker;
-    public SpriteRenderer Attack_Sprite;
-    public Transform Attack_Transform;
     private SpriteRenderer sprite;
     private Rigidbody2D RB;
     private ParticleSystem DashEff;
@@ -33,12 +27,12 @@ public class Movement : MonoBehaviour
     private float dashTimer;
     private float dashPauseTimer;
     private bool dashPause;
-    private float attacktimer = 0;
+    private float shadowDashtimer = 0;
+    private float dashSpeed;
 
 
     private void Awake()
     {
-        attacker.SetActive(false);
         RB = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
         DashEff = GetComponent<ParticleSystem>();
@@ -55,10 +49,8 @@ public class Movement : MonoBehaviour
             AnimHAndle();
             HandleMovement();
             HandleJumping();
-            HandleAttacking();
         }
     }
-
 
     public void InterruptAction()
     {
@@ -69,34 +61,53 @@ public class Movement : MonoBehaviour
         dashing = false;
         dashTimer = 0;
 
-        attacktimer = 0;
-        attacker.SetActive(false);
-
         anim.SetBool("isRUNNING",false);
         anim.SetBool("isGROUNDED",true);
         anim.SetBool("isJUMPED",false);
         anim.SetBool("isFALLING",false);
     }
+
+
     private void HandleDashing()
     {
-        if (dash && Input.GetButtonDown("Dash"))
-            dashing = true;
+        var trailcol = DashEff.trails;
+        shadowDashtimer -= Time.deltaTime;
 
+        if (dash && Input.GetButtonDown("Dash"))
+        {
+            dashing = true;
+            if (shadowDashtimer < 0)
+            {
+                trailcol.colorOverTrail= new ParticleSystem.MinMaxGradient(Color.black);
+                dashSpeed = 100;
+                gameObject.layer = LayerMask.NameToLayer("Ghost");
+            }
+            else
+            {
+                trailcol.colorOverTrail= new ParticleSystem.MinMaxGradient(Color.white);
+                dashSpeed = 80;
+            }
+        }
+        
         if (dashing)
         {
             if (dashTimer > 0.1f)
             {
+                if (dashSpeed > 80)
+                    shadowDashtimer = 1.5f;
                 DashEff.Stop();
-                RB.linearVelocity = Vector2.zero;
+                dashTimer = 0;
                 dashing = false;
+                dashPauseTimer = 0.5f;
+                RB.linearVelocity = new Vector2(0,0);
+                gameObject.layer = LayerMask.NameToLayer("Player");
                 InterruptAction();
-                dashPauseTimer = 0.3f;
             }
             else
             {
                 dash = false;
                 dashTimer += Time.deltaTime;
-                RB.linearVelocity = transform.right * 40;
+                RB.linearVelocity = transform.right * dashSpeed;
                 DashEff.Play();
             }
         }
@@ -157,23 +168,6 @@ public class Movement : MonoBehaviour
         }
     }
 
-    private void HandleAttacking()
-    {
-        if (Input.GetButtonDown("Attack") && attacktimer <= 0)
-        {
-            attacker.SetActive(true);
-            attacktimer = 0.25f;
-        }
-
-        if (attacktimer > 0)
-        {
-            attacktimer -= Time.deltaTime;
-            if (attacktimer <= 0)
-            {
-                attacker.SetActive(false);
-            }
-        }
-    }
 
     private void GroundCheck()
     {

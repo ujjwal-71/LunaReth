@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 3
   tags:
   - Mob
+  - Ghost
+  - PlayerWeapons
   layers:
   - Default
   - TransparentFX
@@ -12,9 +14,9 @@ TagManager:
   - Ground
   - Water
   - UI
-  - Up BG
-  - BackGround
-  - 
+  - Enemy
+  - Player
+  - Ghost
   - 
   - 
   - 

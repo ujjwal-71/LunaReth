@@ -78,6 +78,7 @@ public class _attributes : MonoBehaviour
             RB.linearVelocity = new Vector2(pushDirection.x * 8f, 10f);
         }
     }
+    
 
     void OnCollisionStay2D(Collision2D collision)
     {

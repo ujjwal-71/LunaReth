@@ -2,31 +2,25 @@ using UnityEngine;
 
 public class Attack : MonoBehaviour
 {
-    [Header("Stats")]
-    public int damage = 20;
-
     [Header("Components")]
-    public Collider2D enemy;
-    public Rigidbody2D RB;
+    public Rigidbody2D playerRigid;
+    public Transform playerTransform;
+
+    [Header("Attributes")]
+    private float AttackPause = 0.2f;
+    public int attackPower = 10;
 
 
-    void OnTriggerEnter2D(Collider2D enemy)
+    public void OnTriggerEnter2D(Collider2D enemy)
     {
-        Enemy_AI enemyAI = enemy.GetComponent<Enemy_AI>();
-        
-        if (enemyAI != null)
+        if (enemy.CompareTag("Enemy"))
         {
-            RB.linearVelocity = transform.right * -4;
-        }
-    }
-
-    void OnTriggerExit2D(Collider2D enemy)
-    {
-        Enemy_AI enemyAI = enemy.GetComponent<Enemy_AI>();
-
-        if (enemyAI != null)
-        {
-            RB.linearVelocity = Vector2.zero;
+            Enemy_AI hitEnemy = enemy.GetComponent<Enemy_AI>();
+            if (hitEnemy != null)
+            {
+                hitEnemy.GetDamaged(attackPower);
+                playerRigid.linearVelocity = new Vector2(10 *2 , 8);
+            }
         }
     }
 }

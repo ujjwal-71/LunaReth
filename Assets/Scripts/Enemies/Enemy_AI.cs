@@ -1,7 +1,5 @@
 using System;
-using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.InputSystem.Controls;
 
 public class Enemy_AI : MonoBehaviour
 {
@@ -25,7 +23,6 @@ public class Enemy_AI : MonoBehaviour
         Chasing,
         Attacking,
         Healing,
-        getDamage,
     }
 
     private enemyState currentState;
@@ -50,7 +47,7 @@ public class Enemy_AI : MonoBehaviour
         playerDistanceX = transform.position.x - PlayerTransform.position.x;
         playerDistanceY = PlayerTransform.position.y - transform.position.y;
 
-        if (playerDistanceX < 8 && playerDistanceY < 5)
+        if (Mathf.Abs(playerDistanceX) < 8 && MathF.Abs(playerDistanceY) < 5)
             currentState = enemyState.Chasing;
         else
             currentState = enemyState.Patrol;
@@ -68,8 +65,6 @@ public class Enemy_AI : MonoBehaviour
                 break;
             case enemyState.Attacking:
                 Attacking();
-                break;
-            case enemyState.getDamage:
                 break;
             default:
                 break;
@@ -146,6 +141,10 @@ public class Enemy_AI : MonoBehaviour
     }
 
     private void Attacking()
+    {
+        
+    }
+    public void GetDamaged(int damagePower)
     {
         
     }
