@@ -5,27 +5,32 @@ using UnityEngine.UI;
 public class _attributes : MonoBehaviour
 {
     [Header("Components")]
-    public Slider HealthSlider;
+    public Animator anim;
+
     public string tagFilter;
     private Rigidbody2D RB;
     private SpriteRenderer playerSprite;
 
     [Header("Attributes")]
     public int maxHealth=100;
+    public int maxStun = 10;
+    public int currentStun;
     private float invinsTimer = 0;
     private float stunTimer = 0;
+    public float parryTimer;
     public float invinsTime = 1;
     private int currentHealth;
     private bool isInvinsible;
     private bool isStunned;
+    public bool isGuarded;
     private float reSpawnTimer;
     private Vector3 checkPoint;
     
     private void Awake()
     {
+        currentStun = maxStun;
         checkPoint = new Vector3(-22,-23,0);
         currentHealth = maxHealth;
-        HealthSlider.maxValue = maxHealth;
         RB = GetComponent<Rigidbody2D>();
         playerSprite = GetComponent<SpriteRenderer>();
     }
@@ -33,6 +38,7 @@ public class _attributes : MonoBehaviour
     void Update()
     {
         PlayerHealthCheck();
+
         if (invinsTimer>0 && reSpawnTimer == 0)
         {
             invinsTimer -= Time.deltaTime;
@@ -52,30 +58,21 @@ public class _attributes : MonoBehaviour
             stunTimer -= Time.deltaTime;
         else
             isStunned = false;
-
-        if (isStunned || reSpawnTimer > 0)
-        {
-            GetComponent<Movement>().InterruptAction();
-            GetComponent<Movement>().enabled = false;
-        }
-        else
-        {
-            GetComponent<Movement>().enabled = true;
-        }
     }
+
+
 
     public void MobContactDamage(int damage, Transform enemyTransform)
     {
         if(!isInvinsible)
         {
             currentHealth -= damage;
-            HealthSlider.value = currentHealth;
             isInvinsible = true;
             isStunned = true;
             invinsTimer = invinsTime;
             stunTimer = 0.2f;
             Vector2 pushDirection = (transform.position - enemyTransform.position).normalized;
-            RB.linearVelocity = new Vector2(pushDirection.x * 8f, 10f);
+            RB.linearVelocity = new Vector2(pushDirection.x * 10f, 10f);
         }
     }
     
@@ -84,6 +81,7 @@ public class _attributes : MonoBehaviour
     {
         if (collision.gameObject.CompareTag(tagFilter))
         {
+            Debug.Log("OUCH! I was just stabbed by an object named: " + collision.gameObject.name);
             MobContactDamage(10,collision.transform);
         }
     }
@@ -92,7 +90,8 @@ public class _attributes : MonoBehaviour
     {
         if (currentHealth <= 0)
         {
-            reSpawnTimer = 2f;
+            
+            reSpawnTimer = 3f;
             currentHealth = maxHealth;
         }
         if (reSpawnTimer > 0.1f)
@@ -106,18 +105,17 @@ public class _attributes : MonoBehaviour
 
     public void PlayerDeath(float timer)
     {
-        playerSprite.color = new Color(255,255,255,(float)Math.Pow(timer/2,2));
-        GetComponent<Movement>().InterruptAction();
-        RB.linearVelocity = new Vector2(0,0);
+        anim.SetBool("isDEATH", true);
+        playerSprite.color = new Color(1,1,1,(float)Math.Pow(timer/2,2));
+        GetComponent<Movement>().InterruptAction(4f);
     }
 
     public void PlayerRespawn()
     {
+        anim.SetBool("isDEATH", false);
         reSpawnTimer = 0;
         currentHealth = maxHealth;
-        HealthSlider.value = currentHealth;
         playerSprite.color = new Color(1,1,1,1);
-        GetComponent<Movement>().InterruptAction();
         transform.position = checkPoint;
     }
 }

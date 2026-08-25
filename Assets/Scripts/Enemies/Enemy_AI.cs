@@ -1,10 +1,10 @@
 using System;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class Enemy_AI : MonoBehaviour
 {
     [Header("Components")]
-    public Collider2D Attack_Box;
     public Animator enemyAnimator;
     private SpriteRenderer sprite_enemy;
     public Transform PlayerTransform;
@@ -12,10 +12,15 @@ public class Enemy_AI : MonoBehaviour
     public GameObject waypointsGameObj;
     private Transform[] wayPoints;
     public int speed = 30;
+    private bool vunerable;
+    public Transform healthBar;
 
     [Header("Stats")]
-    public int Max_Health = 100;
-    private int Current_Health = 100;
+    public float Max_Health = 100;
+    private float Current_Health = 100;
+    private int maxMobStun = 100;
+    public int currentMobStun;
+    private float stunTimer = 5f;
 
     private enum enemyState
     {
@@ -23,12 +28,14 @@ public class Enemy_AI : MonoBehaviour
         Chasing,
         Attacking,
         Healing,
+        stun,
     }
 
     private enemyState currentState;
 
     private void Awake()
     {
+        currentMobStun = maxMobStun;
         wayPoints = new Transform[waypointsGameObj.transform.childCount];
         for (int i=0; i<waypointsGameObj.transform.childCount; i++)
         {
@@ -36,6 +43,7 @@ public class Enemy_AI : MonoBehaviour
         }
         currentState = enemyState.Patrol;
         Current_Health = Max_Health;
+        healthBar.transform.localScale = new Vector3(Current_Health/Max_Health, healthBar.transform.localScale.y, 0);
         sprite_enemy = GetComponent<SpriteRenderer>();
         EnemyRB = GetComponent<Rigidbody2D>();
     }
@@ -44,6 +52,15 @@ public class Enemy_AI : MonoBehaviour
     private float playerDistanceY;
     void Update()
     {
+        if (vunerable && EnemyRB.linearVelocity.magnitude < 0.1f)
+        {
+            sprite_enemy.color = new Color(1,1,1);
+            vunerable = false;
+        }
+
+        if (currentMobStun <= 0)
+            currentState = enemyState.stun;
+        
         playerDistanceX = transform.position.x - PlayerTransform.position.x;
         playerDistanceY = PlayerTransform.position.y - transform.position.y;
 
@@ -65,6 +82,9 @@ public class Enemy_AI : MonoBehaviour
                 break;
             case enemyState.Attacking:
                 Attacking();
+                break;
+            case enemyState.stun:
+                stunned();
                 break;
             default:
                 break;
@@ -102,10 +122,13 @@ public class Enemy_AI : MonoBehaviour
                 transform.rotation = Quaternion.Euler(0,0,0);
             else
                 transform.rotation = Quaternion.Euler(0,180,0);
-
+            
+            if (!vunerable)
+            {
             EnemyRB.linearVelocityX = Mathf.Sign(distance) * speed;
             enemyAnimator.SetBool("isMOVING",true);
             enemyAnimator.SetBool("isCHASING",false);
+            }
         }
         
     }
@@ -113,7 +136,8 @@ public class Enemy_AI : MonoBehaviour
     {
         if (playerDistanceX > 0.5f || playerDistanceX < -0.5f)
         {
-            EnemyRB.linearVelocityX = -Mathf.Sign(playerDistanceX) * speed * 1.8f;
+            if(!vunerable)
+                EnemyRB.linearVelocityX = -Mathf.Sign(playerDistanceX) * speed * 1.8f;
 
             if (Mathf.Sign(-playerDistanceX) == -1)
                 transform.rotation = Quaternion.Euler(0,0,0);
@@ -144,8 +168,41 @@ public class Enemy_AI : MonoBehaviour
     {
         
     }
+
+    private void stunned()
+    {
+        if (stunTimer < 0)
+        {
+            currentState = enemyState.Patrol;
+            stunTimer = 5f;
+        }
+        else
+            stunTimer -= Time.deltaTime; 
+        EnemyRB.linearVelocity = Vector2.zero;
+    }
+
+    public void stun()
+    {
+        if(!vunerable)
+            EnemyRB.linearVelocity = Vector2.zero;
+
+        currentMobStun -= 10;
+        vunerable = true;
+        EnemyRB.linearVelocity = new Vector2( MathF.Sign(playerDistanceX)*12 , 10 );
+    }
     public void GetDamaged(int damagePower)
     {
+        sprite_enemy.color = new Color(1,0.5f,0.3f);
+
+        if(!vunerable)
+            EnemyRB.linearVelocity = Vector2.zero;
+
+        Current_Health -= damagePower;
+        if ( Current_Health < 0)
+            Destroy(gameObject);
         
+        healthBar.transform.localScale = new Vector3(Current_Health/Max_Health, healthBar.transform.localScale.y, 0);
+        vunerable = true;
+        EnemyRB.linearVelocity = new Vector2( MathF.Sign(playerDistanceX)*8 , 8 );
     }
 }

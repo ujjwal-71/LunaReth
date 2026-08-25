@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using UnityEngine;
 
 public class Attack : MonoBehaviour
@@ -7,19 +9,42 @@ public class Attack : MonoBehaviour
     public Transform playerTransform;
 
     [Header("Attributes")]
-    private float AttackPause = 0.2f;
-    public int attackPower = 10;
+    public int attackPower = 20;
 
+    public IEnumerator HitPause(float duration)
+    {
+        Debug.Log(Time.timeScale);
+        Time.timeScale = 0.5f;
+        yield return new WaitForSecondsRealtime(duration);
+        Time.timeScale = 1;
+    }
 
     public void OnTriggerEnter2D(Collider2D enemy)
     {
-        if (enemy.CompareTag("Enemy"))
+        int temp = (playerTransform.localScale.x < 0) ? -1 : 1;
+        Enemy_AI hitEnemy = enemy.GetComponent<Enemy_AI>();
+        _attributes player = GetComponentInParent<_attributes>();
+        if (enemy.CompareTag("Mob"))
         {
-            Enemy_AI hitEnemy = enemy.GetComponent<Enemy_AI>();
-            if (hitEnemy != null)
+            if ( player != null && player.isGuarded && player.parryTimer > 0)
             {
+                Debug.Log("Perfect Parry");
+                hitEnemy.stun();
+                return;
+            }
+            else if (player != null && player.isGuarded && player.parryTimer < 0)
+            {
+                Debug.Log("Perfect Gaurd");
+                player.currentStun += 10;
+                playerRigid.linearVelocity = new Vector2(temp * 10 , 5);
+                return;
+            }
+            else if (hitEnemy != null)
+            {
+                Debug.Log("Perfect damage");
                 hitEnemy.GetDamaged(attackPower);
-                playerRigid.linearVelocity = new Vector2(10 *2 , 8);
+                playerRigid.linearVelocity = new Vector2(temp * 10 , 5);
+                StartCoroutine(HitPause(0.05f));
             }
         }
     }

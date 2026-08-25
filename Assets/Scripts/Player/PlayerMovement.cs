@@ -1,4 +1,7 @@
+using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem.DualShock.LowLevel;
 
 public class Movement : MonoBehaviour
 {
@@ -23,148 +26,274 @@ public class Movement : MonoBehaviour
     private float jumpBuffer = 0f;
     private bool isGrounded = true;
     private bool dashing;
-    private bool dash;
     private float dashTimer;
-    private float dashPauseTimer;
-    private bool dashPause;
     private float shadowDashtimer = 0;
     private float dashSpeed;
+    private float attackTimer;
+    private float dashCoolDown;
 
+    private enum masterState
+    {
+        free,
+        dashing,
+        stunned,
+        dead,
+    }
+    private enum movementState
+    {
+        idle,
+        jumping,
+        falling,
+        walking,
+    }
+    private enum combatState
+    {
+        idle,
+        attacking,
+        gaurding,
+    }
+    private masterState currentMasterState;
+    private movementState currentMovementState;
+    private combatState currentCombatState;
 
     private void Awake()
     {
+        currentMovementState = movementState.idle;
+        currentCombatState = combatState.idle;
         RB = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
         DashEff = GetComponent<ParticleSystem>();
+        DashEff.Play();
     }
 
     void Update()
     {
-        isGrounded = Physics2D.OverlapCircle(FeetPosition.position,0.25f,Ground);
+        _attributes player = GetComponentInParent<_attributes>();
+        isGrounded = Physics2D.OverlapCircle(FeetPosition.position,0.35f,Ground);
         moveHorizontal = Input.GetAxis("Horizontal");
         GroundCheck();
-        HandleDashing();
-        if (!dashPause)
+        
+        if(dashCoolDown > 0)
+            dashCoolDown -= Time.deltaTime;
+
+        if (Input.GetButtonDown("Dash") && dashCoolDown<=0)
         {
-            AnimHAndle();
-            HandleMovement();
-            HandleJumping();
+            currentMasterState = masterState.dashing;
+        }
+
+        if (currentMasterState == masterState.dashing)
+        {
+            if (dashTimer > 0.1f)
+            {
+                gameObject.layer = LayerMask.NameToLayer("Player");
+                anim.SetBool("isDASHING",false);
+                dashTimer = 0;
+                RB.linearVelocity = new Vector2(0, RB.linearVelocity.y);
+                dashCoolDown = 0.5f;
+                currentMasterState = masterState.stunned;
+            }
+            else
+            {
+                anim.SetBool("isDASHING",true);
+                HandleDashing();
+            }
+            return;
+        }
+        else if(currentMasterState == masterState.stunned)
+        {
+            StartCoroutine(InterruptAction(0.1f));
+            return;
+        }
+
+        switch (currentCombatState)
+        {
+            
+            case combatState.idle:
+                anim.SetBool("isATTACKING", false);
+                anim.SetBool("isGAURDING", false);
+                if (Input.GetButtonDown("Attack"))
+                {
+                    attackTimer = 0.21f;
+                    currentCombatState = combatState.attacking;
+                }
+                else if (Input.GetButtonDown("Gaurd"))
+                {
+                    player.parryTimer = 0.08f;
+                    currentCombatState = combatState.gaurding;
+                }
+                break;
+
+            case combatState.gaurding:
+                anim.SetBool("isGAURDING", true);
+                player.isGuarded = true;
+                player.parryTimer -= Time.deltaTime;
+                if (Input.GetButtonUp("Gaurd"))
+                {   
+                    player.isGuarded = false;
+                    currentCombatState = combatState.idle;
+                }
+                if (Input.GetButtonDown("Attack"))
+                {
+                    attackTimer = 0.21f;
+                    currentCombatState = combatState.attacking;
+                }
+                
+                break;
+
+            case combatState.attacking:
+                anim.SetBool("isATTACKING", true);
+                if (attackTimer < 0)
+                    currentCombatState = combatState.idle;
+                else
+                    attackTimer -= Time.deltaTime;
+                break;
+        }
+
+        switch (currentMovementState)
+        {
+            case movementState.idle:
+                anim.SetBool("isRUNNING",false);
+                idle();
+                break;
+
+            case movementState.falling:
+                anim.SetBool("isJUMPED", false);
+                anim.SetBool("isRUNNING", false);
+                anim.SetBool("isFALLING", true);
+                HandleMovement();
+                if (isGrounded)
+                {
+                    currentMovementState = movementState.idle;
+                }
+                Debug.Log("falling");
+                break;
+
+            case movementState.jumping:
+                anim.SetBool("isJUMPED",true);
+                anim.SetBool("isRUNNING",false);
+                HandleMovement();
+                HandleJumping();
+
+                if (RB.linearVelocityY <= 0) 
+                    currentMovementState = movementState.falling;
+                Debug.Log("jumped");
+                break;
+
+            case movementState.walking:
+                anim.SetBool("isRUNNING", true);
+                HandleMovement();
+
+                if (moveHorizontal == 0) 
+                    currentMovementState = movementState.idle;
+                else if (Input.GetButtonDown("Jump"))
+                {
+                    jump = 16;
+                    jumpBuffer = 0.25f;
+                    currentMovementState = movementState.jumping;
+                }
+                if (RB.linearVelocityY < 0)
+                {
+                    currentMovementState = movementState.falling;
+                }
+                break;
         }
     }
 
-    public void InterruptAction()
+    private void idle()
     {
+        anim.SetBool("isJUMPED", false);
+        anim.SetBool("isFALLING", false);
+        anim.SetBool("isRUNNING", false);
+        RB.linearVelocity = new Vector2(0, RB.linearVelocity.y);
+
+        if (Input.GetButtonDown("Jump"))
+        {
+            jump = 16;
+            jumpBuffer = 0.25f;
+            currentMovementState = movementState.jumping;
+        }
+        else if (moveHorizontal != 0)
+            currentMovementState = movementState.walking;
+        else if (!isGrounded && RB.linearVelocityY < 0 && currentMovementState != movementState.jumping) 
+            currentMovementState = movementState.falling;
+    }
+
+    public IEnumerator InterruptAction(float duration)
+    {
+        RB.linearVelocity = new Vector2(0, RB.linearVelocity.y);
+        
         jumping = false;
         jump = 0;
         jumpTimer = 0;
-
-        dashing = false;
         dashTimer = 0;
+        anim.SetBool("isATTACKING", false);
+        anim.SetBool("isGAURDING", false);
+        anim.SetBool("isRUNNING", false);
+        anim.SetBool("isJUMPED", false);
+        anim.SetBool("isFALLING", false);
+        yield return new WaitForSecondsRealtime(duration);
+        currentMasterState = masterState.free;
 
-        anim.SetBool("isRUNNING",false);
-        anim.SetBool("isGROUNDED",true);
-        anim.SetBool("isJUMPED",false);
-        anim.SetBool("isFALLING",false);
     }
 
 
     private void HandleDashing()
     {
-        var trailcol = DashEff.trails;
-        shadowDashtimer -= Time.deltaTime;
+        dashTimer += Time.deltaTime;
+        RB.linearVelocity = new Vector2(Mathf.Sign(transform.localScale.x) * dashSpeed, 0);
 
-        if (dash && Input.GetButtonDown("Dash"))
-        {
-            dashing = true;
-            if (shadowDashtimer < 0)
-            {
-                trailcol.colorOverTrail= new ParticleSystem.MinMaxGradient(Color.black);
-                dashSpeed = 100;
-                gameObject.layer = LayerMask.NameToLayer("Ghost");
-            }
-            else
-            {
-                trailcol.colorOverTrail= new ParticleSystem.MinMaxGradient(Color.white);
-                dashSpeed = 80;
-            }
-        }
+        var trailsModule = DashEff.trails;
+        shadowDashtimer -= Time.deltaTime;
         
-        if (dashing)
+        if (shadowDashtimer > 0)
         {
-            if (dashTimer > 0.1f)
-            {
-                if (dashSpeed > 80)
-                    shadowDashtimer = 1.5f;
-                DashEff.Stop();
-                dashTimer = 0;
-                dashing = false;
-                dashPauseTimer = 0.5f;
-                RB.linearVelocity = new Vector2(0,0);
-                gameObject.layer = LayerMask.NameToLayer("Player");
-                InterruptAction();
-            }
-            else
-            {
-                dash = false;
-                dashTimer += Time.deltaTime;
-                RB.linearVelocity = transform.right * dashSpeed;
-                DashEff.Play();
-            }
-        }
-        if (dashPauseTimer > 0)
-        {
-            dashPause = true;
-            dashPauseTimer -= Time.deltaTime;
+            trailsModule.colorOverTrail = new ParticleSystem.MinMaxGradient(Color.black);
+            dashSpeed = 100;
+            gameObject.layer = LayerMask.NameToLayer("Ghost");
         }
         else
-            dashPause = false;
+        {
+            trailsModule.colorOverTrail = new ParticleSystem.MinMaxGradient(Color.white);
+            dashSpeed = 80;
+        }
     }
 
     private void HandleMovement()
-    {
-        if (!dashing)
-        {                
-            RB.linearVelocityX = speed * moveHorizontal;
-            if (moveHorizontal < -0.1f)
-                transform.rotation = Quaternion.Euler(0,180,0);
-
-            else if (moveHorizontal > 0.1f)
-                transform.rotation = Quaternion.Euler(0,0,0);
-        }
+    {               
+        RB.linearVelocityX = speed * moveHorizontal;
+        if (moveHorizontal < -0.1f)
+            transform.localScale = new Vector3(-8, 8, 0);
+        else if (moveHorizontal > 0.1f)
+            transform.localScale = new Vector3(8, 8, 0);
     }
     private void HandleJumping()
     {
-        if (!dashing)
-        {
-            if (Input.GetButtonDown("Jump"))
-                jumpBuffer = 0.15f;
-            else
-                jumpBuffer -= Time.deltaTime;
+        jumpBuffer -= Time.deltaTime;
 
-            if (coyoteTimer > 0 && jumpBuffer > 0)
-                jumping = true;
+        if (coyoteTimer > 0 && jumpBuffer > 0)
+            jumping = true;
 
-            if ( jumping && Input.GetButton("Jump"))
-                if (jumpTimer <= 0.3f)
-                {
-                    jumpTimer += Time.deltaTime;
-                    jumpBuffer = 0;
-                    coyoteTimer = 0;
-                    RB.linearVelocityY = jump;
-                    if (jump<16 && jump > 0)
-                        jump -= 4.5f;
-                }
-                else
-                {
-                    jump = 15;
-                    jumping = false;
-                }
+        if ( jumping && Input.GetButton("Jump"))
+            if (jumpTimer <= 0.3f)
+            {
+                anim.SetBool("isJUMPED", true);
+                jumpTimer += Time.deltaTime;
+                jumpBuffer = 0;
+                coyoteTimer = 0;
+                RB.linearVelocityY = jump;
+                if (jump<16 && jump > 0)
+                    jump -= 4.5f;
+            }
             else
             {
-                jumpTimer = 0;
-                jump = 16;
+                jump = 15;
                 jumping = false;
             }
+        else
+        {
+            jumpTimer = 0;
+            jump = 16;
+            jumping = false;
         }
     }
 
@@ -175,37 +304,16 @@ public class Movement : MonoBehaviour
         {
             coyoteTimer = 0.1f;
             if (!dashing)
-                dash = true;
+            {
+                if (currentMovementState == movementState.falling)
+                    currentMovementState = movementState.idle;
+            }
         }
         else
+        {
             coyoteTimer -= Time.deltaTime;
-    }
-
-    private void AnimHAndle()
-    {
-        if (RB.linearVelocityY < -0.1f)
-        {
-            anim.SetBool("isJUMPED", false);
-            anim.SetBool("isGROUNDED", false);
-            anim.SetBool("isFALLING", true);
+            if(currentMovementState != movementState.jumping)
+                currentMovementState = movementState.falling;
         }
-        else if (RB.linearVelocityY > 0.1f)
-        {
-            anim.SetBool("isJUMPED", true);
-            anim.SetBool("isGROUNDED", false);
-            anim.SetBool("isFALLING", false);
-        }
-        else
-        {
-            anim.SetBool("isJUMPED", false);
-            anim.SetBool("isGROUNDED", true);
-            anim.SetBool("isFALLING", false);
-        }
-
-        if (isGrounded && (moveHorizontal > 0.1f || moveHorizontal < -0.1f))
-            anim.SetBool("isRUNNING",true);
-
-        else
-            anim.SetBool("isRUNNING",false);
     }
 }
