@@ -1,0 +1,280 @@
+fileFormatVersion: 2
+guid: 2b219ec24ac8b924e9f00b1a8544db7b
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5536971097497762718
+    second: FALLING 1_0
+  - first:
+      213: -533598399148638092
+    second: FALLING 1_1
+  - first:
+      213: -2422741976995853045
+    second: FALLING 1_2
+  - first:
+      213: -2224087110545824863
+    second: FALLING 1_3
+  - first:
+      213: -1117694630916279009
+    second: FALLING 1_4
+  - first:
+      213: -1221143002638484878
+    second: FALLING 1_5
+  - first:
+      213: 7545859374142813846
+    second: FALLING 1_6
+  - first:
+      213: -1270881306059382644
+    second: FALLING 1_7
+  - first:
+      213: -5240340077489469394
+    second: FALLING 1_8
+  - first:
+      213: -6657015068736211333
+    second: FALLING 1_9
+  - first:
+      213: -6488444053349360185
+    second: FALLING 1_10
+  - first:
+      213: -6062674491623110298
+    second: FALLING 1_11
+  - first:
+      213: -6329972720371266473
+    second: FALLING 1_12
+  - first:
+      213: 7062047454028127102
+    second: FALLING 1_13
+  - first:
+      213: -3251085419297701369
+    second: FALLING 1_14
+  - first:
+      213: -9076546568298231818
+    second: FALLING 1_15
+  - first:
+      213: -7137471007813211957
+    second: FALLING 1_16
+  - first:
+      213: 145477659041062364
+    second: FALLING 1_17
+  - first:
+      213: -3999724903868393018
+    second: FALLING 1_18
+  - first:
+      213: 4225819357195559949
+    second: FALLING 1_19
+  - first:
+      213: -6260974012115078375
+    second: FALLING 1_20
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 2
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 135
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: FALLING 1_0
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 8
+        width: 310
+        height: 448
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2648a0a7f1ab823b0800000000000000
+      internalID: -5536971097497762718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FALLING 1_1
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 17
+        width: 310
+        height: 448
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 470470645174898f0800000000000000
+      internalID: -533598399148638092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FALLING 1_2
+      rect:
+        serializedVersion: 2
+        x: 645
+        y: 22
+        width: 292
+        height: 448
+      alignment: 9
+      pivot: {x: 0.5721971, y: 0.06380219}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fcaed9ea0683d064e8bd3ba540575af0
+      internalID: -2422741976995853045
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 3964b63983be2564ca2043d9110c9fcf
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      FALLING 1_0: -5536971097497762718
+      FALLING 1_1: -533598399148638092
+      FALLING 1_10: -6488444053349360185
+      FALLING 1_11: -6062674491623110298
+      FALLING 1_12: -6329972720371266473
+      FALLING 1_13: 7062047454028127102
+      FALLING 1_14: -3251085419297701369
+      FALLING 1_15: -9076546568298231818
+      FALLING 1_16: -7137471007813211957
+      FALLING 1_17: 145477659041062364
+      FALLING 1_18: -3999724903868393018
+      FALLING 1_19: 4225819357195559949
+      FALLING 1_2: -2422741976995853045
+      FALLING 1_20: -6260974012115078375
+      FALLING 1_3: -2224087110545824863
+      FALLING 1_4: -1117694630916279009
+      FALLING 1_5: -1221143002638484878
+      FALLING 1_6: 7545859374142813846
+      FALLING 1_7: -1270881306059382644
+      FALLING 1_8: -5240340077489469394
+      FALLING 1_9: -6657015068736211333
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

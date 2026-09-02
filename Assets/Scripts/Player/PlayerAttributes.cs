@@ -9,7 +9,6 @@ public class _attributes : MonoBehaviour
 
     public string tagFilter;
     private Rigidbody2D RB;
-    private SpriteRenderer playerSprite;
 
     [Header("Attributes")]
     public int maxHealth=100;
@@ -24,15 +23,14 @@ public class _attributes : MonoBehaviour
     private bool isStunned;
     public bool isGuarded;
     private float reSpawnTimer;
-    private Vector3 checkPoint;
+    public float deathAnimTimer;
+    public Vector3 checkPoint;
     
     private void Awake()
     {
         currentStun = maxStun;
-        checkPoint = new Vector3(-22,-23,0);
         currentHealth = maxHealth;
         RB = GetComponent<Rigidbody2D>();
-        playerSprite = GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -42,7 +40,6 @@ public class _attributes : MonoBehaviour
         if (invinsTimer>0 && reSpawnTimer == 0)
         {
             invinsTimer -= Time.deltaTime;
-            playerSprite.color = new Color(invinsTimer,0.5f,0.5f);
         }
         else if (reSpawnTimer != 0)
         {
@@ -51,7 +48,6 @@ public class _attributes : MonoBehaviour
         else
         {
             isInvinsible = false;
-            playerSprite.color = new Color(1,1,1);
         }
 
         if (stunTimer>0)
@@ -105,17 +101,13 @@ public class _attributes : MonoBehaviour
 
     public void PlayerDeath(float timer)
     {
-        anim.SetBool("isDEATH", true);
-        playerSprite.color = new Color(1,1,1,(float)Math.Pow(timer/2,2));
-        GetComponent<Movement>().InterruptAction(4f);
+        StartCoroutine(GetComponent<Movement>().InterruptAction(deathAnimTimer));
     }
 
     public void PlayerRespawn()
     {
-        anim.SetBool("isDEATH", false);
         reSpawnTimer = 0;
         currentHealth = maxHealth;
-        playerSprite.color = new Color(1,1,1,1);
         transform.position = checkPoint;
     }
 }

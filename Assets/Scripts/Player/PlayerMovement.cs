@@ -1,5 +1,4 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem.DualShock.LowLevel;
 
@@ -7,9 +6,7 @@ public class Movement : MonoBehaviour
 {
     [Header("Components")]
     public Animator anim;
-    private SpriteRenderer sprite;
     private Rigidbody2D RB;
-    private ParticleSystem DashEff;
 
     [Header("Movement Stats")]
     private float moveHorizontal;
@@ -22,15 +19,20 @@ public class Movement : MonoBehaviour
     [Header("State")]
     public LayerMask Ground;
     public Transform FeetPosition;
-    private float coyoteTimer = 0f;
-    private float jumpBuffer = 0f;
-    private bool isGrounded = true;
+    private float coyoteTimer;
+    private float jumpBuffer;
+    private bool isGrounded;
     private bool dashing;
     private float dashTimer;
+    public float shadowDashCoolDown;
     private float shadowDashtimer = 0;
-    private float dashSpeed;
+    public float dashSpeed;
     private float attackTimer;
+    public float attackAnimTimer;
+    public float heavyAttckAnimTimer;
     private float dashCoolDown;
+    public float tempdashCoolDown;
+    public float dashAnimTimer;
 
     private enum masterState
     {
@@ -58,39 +60,44 @@ public class Movement : MonoBehaviour
 
     private void Awake()
     {
+        dashCoolDown = tempdashCoolDown;
         currentMovementState = movementState.idle;
         currentCombatState = combatState.idle;
         RB = GetComponent<Rigidbody2D>();
-        sprite = GetComponent<SpriteRenderer>();
-        DashEff = GetComponent<ParticleSystem>();
-        DashEff.Play();
     }
 
     void Update()
     {
         _attributes player = GetComponentInParent<_attributes>();
-        isGrounded = Physics2D.OverlapCircle(FeetPosition.position,0.35f,Ground);
+        isGrounded = Physics2D.OverlapCircle(FeetPosition.position,0.5f,Ground);
         moveHorizontal = Input.GetAxis("Horizontal");
         GroundCheck();
         
         if(dashCoolDown > 0)
             dashCoolDown -= Time.deltaTime;
 
+        if (shadowDashtimer <= shadowDashCoolDown && shadowDashtimer > 0)
+            shadowDashtimer -= Time.deltaTime;
+        else
+            shadowDashtimer = 0;
+
         if (Input.GetButtonDown("Dash") && dashCoolDown<=0)
         {
+            BackToIdle();
             currentMasterState = masterState.dashing;
         }
 
         if (currentMasterState == masterState.dashing)
         {
-            if (dashTimer > 0.1f)
+            if (dashTimer > dashAnimTimer)
             {
+                BackToIdle();
                 gameObject.layer = LayerMask.NameToLayer("Player");
-                anim.SetBool("isDASHING",false);
                 dashTimer = 0;
                 RB.linearVelocity = new Vector2(0, RB.linearVelocity.y);
-                dashCoolDown = 0.5f;
+                dashCoolDown = tempdashCoolDown;
                 currentMasterState = masterState.stunned;
+                StartCoroutine(InterruptAction(dashAnimTimer));
             }
             else
             {
@@ -101,136 +108,179 @@ public class Movement : MonoBehaviour
         }
         else if(currentMasterState == masterState.stunned)
         {
-            StartCoroutine(InterruptAction(0.1f));
+            
             return;
         }
 
-        switch (currentCombatState)
+        else if(currentMasterState == masterState.free)
         {
-            
-            case combatState.idle:
-                anim.SetBool("isATTACKING", false);
-                anim.SetBool("isGAURDING", false);
-                if (Input.GetButtonDown("Attack"))
-                {
-                    attackTimer = 0.21f;
-                    currentCombatState = combatState.attacking;
-                }
-                else if (Input.GetButtonDown("Gaurd"))
-                {
-                    player.parryTimer = 0.08f;
-                    currentCombatState = combatState.gaurding;
-                }
-                break;
-
-            case combatState.gaurding:
-                anim.SetBool("isGAURDING", true);
-                player.isGuarded = true;
-                player.parryTimer -= Time.deltaTime;
-                if (Input.GetButtonUp("Gaurd"))
-                {   
-                    player.isGuarded = false;
-                    currentCombatState = combatState.idle;
-                }
-                if (Input.GetButtonDown("Attack"))
-                {
-                    attackTimer = 0.21f;
-                    currentCombatState = combatState.attacking;
-                }
+            switch (currentCombatState)
+            {
                 
-                break;
+                case combatState.idle:
+                    if (Input.GetButtonDown("Attack"))
+                    {
+                        attackTimer = attackAnimTimer;
+                        BackToIdle();
+                        anim.SetBool("isATTACKING", true);
+                        currentCombatState = combatState.attacking;
+                    }
+                    else if (Input.GetButtonDown("Gaurd"))
+                    {
+                        player.parryTimer = 0.08f;
+                        BackToIdle();
+                        anim.SetBool("isGAURDING", true);
+                        currentCombatState = combatState.gaurding;
+                    }
+                    break;
 
-            case combatState.attacking:
-                anim.SetBool("isATTACKING", true);
-                if (attackTimer < 0)
-                    currentCombatState = combatState.idle;
-                else
+                case combatState.gaurding:
+                    RB.linearVelocityX = 0;
+                    player.isGuarded = true;
+                    player.parryTimer -= Time.deltaTime;
+                    if (Input.GetButtonUp("Gaurd"))
+                    {   
+                        player.isGuarded = false;
+                        BackToIdle();
+                        currentCombatState = combatState.idle;
+                    }
+                    if (Input.GetButtonDown("Attack"))
+                    {
+                        attackTimer = heavyAttckAnimTimer;
+                        currentCombatState = combatState.attacking;
+                        BackToIdle();
+                        anim.SetBool("isHEAVYATTACKING", true);
+                    }
+                    
+                    break;
+
+                case combatState.attacking:
+                    if (attackTimer < 0)
+                    {
+                        BackToIdle();
+                        currentCombatState = combatState.idle;
+                    }
+                    if (Input.GetButtonDown("Attack"))
+                    {
+                        BackToIdle();
+                        anim.SetBool("isATTACKING", true);
+                        attackTimer = attackAnimTimer;
+                    }
+
                     attackTimer -= Time.deltaTime;
-                break;
-        }
-
-        switch (currentMovementState)
-        {
-            case movementState.idle:
-                anim.SetBool("isRUNNING",false);
-                idle();
-                break;
-
-            case movementState.falling:
-                anim.SetBool("isJUMPED", false);
-                anim.SetBool("isRUNNING", false);
-                anim.SetBool("isFALLING", true);
-                HandleMovement();
-                if (isGrounded)
+                    break;
+            }
+            if (currentCombatState == combatState.idle)
+            {
+                switch (currentMovementState)
                 {
-                    currentMovementState = movementState.idle;
+                    case movementState.idle:
+                        idle();
+                        break;
+
+                    case movementState.falling:
+                        HandleMovement();
+                        if (isGrounded)
+                        {
+                            BackToIdle();
+                            currentMovementState = movementState.idle;
+                        }
+                        Debug.Log("falling");
+                        break;
+
+                    case movementState.jumping:
+                        anim.SetBool("isJUMPING", true);
+                        HandleMovement();
+                        HandleJumping();
+
+                        if (RB.linearVelocityY <= 0)
+                        {
+                            BackToIdle();
+                            anim.SetBool("isFALLING", true);
+                            BackToIdle();
+                            anim.SetBool("isFALLING", true);
+                            currentMovementState = movementState.falling;
+                        }
+                        Debug.Log("jumped");
+                        break;
+
+                    case movementState.walking:
+                        anim.SetBool("isRUNNING", true);
+                        HandleMovement();
+
+                        if (moveHorizontal == 0)
+                        {
+                            BackToIdle();
+                            currentMovementState = movementState.idle;
+                        }
+                        else if (Input.GetButtonDown("Jump"))
+                        {
+                            jump = 20;
+                            jumpBuffer = 0.5f;
+                            BackToIdle();
+                            currentMovementState = movementState.jumping;
+                        }
+                        if (RB.linearVelocityY < 0)
+                        {
+                            BackToIdle();
+                            anim.SetBool("isFALLING", true);
+                            currentMovementState = movementState.falling;
+                        }
+                        break;
                 }
-                Debug.Log("falling");
-                break;
-
-            case movementState.jumping:
-                anim.SetBool("isJUMPED",true);
-                anim.SetBool("isRUNNING",false);
-                HandleMovement();
-                HandleJumping();
-
-                if (RB.linearVelocityY <= 0) 
-                    currentMovementState = movementState.falling;
-                Debug.Log("jumped");
-                break;
-
-            case movementState.walking:
-                anim.SetBool("isRUNNING", true);
-                HandleMovement();
-
-                if (moveHorizontal == 0) 
-                    currentMovementState = movementState.idle;
-                else if (Input.GetButtonDown("Jump"))
-                {
-                    jump = 16;
-                    jumpBuffer = 0.25f;
-                    currentMovementState = movementState.jumping;
-                }
-                if (RB.linearVelocityY < 0)
-                {
-                    currentMovementState = movementState.falling;
-                }
-                break;
+            }
         }
     }
 
+    public void BackToIdle()
+    {
+        anim.SetBool("isATTACKING", false);
+        anim.SetBool("isHEAVYATTACKING", false);
+        anim.SetBool("isRUNNING", false);
+        anim.SetBool("isJUMPING", false);
+        anim.SetBool("isFALLING", false);
+        anim.SetBool("isGAURDING", false);
+        anim.SetBool("isDEAD", false);
+        anim.SetBool("isDASHING", false);
+    }
     private void idle()
     {
-        anim.SetBool("isJUMPED", false);
-        anim.SetBool("isFALLING", false);
-        anim.SetBool("isRUNNING", false);
-        RB.linearVelocity = new Vector2(0, RB.linearVelocity.y);
-
         if (Input.GetButtonDown("Jump"))
         {
-            jump = 16;
-            jumpBuffer = 0.25f;
+            jump = 20;
+            jumpBuffer = 0.5f;
             currentMovementState = movementState.jumping;
         }
         else if (moveHorizontal != 0)
+        {
             currentMovementState = movementState.walking;
-        else if (!isGrounded && RB.linearVelocityY < 0 && currentMovementState != movementState.jumping) 
+        }
+        else if (!isGrounded && RB.linearVelocityY < 0 && currentMovementState != movementState.jumping)
+        {
+            BackToIdle();
+            anim.SetBool("isFALLING", true);
             currentMovementState = movementState.falling;
+        }
+        else
+        {
+            RB.linearVelocity = new Vector2(0, RB.linearVelocity.y);
+        }
+
     }
 
-    public IEnumerator InterruptAction(float duration)
+    public IEnumerator InterruptAction(float duration, bool dead = false)
     {
+        if (dead)
+        {
+            BackToIdle();
+            anim.SetBool("isDEAD",true);
+        }
         RB.linearVelocity = new Vector2(0, RB.linearVelocity.y);
         
         jumping = false;
         jump = 0;
         jumpTimer = 0;
         dashTimer = 0;
-        anim.SetBool("isATTACKING", false);
-        anim.SetBool("isGAURDING", false);
-        anim.SetBool("isRUNNING", false);
-        anim.SetBool("isJUMPED", false);
-        anim.SetBool("isFALLING", false);
         yield return new WaitForSecondsRealtime(duration);
         currentMasterState = masterState.free;
 
@@ -241,30 +291,23 @@ public class Movement : MonoBehaviour
     {
         dashTimer += Time.deltaTime;
         RB.linearVelocity = new Vector2(Mathf.Sign(transform.localScale.x) * dashSpeed, 0);
-
-        var trailsModule = DashEff.trails;
-        shadowDashtimer -= Time.deltaTime;
-        
-        if (shadowDashtimer > 0)
+        if (shadowDashtimer == 0)
         {
-            trailsModule.colorOverTrail = new ParticleSystem.MinMaxGradient(Color.black);
-            dashSpeed = 100;
+            shadowDashtimer = shadowDashCoolDown;
             gameObject.layer = LayerMask.NameToLayer("Ghost");
         }
         else
         {
-            trailsModule.colorOverTrail = new ParticleSystem.MinMaxGradient(Color.white);
-            dashSpeed = 80;
         }
     }
 
     private void HandleMovement()
-    {               
+    {         
         RB.linearVelocityX = speed * moveHorizontal;
         if (moveHorizontal < -0.1f)
-            transform.localScale = new Vector3(-8, 8, 0);
+            transform.localScale = new Vector3(-1, 1, 0);
         else if (moveHorizontal > 0.1f)
-            transform.localScale = new Vector3(8, 8, 0);
+            transform.localScale = new Vector3(1, 1, 0);
     }
     private void HandleJumping()
     {
@@ -276,23 +319,22 @@ public class Movement : MonoBehaviour
         if ( jumping && Input.GetButton("Jump"))
             if (jumpTimer <= 0.3f)
             {
-                anim.SetBool("isJUMPED", true);
                 jumpTimer += Time.deltaTime;
                 jumpBuffer = 0;
                 coyoteTimer = 0;
                 RB.linearVelocityY = jump;
-                if (jump<16 && jump > 0)
+                if (jump<20 && jump > 0)
                     jump -= 4.5f;
             }
             else
             {
-                jump = 15;
+                jump = 20;
                 jumping = false;
             }
         else
         {
             jumpTimer = 0;
-            jump = 16;
+            jump = 20;
             jumping = false;
         }
     }
@@ -302,11 +344,14 @@ public class Movement : MonoBehaviour
     {
         if (isGrounded)
         {
-            coyoteTimer = 0.1f;
+            coyoteTimer = 0.2f;
             if (!dashing)
             {
                 if (currentMovementState == movementState.falling)
+                {
+                    BackToIdle();
                     currentMovementState = movementState.idle;
+                }
             }
         }
         else

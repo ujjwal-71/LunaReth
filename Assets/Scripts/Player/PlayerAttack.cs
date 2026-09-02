@@ -9,7 +9,8 @@ public class Attack : MonoBehaviour
     public Transform playerTransform;
 
     [Header("Attributes")]
-    public int attackPower = 20;
+    public int attackDamage;
+    public int stunAmount;
 
     public IEnumerator HitPause(float duration)
     {
@@ -29,7 +30,7 @@ public class Attack : MonoBehaviour
             if ( player != null && player.isGuarded && player.parryTimer > 0)
             {
                 Debug.Log("Perfect Parry");
-                hitEnemy.stun();
+                hitEnemy.stun(stunAmount);
                 return;
             }
             else if (player != null && player.isGuarded && player.parryTimer < 0)
@@ -42,7 +43,7 @@ public class Attack : MonoBehaviour
             else if (hitEnemy != null)
             {
                 Debug.Log("Perfect damage");
-                hitEnemy.GetDamaged(attackPower);
+                hitEnemy.GetDamaged(attackDamage);
                 playerRigid.linearVelocity = new Vector2(temp * 10 , 5);
                 StartCoroutine(HitPause(0.05f));
             }

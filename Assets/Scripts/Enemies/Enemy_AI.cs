@@ -181,12 +181,12 @@ public class Enemy_AI : MonoBehaviour
         EnemyRB.linearVelocity = Vector2.zero;
     }
 
-    public void stun()
+    public void stun(int stunAmount)
     {
         if(!vunerable)
             EnemyRB.linearVelocity = Vector2.zero;
 
-        currentMobStun -= 10;
+        currentMobStun -= stunAmount;
         vunerable = true;
         EnemyRB.linearVelocity = new Vector2( MathF.Sign(playerDistanceX)*12 , 10 );
     }
