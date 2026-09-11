@@ -54,32 +54,10 @@ public class _attributes : MonoBehaviour
             stunTimer -= Time.deltaTime;
         else
             isStunned = false;
-    }
-
-
-
-    public void MobContactDamage(int damage, Transform enemyTransform)
-    {
-        if(!isInvinsible)
-        {
-            currentHealth -= damage;
-            isInvinsible = true;
-            isStunned = true;
-            invinsTimer = invinsTime;
-            stunTimer = 0.2f;
-            Vector2 pushDirection = (transform.position - enemyTransform.position).normalized;
-            RB.linearVelocity = new Vector2(pushDirection.x * 10f, 10f);
-        }
-    }
-    
+    }    
 
     void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag(tagFilter))
-        {
-            Debug.Log("OUCH! I was just stabbed by an object named: " + collision.gameObject.name);
-            MobContactDamage(10,collision.transform);
-        }
     }
 
     public void PlayerHealthCheck()

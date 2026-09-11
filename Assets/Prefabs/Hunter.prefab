@@ -128,10 +128,10 @@ GameObject:
   m_Component:
   - component: {fileID: 6312203593824125371}
   - component: {fileID: 1049208596231516862}
+  - component: {fileID: 3848179326779234697}
   - component: {fileID: 6139202928760725133}
   - component: {fileID: 2225368061031462550}
   - component: {fileID: 5121362482707362834}
-  - component: {fileID: 3848179326779234697}
   - component: {fileID: 6777247783496288580}
   m_Layer: 7
   m_Name: Hunter
@@ -217,6 +217,30 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &3848179326779234697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4595309858972037199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf987586ce800204bbdaabc87b8e6d19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  speed: 9
+  Ground:
+    serializedVersion: 2
+    m_Bits: 8
+  FeetPosition: {fileID: 1319172220921977974}
+  shadowDashCoolDown: 3
+  dashSpeed: 80
+  attackAnimTimer: 0.16
+  heavyAttckAnimTimer: 0.56
+  tempdashCoolDown: 1
+  dashAnimTimer: 0.21
+  maxJumpForce: 20
 --- !u!61 &6139202928760725133
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -311,30 +335,7 @@ MonoBehaviour:
   invinsTime: 1
   isGuarded: 0
   deathAnimTimer: 0
---- !u!114 &3848179326779234697
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4595309858972037199}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf987586ce800204bbdaabc87b8e6d19, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  anim: {fileID: 6777247783496288580}
-  speed: 9
-  Ground:
-    serializedVersion: 2
-    m_Bits: 8
-  FeetPosition: {fileID: 1319172220921977974}
-  shadowDashCoolDown: 3
-  dashSpeed: 80
-  attackAnimTimer: 0.16
-  heavyAttckAnimTimer: 0.56
-  tempdashCoolDown: 1
-  dashAnimTimer: 0.21
+  checkPoint: {x: 0, y: 0, z: 0}
 --- !u!95 &6777247783496288580
 Animator:
   serializedVersion: 7

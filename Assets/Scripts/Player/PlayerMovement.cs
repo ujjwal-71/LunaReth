@@ -1,20 +1,19 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.InputSystem.DualShock.LowLevel;
 
 public class Movement : MonoBehaviour
 {
     [Header("Components")]
-    public Animator anim;
+    private Animator anim;
     private Rigidbody2D RB;
 
     [Header("Movement Stats")]
     private float moveHorizontal;
     public float speed = 4f;
+    private Vector2 targetVelocity;
     private float prevXPos;
-    private float jump = 1f;
-    private float jumpTimer=0f;
-    private bool jumping;
+    private bool jumpRequested;
+    private bool jumpCutOff;
 
     [Header("State")]
     public LayerMask Ground;
@@ -33,6 +32,7 @@ public class Movement : MonoBehaviour
     private float dashCoolDown;
     public float tempdashCoolDown;
     public float dashAnimTimer;
+    public float maxJumpForce = 20f;
 
     private enum masterState
     {
@@ -58,18 +58,18 @@ public class Movement : MonoBehaviour
     private movementState currentMovementState;
     private combatState currentCombatState;
 
-    private void Awake()
+    private void Start()
     {
+        anim = GetComponent<Animator>();
         dashCoolDown = tempdashCoolDown;
         currentMovementState = movementState.idle;
         currentCombatState = combatState.idle;
         RB = GetComponent<Rigidbody2D>();
     }
 
-    void Update()
+    private void Update()
     {
         _attributes player = GetComponentInParent<_attributes>();
-        isGrounded = Physics2D.OverlapCircle(FeetPosition.position,0.5f,Ground);
         moveHorizontal = Input.GetAxis("Horizontal");
         GroundCheck();
         
@@ -94,10 +94,9 @@ public class Movement : MonoBehaviour
                 BackToIdle();
                 gameObject.layer = LayerMask.NameToLayer("Player");
                 dashTimer = 0;
-                RB.linearVelocity = new Vector2(0, RB.linearVelocity.y);
+                targetVelocity.x = 0;
                 dashCoolDown = tempdashCoolDown;
-                currentMasterState = masterState.stunned;
-                StartCoroutine(InterruptAction(dashAnimTimer));
+                StartCoroutine(InterruptAction(tempdashCoolDown));
             }
             else
             {
@@ -108,7 +107,6 @@ public class Movement : MonoBehaviour
         }
         else if(currentMasterState == masterState.stunned)
         {
-            
             return;
         }
 
@@ -135,7 +133,7 @@ public class Movement : MonoBehaviour
                     break;
 
                 case combatState.gaurding:
-                    RB.linearVelocityX = 0;
+                    targetVelocity.x = 0;
                     player.isGuarded = true;
                     player.parryTimer -= Time.deltaTime;
                     if (Input.GetButtonUp("Gaurd"))
@@ -191,9 +189,11 @@ public class Movement : MonoBehaviour
                     case movementState.jumping:
                         anim.SetBool("isJUMPING", true);
                         HandleMovement();
-                        HandleJumping();
 
-                        if (RB.linearVelocityY <= 0)
+                        if(Input.GetButtonUp("Jump"))
+                            jumpCutOff = true;
+
+                        if (RB.linearVelocity.y <= 0 && !jumpRequested)
                         {
                             BackToIdle();
                             anim.SetBool("isFALLING", true);
@@ -215,12 +215,13 @@ public class Movement : MonoBehaviour
                         }
                         else if (Input.GetButtonDown("Jump"))
                         {
-                            jump = 20;
+                            jumpRequested = true;
+                            coyoteTimer = 0;
                             jumpBuffer = 0.5f;
                             BackToIdle();
                             currentMovementState = movementState.jumping;
                         }
-                        if (RB.linearVelocityY < 0)
+                        if (RB.linearVelocity.y <= 0 && !isGrounded)
                         {
                             BackToIdle();
                             anim.SetBool("isFALLING", true);
@@ -232,6 +233,29 @@ public class Movement : MonoBehaviour
         }
     }
 
+    private void FixedUpdate()
+    {
+        isGrounded = Physics2D.OverlapCircle(FeetPosition.position,0.5f,Ground);
+
+        if (currentMasterState == masterState.dashing)
+            RB.linearVelocity = new Vector2(targetVelocity.x, 0);
+        else
+            RB.linearVelocity = new Vector2(targetVelocity.x, RB.linearVelocity.y);
+
+        
+        if (jumpRequested)
+        {
+            RB.linearVelocityY = maxJumpForce;
+            jumpRequested = false;
+        }
+        if (jumpCutOff)
+        {
+            if (RB.linearVelocityY > 0)
+                RB.linearVelocityY *= 0.3f;
+
+            jumpCutOff = false;
+        }
+    }
     public void BackToIdle()
     {
         anim.SetBool("isATTACKING", false);
@@ -247,7 +271,8 @@ public class Movement : MonoBehaviour
     {
         if (Input.GetButtonDown("Jump"))
         {
-            jump = 20;
+            jumpRequested = true;
+            coyoteTimer = 0;
             jumpBuffer = 0.5f;
             currentMovementState = movementState.jumping;
         }
@@ -255,7 +280,7 @@ public class Movement : MonoBehaviour
         {
             currentMovementState = movementState.walking;
         }
-        else if (!isGrounded && RB.linearVelocityY < 0 && currentMovementState != movementState.jumping)
+        else if (!isGrounded && RB.linearVelocity.y <= 0 && currentMovementState != movementState.jumping)
         {
             BackToIdle();
             anim.SetBool("isFALLING", true);
@@ -263,7 +288,7 @@ public class Movement : MonoBehaviour
         }
         else
         {
-            RB.linearVelocity = new Vector2(0, RB.linearVelocity.y);
+            targetVelocity.x = 0;
         }
 
     }
@@ -275,70 +300,35 @@ public class Movement : MonoBehaviour
             BackToIdle();
             anim.SetBool("isDEAD",true);
         }
-        RB.linearVelocity = new Vector2(0, RB.linearVelocity.y);
-        
-        jumping = false;
-        jump = 0;
-        jumpTimer = 0;
+        targetVelocity.x = 0;
         dashTimer = 0;
+        currentMasterState = masterState.stunned;
         yield return new WaitForSecondsRealtime(duration);
         currentMasterState = masterState.free;
-
+        GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);
     }
 
 
     private void HandleDashing()
     {
         dashTimer += Time.deltaTime;
-        RB.linearVelocity = new Vector2(Mathf.Sign(transform.localScale.x) * dashSpeed, 0);
+        targetVelocity = new Vector2(Mathf.Sign(transform.localScale.x) * dashSpeed, 0);
         if (shadowDashtimer == 0)
         {
             shadowDashtimer = shadowDashCoolDown;
             gameObject.layer = LayerMask.NameToLayer("Ghost");
-        }
-        else
-        {
+            GetComponent<SpriteRenderer>().color = new Color(0.1f, 0.1f, 0.1f, 4f);
         }
     }
 
     private void HandleMovement()
     {         
-        RB.linearVelocityX = speed * moveHorizontal;
+        targetVelocity.x = speed * moveHorizontal;
         if (moveHorizontal < -0.1f)
             transform.localScale = new Vector3(-1, 1, 0);
         else if (moveHorizontal > 0.1f)
             transform.localScale = new Vector3(1, 1, 0);
     }
-    private void HandleJumping()
-    {
-        jumpBuffer -= Time.deltaTime;
-
-        if (coyoteTimer > 0 && jumpBuffer > 0)
-            jumping = true;
-
-        if ( jumping && Input.GetButton("Jump"))
-            if (jumpTimer <= 0.3f)
-            {
-                jumpTimer += Time.deltaTime;
-                jumpBuffer = 0;
-                coyoteTimer = 0;
-                RB.linearVelocityY = jump;
-                if (jump<20 && jump > 0)
-                    jump -= 4.5f;
-            }
-            else
-            {
-                jump = 20;
-                jumping = false;
-            }
-        else
-        {
-            jumpTimer = 0;
-            jump = 20;
-            jumping = false;
-        }
-    }
-
 
     private void GroundCheck()
     {

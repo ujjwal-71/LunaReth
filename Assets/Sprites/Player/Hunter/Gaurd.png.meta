@@ -1,0 +1,342 @@
+fileFormatVersion: 2
+guid: d699838298d34654182dc9002a3218f6
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8256757916403543298
+    second: Gaurd_0
+  - first:
+      213: 7202132009338295332
+    second: Gaurd_1
+  - first:
+      213: -5645084401684551553
+    second: Gaurd_2
+  - first:
+      213: -7657566942454121388
+    second: Gaurd_3
+  - first:
+      213: 7121421859872646371
+    second: Gaurd_4
+  - first:
+      213: -4015316145380682891
+    second: Gaurd_5
+  - first:
+      213: -808982053561291497
+    second: Gaurd_6
+  - first:
+      213: 266082858536620785
+    second: Gaurd_7
+  - first:
+      213: -1764537896522363466
+    second: Gaurd_8
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 2
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 135
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Gaurd_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 503
+        width: 285
+        height: 521
+      alignment: 9
+      pivot: {x: 0.39856854, y: 0.044401728}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20da0ab2495e59270800000000000000
+      internalID: 8256757916403543298
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gaurd_1
+      rect:
+        serializedVersion: 2
+        x: 297
+        y: 503
+        width: 300
+        height: 521
+      alignment: 9
+      pivot: {x: 0.31097922, y: 0.044531297}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 424541a67ec13f360800000000000000
+      internalID: 7202132009338295332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gaurd_2
+      rect:
+        serializedVersion: 2
+        x: 616
+        y: 503
+        width: 277
+        height: 521
+      alignment: 9
+      pivot: {x: 0.2597555, y: 0.04356563}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f786e7645a1a8a1b0800000000000000
+      internalID: -5645084401684551553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gaurd_3
+      rect:
+        serializedVersion: 2
+        x: 919
+        y: 503
+        width: 309
+        height: 521
+      alignment: 9
+      pivot: {x: 0.24009493, y: 0.043508343}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 45c7f37ff6bdab590800000000000000
+      internalID: -7657566942454121388
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gaurd_4
+      rect:
+        serializedVersion: 2
+        x: 1235
+        y: 503
+        width: 301
+        height: 521
+      alignment: 9
+      pivot: {x: 0.19825354, y: 0.042697784}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e4296d537f54d260800000000000000
+      internalID: 7121421859872646371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gaurd_5
+      rect:
+        serializedVersion: 2
+        x: 313
+        y: 0
+        width: 301
+        height: 500
+      alignment: 9
+      pivot: {x: 0.25617987, y: 0.031844683}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b04b525fbe778dc4c879ee6531c3837a
+      internalID: -4015316145380682891
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gaurd_6
+      rect:
+        serializedVersion: 2
+        x: 617
+        y: 0
+        width: 301
+        height: 500
+      alignment: 9
+      pivot: {x: 0.23880704, y: 0.030768782}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9840d77b42f680a46b523bb649c6786a
+      internalID: -808982053561291497
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gaurd_7
+      rect:
+        serializedVersion: 2
+        x: 1224
+        y: 0
+        width: 301
+        height: 505
+      alignment: 9
+      pivot: {x: 0.23762791, y: 0.028272938}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 627a7ea59e953a44ea797f2ef2a5ac9e
+      internalID: 266082858536620785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 0b7a0c3ce9ac87e41b8532b683f85abe
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Gaurd_0: 8256757916403543298
+      Gaurd_1: 7202132009338295332
+      Gaurd_2: -5645084401684551553
+      Gaurd_3: -7657566942454121388
+      Gaurd_4: 7121421859872646371
+      Gaurd_5: -4015316145380682891
+      Gaurd_6: -808982053561291497
+      Gaurd_7: 266082858536620785
+      Gaurd_8: -1764537896522363466
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
