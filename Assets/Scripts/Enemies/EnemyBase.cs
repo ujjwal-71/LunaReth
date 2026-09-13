@@ -35,7 +35,7 @@ public class EnemyBase : MonoBehaviour
         switch (currentState)
         {
             case State.patrol:
-                move= true;
+                patrol();
                 break;
             
             case State.chase:
@@ -54,10 +54,6 @@ public class EnemyBase : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (move)
-        {
-            patrol();
-        }
     }
 
     private bool isGrounded()
