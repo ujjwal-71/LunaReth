@@ -4,9 +4,10 @@
 TagManager:
   serializedVersion: 3
   tags:
-  - Mob
   - Ghost
   - PlayerWeapons
+  - Enemies
+  - EnemiesWeapon
   layers:
   - Default
   - TransparentFX

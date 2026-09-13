@@ -55,11 +55,7 @@ public class _attributes : MonoBehaviour
         else
             isStunned = false;
     }    
-
-    void OnCollisionStay2D(Collision2D collision)
-    {
-    }
-
+    
     public void PlayerHealthCheck()
     {
         if (currentHealth <= 0)

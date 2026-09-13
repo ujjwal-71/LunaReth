@@ -23,14 +23,14 @@ public class Attack : MonoBehaviour
     public void OnTriggerEnter2D(Collider2D enemy)
     {
         int temp = (playerTransform.localScale.x < 0) ? -1 : 1;
-        Enemy_AI hitEnemy = enemy.GetComponent<Enemy_AI>();
+        EnemyBase enemyStats = enemy.GetComponent<EnemyBase>();
         _attributes player = GetComponentInParent<_attributes>();
-        if (enemy.CompareTag("Mob"))
+        if (enemy.CompareTag("EnemiesWeapon"))
         {
             if ( player != null && player.isGuarded && player.parryTimer > 0)
             {
                 Debug.Log("Perfect Parry");
-                hitEnemy.stun(stunAmount);
+                enemyStats.stunBar(stunAmount);
                 return;
             }
             else if (player != null && player.isGuarded && player.parryTimer < 0)
@@ -40,12 +40,13 @@ public class Attack : MonoBehaviour
                 playerRigid.linearVelocity = new Vector2(temp * 10 , 5);
                 return;
             }
-            else if (hitEnemy != null)
+        }
+        else if (enemy.CompareTag("Enemies"))
+        {
+            if ( player != null && !player.isGuarded)
             {
-                Debug.Log("Perfect damage");
-                hitEnemy.GetDamaged(attackDamage);
-                playerRigid.linearVelocity = new Vector2(temp * 10 , 5);
-                StartCoroutine(HitPause(0.05f));
+                Debug.Log("Enemy Hitted");
+                return;
             }
         }
     }
