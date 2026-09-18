@@ -26,7 +26,7 @@ public class _attributes : MonoBehaviour
     public float deathAnimTimer;
     public Vector3 checkPoint;
     
-    private void Awake()
+    private void Start()
     {
         currentStun = maxStun;
         currentHealth = maxHealth;
@@ -83,5 +83,10 @@ public class _attributes : MonoBehaviour
         reSpawnTimer = 0;
         currentHealth = maxHealth;
         transform.position = checkPoint;
+    }
+
+    public void GetDamage(int amount)
+    {
+        currentHealth -= amount;
     }
 }

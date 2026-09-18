@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Movement : MonoBehaviour
@@ -11,12 +12,12 @@ public class Movement : MonoBehaviour
     private float moveHorizontal;
     public float speed = 4f;
     private Vector2 targetVelocity;
-    private float prevXPos;
     private bool jumpRequested;
     private bool jumpCutOff;
 
     [Header("State")]
     public LayerMask Ground;
+
     public Transform FeetPosition;
     private float coyoteTimer;
     private float jumpBuffer;
@@ -69,6 +70,13 @@ public class Movement : MonoBehaviour
 
     private void Update()
     {
+        jumpBuffer -= Time.deltaTime;
+
+        if (Input.GetButtonDown("Jump"))
+            jumpBuffer = 0.5f;
+        if (Input.GetButtonUp("Jump"))
+            jumpCutOff = true;
+
         _attributes player = GetComponentInParent<_attributes>();
         moveHorizontal = Input.GetAxis("Horizontal");
         GroundCheck();
@@ -96,6 +104,7 @@ public class Movement : MonoBehaviour
                 dashTimer = 0;
                 targetVelocity.x = 0;
                 dashCoolDown = tempdashCoolDown;
+                RB.linearVelocity = new Vector2(0, RB.linearVelocity.y);
                 StartCoroutine(InterruptAction(tempdashCoolDown));
             }
             else
@@ -112,6 +121,15 @@ public class Movement : MonoBehaviour
 
         else if(currentMasterState == masterState.free)
         {
+
+            if (jumpBuffer > 0 && coyoteTimer > 0 && currentCombatState == combatState.idle && currentMasterState == masterState.free)
+            {
+                jumpRequested = true;
+                jumpBuffer = 0;
+                coyoteTimer = 0;
+                BackToIdle();
+                currentMovementState = movementState.jumping;
+            }
             switch (currentCombatState)
             {
                 
@@ -125,10 +143,10 @@ public class Movement : MonoBehaviour
                     }
                     else if (Input.GetButtonDown("Gaurd"))
                     {
-                        player.parryTimer = 0.08f;
+                        currentCombatState = combatState.gaurding;
+                        player.parryTimer = 0.2f;
                         BackToIdle();
                         anim.SetBool("isGAURDING", true);
-                        currentCombatState = combatState.gaurding;
                     }
                     break;
 
@@ -145,9 +163,9 @@ public class Movement : MonoBehaviour
                     if (Input.GetButtonDown("Attack"))
                     {
                         attackTimer = heavyAttckAnimTimer;
-                        currentCombatState = combatState.attacking;
                         BackToIdle();
                         anim.SetBool("isHEAVYATTACKING", true);
+                        currentCombatState = combatState.attacking;
                     }
                     
                     break;
@@ -190,9 +208,6 @@ public class Movement : MonoBehaviour
                         anim.SetBool("isJUMPING", true);
                         HandleMovement();
 
-                        if(Input.GetButtonUp("Jump"))
-                            jumpCutOff = true;
-
                         if (RB.linearVelocity.y <= 0 && !jumpRequested)
                         {
                             BackToIdle();
@@ -208,24 +223,17 @@ public class Movement : MonoBehaviour
                         anim.SetBool("isRUNNING", true);
                         HandleMovement();
 
-                        if (moveHorizontal == 0)
-                        {
-                            BackToIdle();
-                            currentMovementState = movementState.idle;
-                        }
-                        else if (Input.GetButtonDown("Jump"))
-                        {
-                            jumpRequested = true;
-                            coyoteTimer = 0;
-                            jumpBuffer = 0.5f;
-                            BackToIdle();
-                            currentMovementState = movementState.jumping;
-                        }
-                        if (RB.linearVelocity.y <= 0 && !isGrounded)
+                        if (RB.linearVelocity.y < 0)
                         {
                             BackToIdle();
                             anim.SetBool("isFALLING", true);
                             currentMovementState = movementState.falling;
+                            return;
+                        }
+                        if (Mathf.Abs(moveHorizontal) < 0.1f)
+                        {
+                            BackToIdle();
+                            currentMovementState = movementState.idle;
                         }
                         break;
                 }
@@ -237,7 +245,8 @@ public class Movement : MonoBehaviour
     {
         isGrounded = Physics2D.OverlapCircle(FeetPosition.position,0.5f,Ground);
 
-        if (currentMasterState == masterState.dashing)
+        if (currentMasterState == masterState.stunned){}
+        else if (currentMasterState == masterState.dashing)
             RB.linearVelocity = new Vector2(targetVelocity.x, 0);
         else
             RB.linearVelocity = new Vector2(targetVelocity.x, RB.linearVelocity.y);
@@ -251,7 +260,7 @@ public class Movement : MonoBehaviour
         if (jumpCutOff)
         {
             if (RB.linearVelocityY > 0)
-                RB.linearVelocityY *= 0.3f;
+                RB.linearVelocityY *= -0.4f;
 
             jumpCutOff = false;
         }
@@ -269,14 +278,7 @@ public class Movement : MonoBehaviour
     }
     private void idle()
     {
-        if (Input.GetButtonDown("Jump"))
-        {
-            jumpRequested = true;
-            coyoteTimer = 0;
-            jumpBuffer = 0.5f;
-            currentMovementState = movementState.jumping;
-        }
-        else if (moveHorizontal != 0)
+        if (moveHorizontal != 0)
         {
             currentMovementState = movementState.walking;
         }
@@ -319,15 +321,16 @@ public class Movement : MonoBehaviour
             gameObject.layer = LayerMask.NameToLayer("Ghost");
             GetComponent<SpriteRenderer>().color = new Color(0.1f, 0.1f, 0.1f, 4f);
         }
+        else GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);
     }
 
     private void HandleMovement()
     {         
         targetVelocity.x = speed * moveHorizontal;
         if (moveHorizontal < -0.1f)
-            transform.localScale = new Vector3(-1, 1, 0);
+            transform.localScale = new Vector3(-1, 1, 1);
         else if (moveHorizontal > 0.1f)
-            transform.localScale = new Vector3(1, 1, 0);
+            transform.localScale = new Vector3(1, 1, 1);
     }
 
     private void GroundCheck()
@@ -350,5 +353,11 @@ public class Movement : MonoBehaviour
             if(currentMovementState != movementState.jumping)
                 currentMovementState = movementState.falling;
         }
+    }
+
+    public void ApplyKnockback(float pushForceX, float pushForceY, float stunDuration)
+    {
+        RB.linearVelocity = Vector2.zero; 
+        RB.AddForce(new Vector2(pushForceX, pushForceY), ForceMode2D.Impulse);
     }
 }

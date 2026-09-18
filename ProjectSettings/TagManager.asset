@@ -18,7 +18,7 @@ TagManager:
   - Enemy
   - Player
   - Ghost
-  - 
+  - wall
   - 
   - 
   - 
@@ -44,6 +44,18 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: BgLayer
+    uniqueID: 2558166465
+    locked: 0
+  - name: Enemies
+    uniqueID: 351156235
+    locked: 0
+  - name: player
+    uniqueID: 2680060965
+    locked: 0
+  - name: Top
+    uniqueID: 1664948677
     locked: 0
   m_RenderingLayers:
   - Default
