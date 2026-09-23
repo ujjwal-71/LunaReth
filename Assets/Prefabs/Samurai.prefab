@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 1377091494301868573}
   - component: {fileID: 7388993186146205739}
   - component: {fileID: 910186690134833595}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Weapon
   m_TagString: PlayerWeapons
-  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -117,7 +117,6 @@ MonoBehaviour:
   playerRigid: {fileID: 2225368061031462550}
   playerTransform: {fileID: 6312203593824125371}
   attackDamage: 0
-  stunAmount: 0
 --- !u!1 &4595309858972037199
 GameObject:
   m_ObjectHideFlags: 0
@@ -148,14 +147,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4595309858972037199}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 18.99, y: 0.55, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 0}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: -1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 9145876108264167661}
   - {fileID: 1319172220921977974}
-  - {fileID: 637602773681961113}
+  - {fileID: 7444662980728022438}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1049208596231516862
@@ -203,16 +202,16 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingLayerID: -1614906331
+  m_SortingLayer: 4
+  m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -2639264126677930095, guid: 7ca49e4a3517ef44f91a903d8e334565, type: 3}
+  m_Sprite: {fileID: 4723107735738678597, guid: 3aa58b19e444dee4c8b490adcc3081c2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2.8, y: 3.64}
+  m_Size: {x: 2.64, y: 3.2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -229,18 +228,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf987586ce800204bbdaabc87b8e6d19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  speed: 9
+  speed: 6
   Ground:
     serializedVersion: 2
     m_Bits: 8
   FeetPosition: {fileID: 1319172220921977974}
-  shadowDashCoolDown: 3
-  dashSpeed: 80
+  shadowDashCoolDown: 2
+  ShadowDashSpeed: 40
+  dashSpeed: 30
   attackAnimTimer: 0.16
-  heavyAttckAnimTimer: 0.56
-  tempdashCoolDown: 1
-  dashAnimTimer: 0.21
-  maxJumpForce: 20
+  heavyAttckAnimTimer: 0.25
+  tempdashCoolDown: 0.2
+  dashAnimTimer: 0.2
+  maxJumpForce: 35
 --- !u!61 &6139202928760725133
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -275,17 +275,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.11399177, y: 1.6351451}
+  m_Offset: {x: -0.08466, y: 1.3494}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.54761386, y: 0.037643977}
-    oldSize: {x: 2.15, y: 3.94}
-    newSize: {x: 2.8, y: 3.64}
+    pivot: {x: 0.5, y: 0}
+    oldSize: {x: 2.64, y: 3.2}
+    newSize: {x: 2.64, y: 3.2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.7426042, y: 3.3200839}
+  m_Size: {x: 0.80353, y: 2.6659}
   m_EdgeRadius: 0
 --- !u!50 &2225368061031462550
 Rigidbody2D:
@@ -303,7 +303,7 @@ Rigidbody2D:
   m_LinearDamping: 0
   m_AngularDamping: 0
   m_GravityScale: 8
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: cef682e710329f640b4f091b4930f5ab, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -334,8 +334,11 @@ MonoBehaviour:
   parryTimer: 0
   invinsTime: 1
   isGuarded: 0
-  deathAnimTimer: 0
+  deathAnimTimer: 2.1
   checkPoint: {x: 0, y: 0, z: 0}
+  stunPower: 0
+  difficulty: 0
+  parried: 0
 --- !u!95 &6777247783496288580
 Animator:
   serializedVersion: 7
@@ -367,10 +370,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1319172220921977974}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Feet
   m_TagString: Untagged
-  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 3443629218296621865, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -389,7 +392,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6312203593824125371}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &8603598010117641755
+--- !u!1 &7675803215393163370
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -397,37 +400,37 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 637602773681961113}
-  - component: {fileID: 8559654155986854358}
-  m_Layer: 0
-  m_Name: Spot Light 2D
+  - component: {fileID: 7444662980728022438}
+  - component: {fileID: 6051067763256617183}
+  m_Layer: 7
+  m_Name: Lamp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &637602773681961113
+--- !u!4 &7444662980728022438
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8603598010117641755}
+  m_GameObject: {fileID: 7675803215393163370}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0.68269664, w: 0.7307019}
-  m_LocalPosition: {x: 0, y: 1.5, z: 0}
-  m_LocalScale: {x: 0.36363634, y: 0.36363634, z: 0.36363634}
+  m_LocalRotation: {x: -0, y: 0, z: -0.56417173, w: -0.8256575}
+  m_LocalPosition: {x: -0.069999695, y: 1.4099998, z: 0}
+  m_LocalScale: {x: -1, y: 1, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6312203593824125371}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8559654155986854358
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -291.31}
+--- !u!114 &6051067763256617183
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8603598010117641755}
+  m_GameObject: {fileID: 7675803215393163370}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
@@ -435,34 +438,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.RenderPipelines.Universal.2D.Runtime::UnityEngine.Rendering.Universal.Light2D
   m_ComponentVersion: 2
   m_LightType: 3
-  m_BlendStyleIndex: 0
-  m_FalloffIntensity: 0.15
-  m_Color: {r: 0.47245988, g: 0.7322517, b: 0.82641506, a: 1}
-  m_Intensity: 2.07
-  m_LightVolumeIntensity: 1
-  m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_BlendStyleIndex: 2
+  m_FalloffIntensity: 0.414
+  m_Color: {r: 1, g: 0.5278011, b: 0.1566037, a: 1}
+  m_Intensity: 2.37
+  m_LightVolumeIntensity: 0.01
+  m_LightVolumeEnabled: 1
+  m_ApplyToSortingLayers: 00000000c1857a980b38ee14257cbe9fd7997dbbc5193d63
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
-  m_LightOrder: 0
+  m_LightOrder: 10
   m_AlphaBlendOnOverlap: 0
-  m_OverlapOperation: 0
+  m_OverlapOperation: 1
   m_NormalMapDistance: 3
   m_NormalMapQuality: 2
   m_UseNormalMap: 0
   m_ShadowsEnabled: 1
-  m_ShadowIntensity: 1
-  m_ShadowSoftness: 1
-  m_ShadowSoftnessFalloffIntensity: 1
+  m_ShadowIntensity: 0.744
+  m_ShadowSoftness: 0.331
+  m_ShadowSoftnessFalloffIntensity: 0.5
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
     m_Center: {x: 0, y: -0.00000011920929, z: 0}
     m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
-  m_PointLightInnerAngle: 360
-  m_PointLightOuterAngle: 360
-  m_PointLightInnerRadius: 1.25
-  m_PointLightOuterRadius: 5.32
+  m_PointLightInnerAngle: 73.45999
+  m_PointLightOuterAngle: 145.7
+  m_PointLightInnerRadius: 3.3
+  m_PointLightOuterRadius: 12.6
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1

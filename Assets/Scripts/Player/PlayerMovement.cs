@@ -23,15 +23,17 @@ public class Movement : MonoBehaviour
     private float jumpBuffer;
     private bool isGrounded;
     private bool dashing;
+    private bool isDoingShadowDash;
     private float dashTimer;
     public float shadowDashCoolDown;
     private float shadowDashtimer = 0;
+    public float ShadowDashSpeed = 60;
     public float dashSpeed;
     private float attackTimer;
     public float attackAnimTimer;
     public float heavyAttckAnimTimer;
-    private float dashCoolDown;
-    public float tempdashCoolDown;
+    private float tempdashCoolDown;
+    public float dashCoolDown;
     public float dashAnimTimer;
     public float maxJumpForce = 20f;
 
@@ -62,7 +64,7 @@ public class Movement : MonoBehaviour
     private void Start()
     {
         anim = GetComponent<Animator>();
-        dashCoolDown = tempdashCoolDown;
+        tempdashCoolDown = dashCoolDown;
         currentMovementState = movementState.idle;
         currentCombatState = combatState.idle;
         RB = GetComponent<Rigidbody2D>();
@@ -77,40 +79,60 @@ public class Movement : MonoBehaviour
         if (Input.GetButtonUp("Jump"))
             jumpCutOff = true;
 
-        _attributes player = GetComponentInParent<_attributes>();
+        _attributes playerStats = GetComponentInParent<_attributes>();
         moveHorizontal = Input.GetAxis("Horizontal");
         GroundCheck();
         
-        if(dashCoolDown > 0)
-            dashCoolDown -= Time.deltaTime;
+        if(tempdashCoolDown > 0)
+            tempdashCoolDown -= Time.deltaTime;
 
         if (shadowDashtimer <= shadowDashCoolDown && shadowDashtimer > 0)
             shadowDashtimer -= Time.deltaTime;
         else
             shadowDashtimer = 0;
 
-        if (Input.GetButtonDown("Dash") && dashCoolDown<=0)
+        if (Input.GetButtonDown("Dash") && tempdashCoolDown <= 0)
         {
-            BackToIdle();
-            currentMasterState = masterState.dashing;
+            if (currentMasterState != masterState.dead && currentMasterState != masterState.stunned)
+            {
+                BackToIdle();
+                dashTimer = 0;
+                currentMasterState = masterState.dashing;
+                if (shadowDashtimer <= 0)
+                {
+                    isDoingShadowDash = true;
+                    anim.SetBool("isSHADOWDASHING", true);
+                    gameObject.layer = LayerMask.NameToLayer("Ghost");
+                    targetVelocity = new Vector2(Mathf.Sign(transform.localScale.x) * ShadowDashSpeed * -1, 0);
+                }
+                else
+                {
+                    isDoingShadowDash = false;
+                    anim.SetBool("isDASHING", true);
+                    targetVelocity = new Vector2(Mathf.Sign(transform.localScale.x) * dashSpeed * -1, 0);
+                }
+            }
         }
 
         if (currentMasterState == masterState.dashing)
         {
-            if (dashTimer > dashAnimTimer)
+            dashTimer += Time.deltaTime;
+            
+            if (dashTimer >= dashAnimTimer) 
             {
                 BackToIdle();
                 gameObject.layer = LayerMask.NameToLayer("Player");
                 dashTimer = 0;
-                targetVelocity.x = 0;
-                dashCoolDown = tempdashCoolDown;
+                
+                tempdashCoolDown = dashCoolDown;
+                if (isDoingShadowDash)
+                {
+                    shadowDashtimer = shadowDashCoolDown;
+                    isDoingShadowDash = false;
+                }
+                
                 RB.linearVelocity = new Vector2(0, RB.linearVelocity.y);
-                StartCoroutine(InterruptAction(tempdashCoolDown));
-            }
-            else
-            {
-                anim.SetBool("isDASHING",true);
-                HandleDashing();
+                currentMasterState = masterState.free; 
             }
             return;
         }
@@ -144,7 +166,7 @@ public class Movement : MonoBehaviour
                     else if (Input.GetButtonDown("Gaurd"))
                     {
                         currentCombatState = combatState.gaurding;
-                        player.parryTimer = 0.2f;
+                        playerStats.parryTimer = 0.2f;
                         BackToIdle();
                         anim.SetBool("isGAURDING", true);
                     }
@@ -152,11 +174,11 @@ public class Movement : MonoBehaviour
 
                 case combatState.gaurding:
                     targetVelocity.x = 0;
-                    player.isGuarded = true;
-                    player.parryTimer -= Time.deltaTime;
+                    playerStats.isGuarded = true;
+                    playerStats.parryTimer -= Time.deltaTime;
                     if (Input.GetButtonUp("Gaurd"))
                     {   
-                        player.isGuarded = false;
+                        playerStats.isGuarded = false;
                         BackToIdle();
                         currentCombatState = combatState.idle;
                     }
@@ -208,7 +230,7 @@ public class Movement : MonoBehaviour
                         anim.SetBool("isJUMPING", true);
                         HandleMovement();
 
-                        if (RB.linearVelocity.y <= 0 && !jumpRequested)
+                        if (RB.linearVelocity.y <= -10 && !jumpRequested)
                         {
                             BackToIdle();
                             anim.SetBool("isFALLING", true);
@@ -223,7 +245,7 @@ public class Movement : MonoBehaviour
                         anim.SetBool("isRUNNING", true);
                         HandleMovement();
 
-                        if (RB.linearVelocity.y < 0)
+                        if (RB.linearVelocity.y < -10)
                         {
                             BackToIdle();
                             anim.SetBool("isFALLING", true);
@@ -243,15 +265,22 @@ public class Movement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        isGrounded = Physics2D.OverlapCircle(FeetPosition.position,0.5f,Ground);
+        isGrounded = Physics2D.OverlapCircle(FeetPosition.position, 0.5f, Ground);
 
-        if (currentMasterState == masterState.stunned){}
+        if (currentMasterState == masterState.stunned) 
+        { 
+            
+        }
         else if (currentMasterState == masterState.dashing)
+        {
+            targetVelocity.x *= 0.8f; 
             RB.linearVelocity = new Vector2(targetVelocity.x, 0);
+        }
         else
+        {
             RB.linearVelocity = new Vector2(targetVelocity.x, RB.linearVelocity.y);
+        }
 
-        
         if (jumpRequested)
         {
             RB.linearVelocityY = maxJumpForce;
@@ -275,6 +304,7 @@ public class Movement : MonoBehaviour
         anim.SetBool("isGAURDING", false);
         anim.SetBool("isDEAD", false);
         anim.SetBool("isDASHING", false);
+        anim.SetBool("isSHADOWDASHING", false);
     }
     private void idle()
     {
@@ -282,7 +312,7 @@ public class Movement : MonoBehaviour
         {
             currentMovementState = movementState.walking;
         }
-        else if (!isGrounded && RB.linearVelocity.y <= 0 && currentMovementState != movementState.jumping)
+        else if (!isGrounded && RB.linearVelocity.y <= -10 && currentMovementState != movementState.jumping)
         {
             BackToIdle();
             anim.SetBool("isFALLING", true);
@@ -304,33 +334,18 @@ public class Movement : MonoBehaviour
         }
         targetVelocity.x = 0;
         dashTimer = 0;
-        currentMasterState = masterState.stunned;
         yield return new WaitForSecondsRealtime(duration);
+        BackToIdle();
         currentMasterState = masterState.free;
-        GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);
-    }
-
-
-    private void HandleDashing()
-    {
-        dashTimer += Time.deltaTime;
-        targetVelocity = new Vector2(Mathf.Sign(transform.localScale.x) * dashSpeed, 0);
-        if (shadowDashtimer == 0)
-        {
-            shadowDashtimer = shadowDashCoolDown;
-            gameObject.layer = LayerMask.NameToLayer("Ghost");
-            GetComponent<SpriteRenderer>().color = new Color(0.1f, 0.1f, 0.1f, 4f);
-        }
-        else GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);
     }
 
     private void HandleMovement()
     {         
         targetVelocity.x = speed * moveHorizontal;
         if (moveHorizontal < -0.1f)
-            transform.localScale = new Vector3(-1, 1, 1);
-        else if (moveHorizontal > 0.1f)
             transform.localScale = new Vector3(1, 1, 1);
+        else if (moveHorizontal > 0.1f)
+            transform.localScale = new Vector3(-1, 1, 1);
     }
 
     private void GroundCheck()
@@ -355,7 +370,7 @@ public class Movement : MonoBehaviour
         }
     }
 
-    public void ApplyKnockback(float pushForceX, float pushForceY, float stunDuration)
+    public void ApplyKnockback(float pushForceX, float pushForceY)
     {
         RB.linearVelocity = Vector2.zero; 
         RB.AddForce(new Vector2(pushForceX, pushForceY), ForceMode2D.Impulse);

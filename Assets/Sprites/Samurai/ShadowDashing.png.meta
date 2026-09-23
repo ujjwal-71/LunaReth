@@ -1,0 +1,526 @@
+fileFormatVersion: 2
+guid: 8dc6300bc1aa45c4595a17b3a31d6125
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 4900314204130013883
+    second: ShadowDashing_0
+  - first:
+      213: -2484372306531441041
+    second: ShadowDashing_1
+  - first:
+      213: -2820324837054877482
+    second: ShadowDashing_2
+  - first:
+      213: 7769725078158772808
+    second: ShadowDashing_3
+  - first:
+      213: 4325498031819495690
+    second: ShadowDashing_4
+  - first:
+      213: 4211563801967349528
+    second: ShadowDashing_5
+  - first:
+      213: -2761381071249925809
+    second: ShadowDashing_6
+  - first:
+      213: -5193220043123987281
+    second: ShadowDashing_7
+  - first:
+      213: 4377998837354180471
+    second: ShadowDashing_8
+  - first:
+      213: -2680078275854471672
+    second: ShadowDashing_9
+  - first:
+      213: 3481741634242918022
+    second: ShadowDashing_10
+  - first:
+      213: 2801036630942058827
+    second: ShadowDashing_11
+  - first:
+      213: -6452030095738505396
+    second: ShadowDashing_12
+  - first:
+      213: -8327186694383161100
+    second: ShadowDashing_13
+  - first:
+      213: 9157884290389109650
+    second: ShadowDashing_14
+  - first:
+      213: -1511664849637764566
+    second: ShadowDashing_15
+  - first:
+      213: 3723415487516015139
+    second: ShadowDashing_16
+  - first:
+      213: -9037512501936864919
+    second: ShadowDashing_17
+  - first:
+      213: 2047579446573581027
+    second: ShadowDashing_18
+  - first:
+      213: -4976852473480296675
+    second: ShadowDashing_19
+  - first:
+      213: -7163978926209979876
+    second: ShadowDashing_20
+  - first:
+      213: -5393469189431770026
+    second: ShadowDashing_21
+  - first:
+      213: -8487307987737358741
+    second: ShadowDashing_22
+  - first:
+      213: -7352874194708401328
+    second: ShadowDashing_23
+  - first:
+      213: -5889924275678623633
+    second: ShadowDashing_24
+  - first:
+      213: -4989184354646736467
+    second: ShadowDashing_25
+  - first:
+      213: 18430115183404619
+    second: ShadowDashing_26
+  - first:
+      213: -4474898073623309724
+    second: ShadowDashing_27
+  - first:
+      213: -3988402731506117064
+    second: ShadowDashing_28
+  - first:
+      213: 8683524656780272184
+    second: ShadowDashing_29
+  - first:
+      213: 685067035195781190
+    second: ShadowDashing_30
+  - first:
+      213: 34246858843773742
+    second: ShadowDashing_31
+  - first:
+      213: -4513637715886346793
+    second: ShadowDashing_32
+  - first:
+      213: -7700485242265248042
+    second: ShadowDashing_33
+  - first:
+      213: 2632186759616011039
+    second: ShadowDashing_34
+  - first:
+      213: 4672570338469703230
+    second: ShadowDashing_35
+  - first:
+      213: 6109418185907802357
+    second: ShadowDashing_36
+  - first:
+      213: -6980028874616050828
+    second: ShadowDashing_37
+  - first:
+      213: 6176025097754910670
+    second: ShadowDashing_38
+  - first:
+      213: -916001610099653066
+    second: ShadowDashing_39
+  - first:
+      213: -5025087241486351378
+    second: ShadowDashing_40
+  - first:
+      213: -5591198107803570815
+    second: ShadowDashing_41
+  - first:
+      213: 8448856032727779327
+    second: ShadowDashing_42
+  - first:
+      213: -5093734838326994969
+    second: ShadowDashing_43
+  - first:
+      213: -5374449720890748712
+    second: ShadowDashing_44
+  - first:
+      213: -1176132220355453944
+    second: ShadowDashing_45
+  - first:
+      213: 4078696601801254303
+    second: ShadowDashing_46
+  - first:
+      213: 2876844062947911387
+    second: ShadowDashing_47
+  - first:
+      213: 8307115339572463427
+    second: ShadowDashing_48
+  - first:
+      213: 6692763611405024561
+    second: ShadowDashing_49
+  - first:
+      213: -2832301663022546243
+    second: ShadowDashing_50
+  - first:
+      213: 2637298763123687623
+    second: ShadowDashing_51
+  - first:
+      213: 7248905809059753188
+    second: ShadowDashing_52
+  - first:
+      213: 8069605150129170948
+    second: ShadowDashing_53
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 95
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ShadowDashing_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 841
+        width: 317
+        height: 413
+      alignment: 9
+      pivot: {x: 0.44, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb278f04ec9610440800000000000000
+      internalID: 4900314204130013883
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowDashing_1
+      rect:
+        serializedVersion: 2
+        x: 332
+        y: 844
+        width: 291
+        height: 410
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f66206bcc8cb58dd0800000000000000
+      internalID: -2484372306531441041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowDashing_2
+      rect:
+        serializedVersion: 2
+        x: 630
+        y: 853
+        width: 305
+        height: 401
+      alignment: 9
+      pivot: {x: 0.56, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d0f120e0813cd8d0800000000000000
+      internalID: -2820324837054877482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowDashing_3
+      rect:
+        serializedVersion: 2
+        x: 942
+        y: 845
+        width: 303
+        height: 409
+      alignment: 9
+      pivot: {x: 0.58, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 84a0916facb93db60800000000000000
+      internalID: 7769725078158772808
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowDashing_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 521
+        width: 322
+        height: 215
+      alignment: 9
+      pivot: {x: 0.61, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a09904fda81470c30800000000000000
+      internalID: 4325498031819495690
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowDashing_5
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 521
+        width: 310
+        height: 217
+      alignment: 9
+      pivot: {x: 0.56, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 81f482dc6fa727a30800000000000000
+      internalID: 4211563801967349528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowDashing_6
+      rect:
+        serializedVersion: 2
+        x: 634
+        y: 521
+        width: 302
+        height: 218
+      alignment: 9
+      pivot: {x: 0.58, y: 0.06}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f4919aecb8a9da9d0800000000000000
+      internalID: -2761381071249925809
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowDashing_7
+      rect:
+        serializedVersion: 2
+        x: 943
+        y: 521
+        width: 307
+        height: 219
+      alignment: 9
+      pivot: {x: 0.58, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: face729b2e9fde7b0800000000000000
+      internalID: -5193220043123987281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowDashing_8
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 130
+        width: 305
+        height: 212
+      alignment: 9
+      pivot: {x: 0.58, y: 0.04}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 77fa1973fb6c1cc30800000000000000
+      internalID: 4377998837354180471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShadowDashing_9
+      rect:
+        serializedVersion: 2
+        x: 331
+        y: 117
+        width: 293
+        height: 269
+      alignment: 9
+      pivot: {x: 0.44, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 80ee37df1037ecad0800000000000000
+      internalID: -2680078275854471672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 046c75864c950e94bbc22b9953494bbc
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":4.0,"y":3.0},"gridSpriteSize":{"x":313.0,"y":418.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.0},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":9,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      ShadowDashing_0: 4900314204130013883
+      ShadowDashing_1: -2484372306531441041
+      ShadowDashing_10: 3481741634242918022
+      ShadowDashing_11: 2801036630942058827
+      ShadowDashing_2: -2820324837054877482
+      ShadowDashing_3: 7769725078158772808
+      ShadowDashing_4: 4325498031819495690
+      ShadowDashing_5: 4211563801967349528
+      ShadowDashing_6: -2761381071249925809
+      ShadowDashing_7: -5193220043123987281
+      ShadowDashing_8: 4377998837354180471
+      ShadowDashing_9: -2680078275854471672
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

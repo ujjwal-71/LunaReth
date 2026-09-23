@@ -25,6 +25,9 @@ public class _attributes : MonoBehaviour
     private float reSpawnTimer;
     public float deathAnimTimer;
     public Vector3 checkPoint;
+    public int stunPower;
+    public int difficulty;
+    public bool parried;
     
     private void Start()
     {
@@ -87,6 +90,19 @@ public class _attributes : MonoBehaviour
 
     public void GetDamage(int amount)
     {
-        currentHealth -= amount;
+        parried = false;
+        if (!isGuarded)
+        {
+            currentHealth -= amount;
+            return;
+        }
+        else if (isGuarded)
+        {
+            if (parryTimer > 0)
+            {
+                parried = true;
+                currentStun -= 5;
+            }
+        }
     }
 }

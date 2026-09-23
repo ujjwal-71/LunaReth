@@ -19,21 +19,16 @@ public class Attack : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D enemy)
     {
-    
         EnemyBase enemyStats = enemy.GetComponent<EnemyBase>();
         _attributes playerStats = GetComponentInParent<_attributes>();
 
         if(enemyStats == null)
             return;
 
-        else if (enemy.CompareTag("Enemies"))
+        if (enemy.CompareTag("Enemies") || enemy.CompareTag("EnemiesWeapon"))
         {
-            if (!playerStats.isGuarded)
-            {
-                Debug.LogWarning("Enemy Hitted");
-                enemyStats.healthBar(attackDamage);
-                return;
-            }
+            enemyStats.healthBar(attackDamage);
         }
+
     }
 }

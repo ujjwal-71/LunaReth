@@ -1,0 +1,1255 @@
+fileFormatVersion: 2
+guid: 94808d484f790d845919fefaab07e21a
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -1708239152231086919
+    second: Bushesh_0
+  - first:
+      213: 4572036745192202996
+    second: Bushesh_1
+  - first:
+      213: 5037199555623371369
+    second: Bushesh_2
+  - first:
+      213: -5278922074437432767
+    second: Bushesh_3
+  - first:
+      213: -2613534148176706333
+    second: Bushesh_4
+  - first:
+      213: 1554780598328863646
+    second: Bushesh_5
+  - first:
+      213: -6458744229013310632
+    second: Bushesh_6
+  - first:
+      213: 8107406220896083160
+    second: Bushesh_7
+  - first:
+      213: -8835754237768026093
+    second: Bushesh_8
+  - first:
+      213: -5330289873746701239
+    second: Bushesh_9
+  - first:
+      213: -8161897835172153198
+    second: Bushesh_10
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 40
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Bushesh_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1033
+        width: 247
+        height: 217
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 105.5, y: -69.5}
+        - {x: 101.5, y: -22.5}
+        - {x: 123.5, y: -1.5}
+        - {x: 123.5, y: 108.5}
+        - {x: -123.5, y: 108.5}
+        - {x: -123.5, y: -106.5}
+        - {x: 65.5, y: -108.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b40adbaa8d1b48e0800000000000000
+      internalID: -1708239152231086919
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bushesh_1
+      rect:
+        serializedVersion: 2
+        x: 229
+        y: 1032
+        width: 171
+        height: 217
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: -60.5, y: 4.5}
+        - {x: -85.5, y: -9.753174}
+        - {x: -85.5, y: -108.5}
+        - {x: 69.5, y: -108.5}
+        - {x: 71.5, y: -24.5}
+        - {x: 85.5, y: 3.5}
+        - {x: 85.5, y: 104.5}
+        - {x: -85.5, y: 108.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f2e6313233237f30800000000000000
+      internalID: 4572036745192202996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bushesh_2
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 1029
+        width: 179
+        height: 217
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: -69.5, y: 17.5}
+        - {x: -89.5, y: -6.5}
+        - {x: -89.5, y: -108.5}
+        - {x: 89.5, y: -108.5}
+        - {x: 89.5, y: 108.5}
+        - {x: -89.5, y: 108.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 962cfafbe4ab7e540800000000000000
+      internalID: 5037199555623371369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bushesh_3
+      rect:
+        serializedVersion: 2
+        x: 587
+        y: 1036
+        width: 209
+        height: 217
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: -104.5, y: -65.5}
+        - {x: -78.5, y: -108.5}
+        - {x: 104.5, y: -108.5}
+        - {x: 104.5, y: -20.5}
+        - {x: 82.5, y: 38.5}
+        - {x: 104.5, y: 100.5}
+        - {x: -104.5, y: 95.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14a403c97508db6b0800000000000000
+      internalID: -5278922074437432767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bushesh_4
+      rect:
+        serializedVersion: 2
+        x: 770
+        y: 1034
+        width: 124
+        height: 217
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: -54, y: 21.5}
+        - {x: -38, y: -5.5}
+        - {x: -37, y: -42.5}
+        - {x: -62, y: -108.5}
+        - {x: 62, y: -108.5}
+        - {x: 62, y: 108.5}
+        - {x: -62, y: 108.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e403911a8cdabbd0800000000000000
+      internalID: -2613534148176706333
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bushesh_5
+      rect:
+        serializedVersion: 2
+        x: 894
+        y: 1035
+        width: 165
+        height: 217
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: -82.5, y: -108.5}
+        - {x: 21.5, y: -108.5}
+        - {x: 47.5, y: -67.5}
+        - {x: 82.5, y: -31.5}
+        - {x: 82.5, y: 98.5}
+        - {x: -82.5, y: 92.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9baf0377b0b39510800000000000000
+      internalID: 1554780598328863646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bushesh_6
+      rect:
+        serializedVersion: 2
+        x: 1063
+        y: 1037
+        width: 184
+        height: 217
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 853be86f75eed56a0800000000000000
+      internalID: -6458744229013310632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bushesh_7
+      rect:
+        serializedVersion: 2
+        x: 316
+        y: 870
+        width: 216
+        height: 157
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8dc9d46c00b438070800000000000000
+      internalID: 8107406220896083160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bushesh_8
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 879
+        width: 105
+        height: 144
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3183f27a558116580800000000000000
+      internalID: -8835754237768026093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bushesh_9
+      rect:
+        serializedVersion: 2
+        x: 536
+        y: 888
+        width: 111
+        height: 164
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: -52.5, y: -14}
+        - {x: -51.5, y: -82}
+        - {x: 55.5, y: -82}
+        - {x: 55.5, y: 24}
+        - {x: 16.5, y: 73}
+        - {x: -20.5, y: 73}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9445775d9910706b0800000000000000
+      internalID: -5330289873746701239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bushesh_11
+      rect:
+        serializedVersion: 2
+        x: 759
+        y: 828
+        width: 156
+        height: 214
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: -44, y: -8}
+        - {x: -78, y: -58}
+        - {x: -50, y: -97}
+        - {x: 78, y: -107}
+        - {x: 78, y: 53}
+        - {x: 24, y: 104}
+        - {x: -42, y: 103}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04f0f41a4a270944b8ee4b5267c18be8
+      internalID: 1273684837
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bushesh_12
+      rect:
+        serializedVersion: 2
+        x: 1001
+        y: 908
+        width: 124
+        height: 165
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: -62, y: -10.5}
+        - {x: -40, y: -37.5}
+        - {x: -62, y: -82.5}
+        - {x: 62, y: -82.5}
+        - {x: 61, y: 8.5}
+        - {x: -9, y: 82.5}
+        - {x: -35, y: 82.5}
+        - {x: -54, y: 69.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d42ab15c0598d6842a11fdfa06b4a8c1
+      internalID: -1207489797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bushesh_13
+      rect:
+        serializedVersion: 2
+        x: 1121
+        y: 865
+        width: 124
+        height: 181
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e69ff4e5d3c78c444b4ee6fccd88a9c9
+      internalID: 1423830147
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bushesh_14
+      rect:
+        serializedVersion: 2
+        x: 911
+        y: 741
+        width: 209
+        height: 158
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: -104.5, y: 46}
+        - {x: -86.5, y: -29}
+        - {x: -33.5, y: -79}
+        - {x: 104.5, y: -79}
+        - {x: 104.5, y: 15}
+        - {x: 88.5, y: 79}
+        - {x: -8.5, y: 79}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce5f5fa06a3224f4b8bccb38501f75b6
+      internalID: 1497266368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bushesh_15
+      rect:
+        serializedVersion: 2
+        x: 1134
+        y: 768
+        width: 105
+        height: 81
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 464846af86d12214c814869b7f0310af
+      internalID: -834574281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bushesh_16
+      rect:
+        serializedVersion: 2
+        x: 547
+        y: 584
+        width: 274
+        height: 179
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: -32, y: 38.5}
+        - {x: -137, y: 53.5}
+        - {x: -137, y: -46.5}
+        - {x: -97, y: -89.5}
+        - {x: 77, y: -89.5}
+        - {x: 93, y: -51.5}
+        - {x: 137, y: 9.5}
+        - {x: 137, y: 49.5}
+        - {x: 96, y: 89.5}
+        - {x: 6, y: 89.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65bd8584c184faf43a01c62bf924a678
+      internalID: -155676998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bushesh_17
+      rect:
+        serializedVersion: 2
+        x: 792
+        y: 662
+        width: 157
+        height: 175
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: -78.5, y: 12.5}
+        - {x: -50.5, y: -31.5}
+        - {x: -53.5, y: -87.5}
+        - {x: 78.5, y: -87.5}
+        - {x: 78.5, y: 36.5}
+        - {x: 61.5, y: 87.5}
+        - {x: -24.5, y: 87.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae60df89c883e7c4e816ec0ae6e46c52
+      internalID: -823379370
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bushesh_18
+      rect:
+        serializedVersion: 2
+        x: 658
+        y: 766
+        width: 166
+        height: 116
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: -81, y: -13}
+        - {x: -66, y: -58}
+        - {x: 83, y: -54}
+        - {x: 83, y: -1}
+        - {x: 44, y: 25}
+        - {x: 13, y: 54}
+        - {x: -80, y: 55}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73ec3f47e652e764f8ac339e2aaa00c4
+      internalID: -1580132172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bushesh_19
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 748
+        width: 218
+        height: 141
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 105, y: -65.5}
+        - {x: 105, y: 2.5}
+        - {x: 92, y: 35.5}
+        - {x: 44, y: 69.5}
+        - {x: 35, y: 69.5}
+        - {x: 6, y: 70.5}
+        - {x: -27, y: 62.5}
+        - {x: -65, y: 64.5}
+        - {x: -78, y: 52.5}
+        - {x: -109, y: -4.5}
+        - {x: -109, y: -43.5}
+        - {x: -101, y: -68.5}
+        - {x: -75, y: -70.5}
+        - {x: 101, y: -70.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cdd4c7da03dc300478fe1eaf0cfb656d
+      internalID: -1926182225
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bushesh_20
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 759
+        width: 199
+        height: 116
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab75f9df5317abe48a6e7d33e10e999f
+      internalID: 1159676809
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bushesh_21
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 732
+        width: 240
+        height: 157
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: -120, y: 3.5}
+        - {x: -120, y: -43.5}
+        - {x: -79, y: -78.5}
+        - {x: 120, y: -76.5}
+        - {x: 120, y: -21.5}
+        - {x: 104, y: 1.5}
+        - {x: 92, y: 78.5}
+        - {x: -94, y: 60.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a68c265c354c876448a3ce875e6ed398
+      internalID: -1720658368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bushesh_22
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 579
+        width: 262
+        height: 172
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: -114, y: 16}
+        - {x: -123, y: -73}
+        - {x: -52, y: -86}
+        - {x: 21, y: -86}
+        - {x: 101, y: -42}
+        - {x: 131, y: -37}
+        - {x: 128, y: 2}
+        - {x: 83, y: 36}
+        - {x: 73, y: 86}
+        - {x: -32, y: 79}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be55f545fc277024f8cd4a12242be648
+      internalID: -1450657759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bushesh_23
+      rect:
+        serializedVersion: 2
+        x: 221
+        y: 618
+        width: 287
+        height: 145
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: -143.5, y: 1.5}
+        - {x: -84.5, y: -60.5}
+        - {x: -31.5, y: -72.5}
+        - {x: 72.5, y: -70.5}
+        - {x: 143.5, y: -10.5}
+        - {x: 142.5, y: 18.5}
+        - {x: 70.5, y: 72.5}
+        - {x: 32.5, y: 62.5}
+        - {x: -97.5, y: 63.5}
+        - {x: -143.5, y: 52.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a8d1314c8cde7a4fa2542a7c6ed635c
+      internalID: 759906806
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bushesh_24
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 515
+        width: 240
+        height: 117
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: -66, y: 42.5}
+        - {x: -89, y: 19.5}
+        - {x: -120, y: 10.5}
+        - {x: -120, y: -19.5}
+        - {x: -33, y: -58.5}
+        - {x: 120, y: -58.5}
+        - {x: 120, y: 15.5}
+        - {x: 28, y: 43.5}
+        - {x: -10, y: 50.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9234a0c464cdaa04e87fb24c0a7bf6f5
+      internalID: 47604549
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bushesh_25
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 415
+        width: 264
+        height: 175
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: -132, y: -21.5}
+        - {x: -84, y: -13.5}
+        - {x: -10, y: -87.5}
+        - {x: 132, y: -87.5}
+        - {x: 132, y: -4.5}
+        - {x: -20, y: 74.5}
+        - {x: -121, y: 72.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e02127c42565a94e8a8631831e2d601
+      internalID: -858750064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bushesh_26
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 295
+        width: 258
+        height: 184
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: -129, y: 57}
+        - {x: -114, y: -92}
+        - {x: -4, y: -80}
+        - {x: 57, y: -92}
+        - {x: 117, y: -92}
+        - {x: 129, y: -2}
+        - {x: -12, y: 39}
+        - {x: -25, y: 68}
+        - {x: -69, y: 92}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0dc3205350b4ebe4b9bb938f29e59447
+      internalID: -1236790384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bushesh_27
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 90
+        width: 357
+        height: 210
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: -178.5, y: -44}
+        - {x: 7.5, y: -66}
+        - {x: 88.5, y: -105}
+        - {x: 178.5, y: -105}
+        - {x: 178.5, y: -39}
+        - {x: 116.5, y: -3}
+        - {x: 43.5, y: -13}
+        - {x: -3.5, y: 16}
+        - {x: -15.5, y: 105}
+        - {x: -178.5, y: 105}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5afb7c70c32e86f408dc518e3523f3b9
+      internalID: 840578358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bushesh_28
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 191
+        width: 132
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 365f9a4b2340e564a8553b1a96602825
+      internalID: -1117570026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bushesh_29
+      rect:
+        serializedVersion: 2
+        x: 469
+        y: 240
+        width: 236
+        height: 207
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: -118, y: 25.645355}
+        - {x: -92, y: 7.5}
+        - {x: -118, y: -9.966827}
+        - {x: -118, y: -103.5}
+        - {x: 74, y: -103.5}
+        - {x: 118, y: -77.5}
+        - {x: 118, y: -33.5}
+        - {x: 26, y: 98.5}
+        - {x: -60, y: 103.5}
+        - {x: -103, y: 80.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 391527acde174d349ac292eae26fc8c4
+      internalID: -1787966447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bushesh_30
+      rect:
+        serializedVersion: 2
+        x: 761
+        y: 537
+        width: 188
+        height: 137
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: -75, y: 18.5}
+        - {x: -94, y: -13.5}
+        - {x: -93, y: -68.5}
+        - {x: 94, y: -62.5}
+        - {x: 94, y: -4.5}
+        - {x: 65, y: 60.5}
+        - {x: -65, y: 48.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a4c818c76ad53641ae18fd0e770633d
+      internalID: 2035103097
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bushesh_31
+      rect:
+        serializedVersion: 2
+        x: 934
+        y: 557
+        width: 183
+        height: 176
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: -91.5, y: 1}
+        - {x: -91.5, y: -32}
+        - {x: -56.5, y: -88}
+        - {x: 60.5, y: -88}
+        - {x: 91.5, y: -18}
+        - {x: 54.5, y: 27}
+        - {x: 89.5, y: 88}
+        - {x: -68.5, y: 88}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f7a52faca0f3b0419032e9aabdaf32b
+      internalID: -251402792
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bushesh_32
+      rect:
+        serializedVersion: 2
+        x: 1072
+        y: 455
+        width: 153
+        height: 120
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: -75.5, y: 37}
+        - {x: -76.5, y: -60}
+        - {x: 76.5, y: -60}
+        - {x: 76.5, y: 60}
+        - {x: -57.5, y: 60}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b93e2e776d409c34eb760879195dd35d
+      internalID: -674217122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bushesh_33
+      rect:
+        serializedVersion: 2
+        x: 882
+        y: 231
+        width: 350
+        height: 241
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: -80, y: 51.5}
+        - {x: -175, y: -43.5}
+        - {x: -175, y: -88.5}
+        - {x: -133, y: -84.5}
+        - {x: -84, y: -117.5}
+        - {x: -39, y: -83.5}
+        - {x: 16, y: -84.5}
+        - {x: 49, y: -120.5}
+        - {x: 99, y: -85.5}
+        - {x: 175, y: -78.5}
+        - {x: 175, y: -3.5}
+        - {x: 41, y: 14.5}
+        - {x: 24, y: 72.5}
+        - {x: -7, y: 120.5}
+        - {x: -64, y: 120.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee9de05098a308b4994a182d1ff71976
+      internalID: 1624502899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bushesh_34
+      rect:
+        serializedVersion: 2
+        x: 1104
+        y: 368
+        width: 126
+        height: 84
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 88504eeea7e5ef84bad8ce521ce52917
+      internalID: 1873012620
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bushesh_35
+      rect:
+        serializedVersion: 2
+        x: 618
+        y: 424
+        width: 124
+        height: 145
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8832f82b4511de3408ed68efdfeb3ed1
+      internalID: -934650527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bushesh_36
+      rect:
+        serializedVersion: 2
+        x: 532
+        y: 450
+        width: 83
+        height: 102
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45dfc9e1836a8614d93ac26570c49e86
+      internalID: 1167882778
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bushesh_37
+      rect:
+        serializedVersion: 2
+        x: 424
+        y: 435
+        width: 94
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 829a372b1f45f074c9e9309a165abde8
+      internalID: -2051334012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bushesh_38
+      rect:
+        serializedVersion: 2
+        x: 286
+        y: 415
+        width: 127
+        height: 98
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 295af0fc2db55b0428ced5bdb181e27d
+      internalID: 881504009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: c7d13dc09d05a1b4f883b47936ca23fc
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":1,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      Bushesh_0: -1708239152231086919
+      Bushesh_1: 4572036745192202996
+      Bushesh_10: -8161897835172153198
+      Bushesh_11: 1273684837
+      Bushesh_12: -1207489797
+      Bushesh_13: 1423830147
+      Bushesh_14: 1497266368
+      Bushesh_15: -834574281
+      Bushesh_16: -155676998
+      Bushesh_17: -823379370
+      Bushesh_18: -1580132172
+      Bushesh_19: -1926182225
+      Bushesh_2: 5037199555623371369
+      Bushesh_20: 1159676809
+      Bushesh_21: -1720658368
+      Bushesh_22: -1450657759
+      Bushesh_23: 759906806
+      Bushesh_24: 47604549
+      Bushesh_25: -858750064
+      Bushesh_26: -1236790384
+      Bushesh_27: 840578358
+      Bushesh_28: -1117570026
+      Bushesh_29: -1787966447
+      Bushesh_3: -5278922074437432767
+      Bushesh_30: 2035103097
+      Bushesh_31: -251402792
+      Bushesh_32: -674217122
+      Bushesh_33: 1624502899
+      Bushesh_34: 1873012620
+      Bushesh_35: -934650527
+      Bushesh_36: 1167882778
+      Bushesh_37: -2051334012
+      Bushesh_38: 881504009
+      Bushesh_4: -2613534148176706333
+      Bushesh_5: 1554780598328863646
+      Bushesh_6: -6458744229013310632
+      Bushesh_7: 8107406220896083160
+      Bushesh_8: -8835754237768026093
+      Bushesh_9: -5330289873746701239
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

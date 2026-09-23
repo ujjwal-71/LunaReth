@@ -1,0 +1,490 @@
+fileFormatVersion: 2
+guid: f9f986d18bee82440b68cb899c3cf814
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -8173469080707408018
+    second: Dashing_0
+  - first:
+      213: -4226721205311553767
+    second: Dashing_1
+  - first:
+      213: -6729027015072834784
+    second: Dashing_2
+  - first:
+      213: 5986707003215776006
+    second: Dashing_3
+  - first:
+      213: -226276962747639934
+    second: Dashing_4
+  - first:
+      213: 7761089109541799844
+    second: Dashing_5
+  - first:
+      213: 5182171570749845246
+    second: Dashing_6
+  - first:
+      213: -1431937705586476978
+    second: Dashing_7
+  - first:
+      213: 2040421391669046017
+    second: Dashing_8
+  - first:
+      213: -3932581134059145256
+    second: Dashing_9
+  - first:
+      213: -7133245354494183745
+    second: Dashing_10
+  - first:
+      213: -306069960121011589
+    second: Dashing_11
+  - first:
+      213: 5823226159167483011
+    second: Dashing_12
+  - first:
+      213: 8243003096581703552
+    second: Dashing_13
+  - first:
+      213: -5482057770066009395
+    second: Dashing_14
+  - first:
+      213: -963763178106702473
+    second: Dashing_15
+  - first:
+      213: 6949577289422879468
+    second: Dashing_16
+  - first:
+      213: 8558461460785646248
+    second: Dashing_17
+  - first:
+      213: -3208689568049392453
+    second: Dashing_18
+  - first:
+      213: -863342927402479598
+    second: Dashing_19
+  - first:
+      213: 5136226883609500061
+    second: Dashing_20
+  - first:
+      213: -6283111608937758511
+    second: Dashing_21
+  - first:
+      213: -799668000630747366
+    second: Dashing_22
+  - first:
+      213: 4889891784168085113
+    second: Dashing_23
+  - first:
+      213: -2467782224973208205
+    second: Dashing_24
+  - first:
+      213: 610766793168198656
+    second: Dashing_25
+  - first:
+      213: 5462097007022875284
+    second: Dashing_26
+  - first:
+      213: 75708320566164598
+    second: Dashing_27
+  - first:
+      213: 8790246603629973789
+    second: Dashing_28
+  - first:
+      213: -333076896063167168
+    second: Dashing_29
+  - first:
+      213: 5457171812873627823
+    second: Dashing_30
+  - first:
+      213: 8575367410028684622
+    second: Dashing_31
+  - first:
+      213: -236075198053979983
+    second: Dashing_32
+  - first:
+      213: 4378544074080293295
+    second: Dashing_33
+  - first:
+      213: -516642417835822691
+    second: Dashing_34
+  - first:
+      213: -8485034806591434411
+    second: Dashing_35
+  - first:
+      213: 7406552564898475496
+    second: Dashing_36
+  - first:
+      213: 1046803101036977945
+    second: Dashing_37
+  - first:
+      213: -6111965700838878348
+    second: Dashing_38
+  - first:
+      213: 1410334813658155580
+    second: Dashing_39
+  - first:
+      213: 7878159051204866586
+    second: Dashing_40
+  - first:
+      213: -3344224320834295087
+    second: Dashing_41
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 90
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Dashing_0
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 852
+        width: 278
+        height: 402
+      alignment: 9
+      pivot: {x: 0.41, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e6fdbcd0d21029e80800000000000000
+      internalID: -8173469080707408018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dashing_1
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 852
+        width: 275
+        height: 402
+      alignment: 9
+      pivot: {x: 0.44, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91f3bc8357ba755c0800000000000000
+      internalID: -4226721205311553767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dashing_2
+      rect:
+        serializedVersion: 2
+        x: 638
+        y: 860
+        width: 283
+        height: 394
+      alignment: 9
+      pivot: {x: 0.48, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02b939ae491bd92a0800000000000000
+      internalID: -6729027015072834784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dashing_3
+      rect:
+        serializedVersion: 2
+        x: 935
+        y: 863
+        width: 303
+        height: 391
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 609050dec4e051350800000000000000
+      internalID: 5986707003215776006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dashing_4
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 539
+        width: 298
+        height: 269
+      alignment: 9
+      pivot: {x: 0.48, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 287929e1d4a1cdcf0800000000000000
+      internalID: -226276962747639934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dashing_5
+      rect:
+        serializedVersion: 2
+        x: 326
+        y: 540
+        width: 302
+        height: 268
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a74464dc6de4bb60800000000000000
+      internalID: 7761089109541799844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dashing_6
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 539
+        width: 297
+        height: 269
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: efe2ca75695cae740800000000000000
+      internalID: 5182171570749845246
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dashing_7
+      rect:
+        serializedVersion: 2
+        x: 942
+        y: 537
+        width: 300
+        height: 271
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e48b7065e3cb02ce0800000000000000
+      internalID: -1431937705586476978
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dashing_8
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 160
+        width: 279
+        height: 241
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 10baa82f178015c10800000000000000
+      internalID: 2040421391669046017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dashing_9
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 160
+        width: 277
+        height: 263
+      alignment: 9
+      pivot: {x: 0.4, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d770065b4aac69c0800000000000000
+      internalID: -3932581134059145256
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 151ef11734ef5fe40b4123efc75688f3
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":4.0,"y":3.0},"gridSpriteSize":{"x":313.0,"y":418.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.0},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":7,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      Dashing_0: -8173469080707408018
+      Dashing_1: -4226721205311553767
+      Dashing_10: -7133245354494183745
+      Dashing_11: -306069960121011589
+      Dashing_2: -6729027015072834784
+      Dashing_3: 5986707003215776006
+      Dashing_4: -226276962747639934
+      Dashing_5: 7761089109541799844
+      Dashing_6: 5182171570749845246
+      Dashing_7: -1431937705586476978
+      Dashing_8: 2040421391669046017
+      Dashing_9: -3932581134059145256
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

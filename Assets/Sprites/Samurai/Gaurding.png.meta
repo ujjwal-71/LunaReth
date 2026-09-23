@@ -1,0 +1,424 @@
+fileFormatVersion: 2
+guid: 7f50b26463961a2408ec795e22ac3308
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6089863082909383705
+    second: Gaurding_0
+  - first:
+      213: -1977191635896901347
+    second: Gaurding_1
+  - first:
+      213: -242141258116598161
+    second: Gaurding_2
+  - first:
+      213: -508155927123587988
+    second: Gaurding_3
+  - first:
+      213: 8103949546375776830
+    second: Gaurding_4
+  - first:
+      213: -5918743478821258750
+    second: Gaurding_5
+  - first:
+      213: -725989270056662968
+    second: Gaurding_6
+  - first:
+      213: -8690138189172806326
+    second: Gaurding_7
+  - first:
+      213: -3442978515202504908
+    second: Gaurding_8
+  - first:
+      213: -8613560238929195590
+    second: Gaurding_9
+  - first:
+      213: 3005965807368206248
+    second: Gaurding_10
+  - first:
+      213: 7630632863667504662
+    second: Gaurding_11
+  - first:
+      213: 5271023062869672866
+    second: Gaurding_12
+  - first:
+      213: 2503323332888501192
+    second: Gaurding_13
+  - first:
+      213: -2189057058478935076
+    second: Gaurding_14
+  - first:
+      213: 180795474831754914
+    second: Gaurding_15
+  - first:
+      213: 5849155766535439243
+    second: Gaurding_16
+  - first:
+      213: 7279555347059581372
+    second: Gaurding_17
+  - first:
+      213: 7125449064314265660
+    second: Gaurding_18
+  - first:
+      213: -1729172592432245951
+    second: Gaurding_19
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 82
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Gaurding_0
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 869
+        width: 257
+        height: 385
+      alignment: 9
+      pivot: {x: 0.44, y: 0.02}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e3cb64aac57c7ba0800000000000000
+      internalID: -6089863082909383705
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gaurding_1
+      rect:
+        serializedVersion: 2
+        x: 358
+        y: 873
+        width: 284
+        height: 381
+      alignment: 9
+      pivot: {x: 0.4, y: 0.01}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d11ed79ceaa9f84e0800000000000000
+      internalID: -1977191635896901347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gaurding_2
+      rect:
+        serializedVersion: 2
+        x: 670
+        y: 870
+        width: 226
+        height: 384
+      alignment: 9
+      pivot: {x: 0.5, y: 0.02}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f667e740fcdb3acf0800000000000000
+      internalID: -242141258116598161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gaurding_3
+      rect:
+        serializedVersion: 2
+        x: 984
+        y: 873
+        width: 206
+        height: 379
+      alignment: 9
+      pivot: {x: 0.56, y: 0.02}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c6c0a4960eaa2f8f0800000000000000
+      internalID: -508155927123587988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gaurding_4
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 505
+        width: 211
+        height: 331
+      alignment: 9
+      pivot: {x: 0.6, y: 0.02}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e3a8a650d23077070800000000000000
+      internalID: 8103949546375776830
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gaurding_5
+      rect:
+        serializedVersion: 2
+        x: 365
+        y: 506
+        width: 206
+        height: 331
+      alignment: 9
+      pivot: {x: 0.6, y: 0.02}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20af2343a266cdda0800000000000000
+      internalID: -5918743478821258750
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gaurding_6
+      rect:
+        serializedVersion: 2
+        x: 671
+        y: 502
+        width: 223
+        height: 336
+      alignment: 9
+      pivot: {x: 0.61, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8480787fa94cce5f0800000000000000
+      internalID: -725989270056662968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gaurding_7
+      rect:
+        serializedVersion: 2
+        x: 987
+        y: 504
+        width: 220
+        height: 332
+      alignment: 9
+      pivot: {x: 0.61, y: 0.025}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4d6c49fb5d666780800000000000000
+      internalID: -8690138189172806326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gaurding_8
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 132
+        width: 216
+        height: 302
+      alignment: 9
+      pivot: {x: 0.6, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4378d0838451830d0800000000000000
+      internalID: -3442978515202504908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gaurding_9
+      rect:
+        serializedVersion: 2
+        x: 355
+        y: 134
+        width: 214
+        height: 284
+      alignment: 9
+      pivot: {x: 0.6, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: abd423b699c767880800000000000000
+      internalID: -8613560238929195590
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 3ff829e83e13250408616fa678903229
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":4.0,"y":3.0},"gridSpriteSize":{"x":313.0,"y":418.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.0},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":9,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      Gaurding_0: -6089863082909383705
+      Gaurding_1: -1977191635896901347
+      Gaurding_10: 3005965807368206248
+      Gaurding_11: 7630632863667504662
+      Gaurding_2: -242141258116598161
+      Gaurding_3: -508155927123587988
+      Gaurding_4: 8103949546375776830
+      Gaurding_5: -5918743478821258750
+      Gaurding_6: -725989270056662968
+      Gaurding_7: -8690138189172806326
+      Gaurding_8: -3442978515202504908
+      Gaurding_9: -8613560238929195590
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -87,6 +87,7 @@ public class EnemyBase : MonoBehaviour
     void FixedUpdate()
     {
         Debug.Log(currentState);
+        if (currentState == State.stun) return;
         rb.linearVelocity = targetVelocity;
     }
 
