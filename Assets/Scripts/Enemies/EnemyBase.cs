@@ -98,7 +98,7 @@ public class EnemyBase : MonoBehaviour
 
     private bool isPathBlocked()
     {
-        return Physics2D.Raycast(groundRay.position,Vector2.right * Mathf.Sign(tb.localScale.x),1.5f, wall);
+        return Physics2D.Raycast(groundRay.position,Vector2.right * Mathf.Sign(tb.localScale.x),1.5f, ground);
     }
 
     private bool isItPlayer()

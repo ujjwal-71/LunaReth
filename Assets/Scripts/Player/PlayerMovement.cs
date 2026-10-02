@@ -14,6 +14,11 @@ public class Movement : MonoBehaviour
     private Vector2 targetVelocity;
     private bool jumpRequested;
     private bool jumpCutOff;
+    [Header("Dash Elements")]
+    private bool dashing;
+    private bool canDash;
+    public float dashTimer;
+    public int dashForce;
 
     [Header("State")]
     public LayerMask Ground;
@@ -22,19 +27,9 @@ public class Movement : MonoBehaviour
     private float coyoteTimer;
     private float jumpBuffer;
     private bool isGrounded;
-    private bool dashing;
-    private bool isDoingShadowDash;
-    private float dashTimer;
-    public float shadowDashCoolDown;
-    private float shadowDashtimer = 0;
-    public float ShadowDashSpeed = 60;
-    public float dashSpeed;
     private float attackTimer;
     public float attackAnimTimer;
     public float heavyAttckAnimTimer;
-    private float tempdashCoolDown;
-    public float dashCoolDown;
-    public float dashAnimTimer;
     public float maxJumpForce = 20f;
 
     private enum masterState
@@ -64,7 +59,6 @@ public class Movement : MonoBehaviour
     private void Start()
     {
         anim = GetComponent<Animator>();
-        tempdashCoolDown = dashCoolDown;
         currentMovementState = movementState.idle;
         currentCombatState = combatState.idle;
         RB = GetComponent<Rigidbody2D>();
@@ -82,68 +76,29 @@ public class Movement : MonoBehaviour
         _attributes playerStats = GetComponentInParent<_attributes>();
         moveHorizontal = Input.GetAxis("Horizontal");
         GroundCheck();
-        
-        if(tempdashCoolDown > 0)
-            tempdashCoolDown -= Time.deltaTime;
-
-        if (shadowDashtimer <= shadowDashCoolDown && shadowDashtimer > 0)
-            shadowDashtimer -= Time.deltaTime;
-        else
-            shadowDashtimer = 0;
-
-        if (Input.GetButtonDown("Dash") && tempdashCoolDown <= 0)
+        if (currentMasterState == masterState.dead)
         {
-            if (currentMasterState != masterState.dead && currentMasterState != masterState.stunned)
-            {
-                BackToIdle();
-                dashTimer = 0;
-                currentMasterState = masterState.dashing;
-                if (shadowDashtimer <= 0)
-                {
-                    isDoingShadowDash = true;
-                    anim.SetBool("isSHADOWDASHING", true);
-                    gameObject.layer = LayerMask.NameToLayer("Ghost");
-                    targetVelocity = new Vector2(Mathf.Sign(transform.localScale.x) * ShadowDashSpeed * -1, 0);
-                }
-                else
-                {
-                    isDoingShadowDash = false;
-                    anim.SetBool("isDASHING", true);
-                    targetVelocity = new Vector2(Mathf.Sign(transform.localScale.x) * dashSpeed * -1, 0);
-                }
-            }
-        }
-
-        if (currentMasterState == masterState.dashing)
-        {
-            dashTimer += Time.deltaTime;
-            
-            if (dashTimer >= dashAnimTimer) 
-            {
-                BackToIdle();
-                gameObject.layer = LayerMask.NameToLayer("Player");
-                dashTimer = 0;
-                
-                tempdashCoolDown = dashCoolDown;
-                if (isDoingShadowDash)
-                {
-                    shadowDashtimer = shadowDashCoolDown;
-                    isDoingShadowDash = false;
-                }
-                
-                RB.linearVelocity = new Vector2(0, RB.linearVelocity.y);
-                currentMasterState = masterState.free; 
-            }
-            return;
-        }
-        else if(currentMasterState == masterState.stunned)
-        {
+            canDash = false;
             return;
         }
 
+        if (Input.GetButtonDown("Dash") && canDash)
+        {
+            currentMasterState = masterState.dashing;
+        }
+
+        if (currentMasterState == masterState.stunned)
+        {
+            canDash = false;
+            return;
+        }
+        else if (currentMasterState == masterState.dashing)
+        {
+            StartCoroutine(Dashing(dashTimer));
+            return;
+        }
         else if(currentMasterState == masterState.free)
         {
-
             if (jumpBuffer > 0 && coyoteTimer > 0 && currentCombatState == combatState.idle && currentMasterState == masterState.free)
             {
                 jumpRequested = true;
@@ -265,6 +220,8 @@ public class Movement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (RB.linearVelocity.y < -50)
+            RB.linearVelocityY = -50;
         isGrounded = Physics2D.OverlapCircle(FeetPosition.position, 0.5f, Ground);
 
         if (currentMasterState == masterState.stunned) 
@@ -273,7 +230,6 @@ public class Movement : MonoBehaviour
         }
         else if (currentMasterState == masterState.dashing)
         {
-            targetVelocity.x *= 0.8f; 
             RB.linearVelocity = new Vector2(targetVelocity.x, 0);
         }
         else
@@ -289,7 +245,7 @@ public class Movement : MonoBehaviour
         if (jumpCutOff)
         {
             if (RB.linearVelocityY > 0)
-                RB.linearVelocityY *= -0.4f;
+                RB.linearVelocityY *= -0.1f;
 
             jumpCutOff = false;
         }
@@ -305,6 +261,27 @@ public class Movement : MonoBehaviour
         anim.SetBool("isDEAD", false);
         anim.SetBool("isDASHING", false);
         anim.SetBool("isSHADOWDASHING", false);
+    }
+
+    private IEnumerator Dashing(float duration)
+    {
+        canDash = false;
+        dashing = true;
+        BackToIdle();
+        anim.SetBool("isDASHING", true);
+        targetVelocity.x = dashForce * transform.localScale.x * -1; 
+        yield return new WaitForSeconds(duration);
+        BackToIdle();
+        dashing = false;
+        currentMasterState = masterState.free;
+        GravityChange(0,1f);
+
+    }
+    private IEnumerator GravityChange(float amount, float duration)
+    {
+        RB.gravityScale = amount;
+        yield return new WaitForSecondsRealtime(duration);
+        RB.gravityScale = 7;
     }
     private void idle()
     {
@@ -333,7 +310,6 @@ public class Movement : MonoBehaviour
             anim.SetBool("isDEAD",true);
         }
         targetVelocity.x = 0;
-        dashTimer = 0;
         yield return new WaitForSecondsRealtime(duration);
         BackToIdle();
         currentMasterState = masterState.free;
@@ -361,6 +337,7 @@ public class Movement : MonoBehaviour
                     currentMovementState = movementState.idle;
                 }
             }
+            canDash = true;
         }
         else
         {

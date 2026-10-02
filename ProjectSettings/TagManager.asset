@@ -45,6 +45,24 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: celestials
+    uniqueID: 1684798843
+    locked: 0
+  - name: BgLayers
+    uniqueID: 3215644267
+    locked: 0
+  - name: BelowPlayers
+    uniqueID: 46714501
+    locked: 0
+  - name: MainLayers
+    uniqueID: 4075111883
+    locked: 0
+  - name: AboveMain
+    uniqueID: 1836477111
+    locked: 0
+  - name: ForeGrounds
+    uniqueID: 2269661973
+    locked: 0
   m_RenderingLayers:
   - Default
   m_MigratedRenderPipelines: []

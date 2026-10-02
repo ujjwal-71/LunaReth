@@ -63,7 +63,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 40
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -138,7 +138,7 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
       spriteID: ee6b5d8185d111fb0800000000000000
       internalID: -4678926273650247954
@@ -160,7 +160,7 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
       spriteID: 16ec4bf464049d9f0800000000000000
       internalID: -443252417590145439
@@ -182,7 +182,7 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
       spriteID: 8f49b1f3c544eb000800000000000000
       internalID: 53555408561476856
@@ -204,7 +204,7 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
       spriteID: 40138352bef5fd880800000000000000
       internalID: -8584036901198483196
@@ -444,7 +444,15 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -123, y: -67.5}
+        - {x: -32, y: -67.5}
+        - {x: 30, y: -32.5}
+        - {x: 123, y: 12.5}
+        - {x: 123, y: 67.5}
+        - {x: 80, y: 67.5}
+        - {x: 7, y: 11.5}
+        - {x: -123, y: -10.5}
       physicsShape: []
       tessellationDetail: 0
       bones: []
@@ -868,6 +876,33 @@ TextureImporter:
       bones: []
       spriteID: cdfe6d2644e46c54d98e1c6709fc1c42
       internalID: 13327041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HousBuilds_3
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 791
+        width: 184
+        height: 159
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: -92, y: -79.5}
+        - {x: -45, y: -79.5}
+        - {x: 92, y: 37.5}
+        - {x: 92, y: 79.5}
+        - {x: -92, y: 79.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 887e3c337effb17458d6518063d8372f
+      internalID: 6148401485686422395
       vertices: []
       indices: 
       edges: []

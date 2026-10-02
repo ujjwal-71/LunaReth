@@ -74,7 +74,7 @@ TextureImporter:
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 1
+  spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -137,17 +137,28 @@ TextureImporter:
       name: treeBushesh_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 1244
-        height: 1248
+        x: 800
+        y: 1023
+        width: 454
+        height: 223
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -167.5, y: 21.5}
+        - {x: -227, y: -5.5}
+        - {x: -227, y: -111.5}
+        - {x: -170, y: -106.5}
+        - {x: -36.5, y: -76.5}
+        - {x: 73.5, y: -105.5}
+        - {x: 223.5, y: -111.5}
+        - {x: 223.5, y: -50.5}
+        - {x: 114.5, y: 31.5}
+        - {x: 73.5, y: 104.5}
+        - {x: -115.5, y: 93.5}
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
       spriteID: 9d9cda2932594b720800000000000000
       internalID: 2861075643304364505
@@ -159,64 +170,25 @@ TextureImporter:
       name: treeBushesh_1
       rect:
         serializedVersion: 2
-        x: 344
-        y: 1245
-        width: 11
-        height: 9
+        x: 1138
+        y: 1149
+        width: 99
+        height: 84
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -49.5, y: -18}
+        - {x: -18.5, y: -42}
+        - {x: 49.5, y: -42}
+        - {x: 49.5, y: 42}
+        - {x: -49.5, y: 42}
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
       spriteID: b0f52552403e92410800000000000000
       internalID: 1452941961749225227
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: treeBushesh_2
-      rect:
-        serializedVersion: 2
-        x: 522
-        y: 1243
-        width: 14
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5a23767443905ffa0800000000000000
-      internalID: -5767693627637157211
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: treeBushesh_3
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 1020
-        width: 5
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f2f6e216b2a162f80800000000000000
-      internalID: -8131783303554502865
       vertices: []
       indices: 
       edges: []
@@ -230,12 +202,12 @@ TextureImporter:
         width: 6
         height: 7
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
       spriteID: a650eca1b42457cb0800000000000000
       internalID: -4866910931964263062
@@ -252,12 +224,12 @@ TextureImporter:
         width: 9
         height: 10
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
       spriteID: dda18f194eab2cd30800000000000000
       internalID: 4450324872659737309
@@ -266,45 +238,37 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: treeBushesh_6
+      name: treeBushesh_2
       rect:
         serializedVersion: 2
-        x: 513
-        y: 0
-        width: 49
-        height: 10
+        x: 11
+        y: 898
+        width: 266
+        height: 177
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
-      outline: []
+      outline:
+      - - {x: -133, y: -43.5}
+        - {x: -91, y: -85.5}
+        - {x: -72, y: -83.5}
+        - {x: -41, y: -47.5}
+        - {x: -18, y: -39.5}
+        - {x: 4, y: -37.5}
+        - {x: 23, y: -44.5}
+        - {x: 36, y: -88.5}
+        - {x: 88, y: -88.5}
+        - {x: 125, y: -21.5}
+        - {x: 129, y: 24.5}
+        - {x: 36, y: 66.5}
+        - {x: 0, y: 83.5}
+        - {x: -133, y: 48.5}
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 95c643d1d32c38f80800000000000000
-      internalID: -8105421336597992359
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: treeBushesh_7
-      rect:
-        serializedVersion: 2
-        x: 728
-        y: 0
-        width: 71
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 607666a41489c8100800000000000000
-      internalID: 111631496965940998
+      spriteID: 88b1420c406f6d146b34e12032d65fbf
+      internalID: -5767693627637157211
       vertices: []
       indices: 
       edges: []
@@ -313,7 +277,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: c4c72e29d35a1384e9da14db20ec24eb
     internalID: 0
     vertices: []
     indices: 
