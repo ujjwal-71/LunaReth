@@ -2,32 +2,38 @@ using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
 {
-    public int attackPower;
-    public int stunAmount = 10;
-    public int stunPower;
+    [Header("Stats")]
+    public int attackPower = 10;
+    public float knockbackForceX = 15f;
+    public float knockbackForceY = 5f;
+    
+    [Header("Parry Reaction")]
+    public int stunPowerToSelfIfParried = 20;
 
-    void Update()
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        
-    }
-    void FixedUpdate()
-    {
-        
-    }
+        // Ensure we only hit the Player
+        if (!other.CompareTag("Player")) return;
 
-    private void OnTriggerEnter2D(Collider2D player)
-    {
+        _attributes playerStats = other.GetComponent<_attributes>();
         EnemyBase enemyStats = GetComponentInParent<EnemyBase>();
-        _attributes playerStats = player.GetComponent<_attributes>();
 
-        if(playerStats == null) return;
-        
-        playerStats.GetDamage(attackPower);
-        if (playerStats.parried)
+        if (playerStats == null) return;
+
+        // Calculate knockback direction (push player away from the enemy)
+        float pushDirection = Mathf.Sign(playerStats.transform.position.x - transform.position.x);
+        Vector2 knockback = new Vector2(pushDirection * knockbackForceX, knockbackForceY);
+
+        // Attempt to damage the player. If they are Guarding, TakeDamage returns TRUE.
+        bool wasParried = playerStats.TakeDamage(attackPower, knockback);
+
+        if (wasParried)
         {
-            Debug.LogError("Parried");
-            enemyStats.stunBar(playerStats.stunPower);
+            Debug.Log("Enemy got Parried! Stun the Enemy!");
+            if (enemyStats != null)
+            {
+                enemyStats.stunBar(stunPowerToSelfIfParried);
+            }
         }
-        else playerStats.currentStun += 5;
     }
 }

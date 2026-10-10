@@ -1,355 +1,282 @@
-using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
+
+public enum MovementStates
+{
+    Idle,
+    Walking,
+    Jumping,
+    Falling,
+    WallStuck // New State!
+}
 
 public class Movement : MonoBehaviour
 {
     [Header("Components")]
-    private Animator anim;
-    private Rigidbody2D RB;
+    private Rigidbody2D playerBody;
+    private Animator playerAnim;
+    public Transform legs;
+    public LayerMask ground;
+    public LayerMask wall;
 
     [Header("Movement Stats")]
+    public float walkSpeed = 8f;
+    public float jumpForce = 18f;
+    
+    [Header("Gravity & Physics")]
+    public float normalGravity = 6f;
+    public float fallGravity = 8f;
+    public float terminalVelocity = -50f;
+    
+    [Header("Timers")]
+    public float coyoteTimeMax = 0.15f;
+    public float jumpBufferMax = 0.15f;
+
+    [Header("Wall Stuck Stats")]
+    public float wallStuckDuration = 3f;
+    public Vector2 wallJumpForce = new Vector2(10f, 15f);
+    private float currentWallStuckTime;
+    private bool hasUsedWallStuck = false;
+
+    private MovementStates currentMovementState;
+    private float currentCoyoteTime;
+    private float currentJumpBuffer;
     private float moveHorizontal;
-    public float speed = 4f;
-    private Vector2 targetVelocity;
-    private bool jumpRequested;
-    private bool jumpCutOff;
-    [Header("Dash Elements")]
-    private bool dashing;
-    private bool canDash;
-    public float dashTimer;
-    public int dashForce;
-
-    [Header("State")]
-    public LayerMask Ground;
-
-    public Transform FeetPosition;
-    private float coyoteTimer;
-    private float jumpBuffer;
+    private int playerDirection = 1;
+    private Vector2 playerVelocity;
+    private bool isWall;
     private bool isGrounded;
-    private float attackTimer;
-    public float attackAnimTimer;
-    public float heavyAttckAnimTimer;
-    public float maxJumpForce = 20f;
-
-    private enum masterState
-    {
-        free,
-        dashing,
-        stunned,
-        dead,
-    }
-    private enum movementState
-    {
-        idle,
-        jumping,
-        falling,
-        walking,
-    }
-    private enum combatState
-    {
-        idle,
-        attacking,
-        gaurding,
-    }
-    private masterState currentMasterState;
-    private movementState currentMovementState;
-    private combatState currentCombatState;
 
     private void Start()
     {
-        anim = GetComponent<Animator>();
-        currentMovementState = movementState.idle;
-        currentCombatState = combatState.idle;
-        RB = GetComponent<Rigidbody2D>();
+        playerAnim = GetComponent<Animator>();
+        playerBody = GetComponent<Rigidbody2D>();
+        currentMovementState = MovementStates.Idle;
+    }
+
+    private void resetAnimation()
+    {
+        playerAnim.SetBool("isRUNNING", false);
+        playerAnim.SetBool("isJUMPING", false);
+        playerAnim.SetBool("isFALLING", false);
+        playerAnim.SetBool("isWALLSTUCK", false);
     }
 
     private void Update()
     {
-        jumpBuffer -= Time.deltaTime;
+        isGrounded = Physics2D.OverlapCircle(legs.position, 0.5f, ground);
+        
+        // Fix for isWall: Cast slightly forward in the direction the player is facing!
+        Vector2 wallCheckPos = (Vector2)legs.position + new Vector2(playerDirection * 0.5f, 0);
+        isWall = Physics2D.OverlapCircle(wallCheckPos, 0.3f, wall);
+
+        if (isGrounded)
+        {
+            currentCoyoteTime = coyoteTimeMax;
+            hasUsedWallStuck = false; // Reset wall stuck on ground!
+        }
+        else
+            currentCoyoteTime -= Time.deltaTime;
 
         if (Input.GetButtonDown("Jump"))
-            jumpBuffer = 0.5f;
-        if (Input.GetButtonUp("Jump"))
-            jumpCutOff = true;
+            currentJumpBuffer = jumpBufferMax;
+        else
+            currentJumpBuffer -= Time.deltaTime; 
 
-        _attributes playerStats = GetComponentInParent<_attributes>();
-        moveHorizontal = Input.GetAxis("Horizontal");
-        GroundCheck();
-        if (currentMasterState == masterState.dead)
+        // Don't process normal horizontal input if we are wall stuck
+        if (currentMovementState != MovementStates.WallStuck)
         {
-            canDash = false;
-            return;
-        }
-
-        if (Input.GetButtonDown("Dash") && canDash)
-        {
-            currentMasterState = masterState.dashing;
-        }
-
-        if (currentMasterState == masterState.stunned)
-        {
-            canDash = false;
-            return;
-        }
-        else if (currentMasterState == masterState.dashing)
-        {
-            StartCoroutine(Dashing(dashTimer));
-            return;
-        }
-        else if(currentMasterState == masterState.free)
-        {
-            if (jumpBuffer > 0 && coyoteTimer > 0 && currentCombatState == combatState.idle && currentMasterState == masterState.free)
+            moveHorizontal = Input.GetAxis("Horizontal");
+            if (Mathf.Abs(moveHorizontal) > 0.2f)
             {
-                jumpRequested = true;
-                jumpBuffer = 0;
-                coyoteTimer = 0;
-                BackToIdle();
-                currentMovementState = movementState.jumping;
+                playerDirection = moveHorizontal < 0 ? -1 : 1;
+                transform.localScale = new Vector3(playerDirection, 1, 1);
             }
-            switch (currentCombatState)
+        }
+
+        switch (currentMovementState)
+        {
+            case MovementStates.Idle:
+                IdleState();
+                break;
+            case MovementStates.Walking:
+                WalkingState();
+                break;
+            case MovementStates.Jumping:
+                JumpingState();
+                break;
+            case MovementStates.Falling:
+                FallingState();
+                break;
+            case MovementStates.WallStuck:
+                WallStuckState();
+                break;
+        }
+
+        // Jump Execution (Checks for both Ground Jump and Wall Jump)
+        if (currentJumpBuffer > 0f)
+        {
+            if (currentCoyoteTime > 0f)
             {
-                
-                case combatState.idle:
-                    if (Input.GetButtonDown("Attack"))
-                    {
-                        attackTimer = attackAnimTimer;
-                        BackToIdle();
-                        anim.SetBool("isATTACKING", true);
-                        currentCombatState = combatState.attacking;
-                    }
-                    else if (Input.GetButtonDown("Gaurd"))
-                    {
-                        currentCombatState = combatState.gaurding;
-                        playerStats.parryTimer = 0.2f;
-                        BackToIdle();
-                        anim.SetBool("isGAURDING", true);
-                    }
-                    break;
-
-                case combatState.gaurding:
-                    targetVelocity.x = 0;
-                    playerStats.isGuarded = true;
-                    playerStats.parryTimer -= Time.deltaTime;
-                    if (Input.GetButtonUp("Gaurd"))
-                    {   
-                        playerStats.isGuarded = false;
-                        BackToIdle();
-                        currentCombatState = combatState.idle;
-                    }
-                    if (Input.GetButtonDown("Attack"))
-                    {
-                        attackTimer = heavyAttckAnimTimer;
-                        BackToIdle();
-                        anim.SetBool("isHEAVYATTACKING", true);
-                        currentCombatState = combatState.attacking;
-                    }
-                    
-                    break;
-
-                case combatState.attacking:
-                    if (attackTimer < 0)
-                    {
-                        BackToIdle();
-                        currentCombatState = combatState.idle;
-                    }
-                    if (Input.GetButtonDown("Attack"))
-                    {
-                        BackToIdle();
-                        anim.SetBool("isATTACKING", true);
-                        attackTimer = attackAnimTimer;
-                    }
-
-                    attackTimer -= Time.deltaTime;
-                    break;
+                ExecuteJump(false); // Normal Jump
             }
-            if (currentCombatState == combatState.idle)
+            else if (currentMovementState == MovementStates.WallStuck)
             {
-                switch (currentMovementState)
-                {
-                    case movementState.idle:
-                        idle();
-                        break;
-
-                    case movementState.falling:
-                        HandleMovement();
-                        if (isGrounded)
-                        {
-                            BackToIdle();
-                            currentMovementState = movementState.idle;
-                        }
-                        Debug.Log("falling");
-                        break;
-
-                    case movementState.jumping:
-                        anim.SetBool("isJUMPING", true);
-                        HandleMovement();
-
-                        if (RB.linearVelocity.y <= -10 && !jumpRequested)
-                        {
-                            BackToIdle();
-                            anim.SetBool("isFALLING", true);
-                            BackToIdle();
-                            anim.SetBool("isFALLING", true);
-                            currentMovementState = movementState.falling;
-                        }
-                        Debug.Log("jumped");
-                        break;
-
-                    case movementState.walking:
-                        anim.SetBool("isRUNNING", true);
-                        HandleMovement();
-
-                        if (RB.linearVelocity.y < -10)
-                        {
-                            BackToIdle();
-                            anim.SetBool("isFALLING", true);
-                            currentMovementState = movementState.falling;
-                            return;
-                        }
-                        if (Mathf.Abs(moveHorizontal) < 0.1f)
-                        {
-                            BackToIdle();
-                            currentMovementState = movementState.idle;
-                        }
-                        break;
-                }
+                ExecuteJump(true); // Wall Jump
             }
         }
     }
 
     private void FixedUpdate()
     {
-        if (RB.linearVelocity.y < -50)
-            RB.linearVelocityY = -50;
-        isGrounded = Physics2D.OverlapCircle(FeetPosition.position, 0.5f, Ground);
+        // Don't clamp Y velocity or apply X velocity if we are stuck to a wall
+        if (currentMovementState == MovementStates.WallStuck) return;
 
-        if (currentMasterState == masterState.stunned) 
-        { 
+        float currentY = playerBody.linearVelocity.y;
+        if (currentY < terminalVelocity)
+            currentY = terminalVelocity;
             
-        }
-        else if (currentMasterState == masterState.dashing)
+        playerBody.linearVelocity = new Vector2(playerVelocity.x, currentY);
+    }
+
+    private void ExecuteJump(bool isWallJump)
+    {
+        currentJumpBuffer = 0f;
+        currentCoyoteTime = 0f;
+
+        if (isWallJump)
         {
-            RB.linearVelocity = new Vector2(targetVelocity.x, 0);
+            // Push away from the wall and up!
+            playerBody.linearVelocity = new Vector2(-playerDirection * wallJumpForce.x, wallJumpForce.y);
+            
+            // Flip the player immediately so they face away from the wall
+            playerDirection *= -1;
+            transform.localScale = new Vector3(playerDirection, 1, 1);
+            moveHorizontal = playerDirection; // Give initial momentum
+            playerVelocity.x = playerDirection * walkSpeed;
         }
         else
         {
-            RB.linearVelocity = new Vector2(targetVelocity.x, RB.linearVelocity.y);
+            // Normal upward jump
+            playerBody.linearVelocity = new Vector2(playerBody.linearVelocity.x, jumpForce);
         }
-
-        if (jumpRequested)
-        {
-            RB.linearVelocityY = maxJumpForce;
-            jumpRequested = false;
-        }
-        if (jumpCutOff)
-        {
-            if (RB.linearVelocityY > 0)
-                RB.linearVelocityY *= -0.1f;
-
-            jumpCutOff = false;
-        }
+        
+        playerBody.gravityScale = normalGravity;
+        currentMovementState = MovementStates.Jumping;
     }
-    public void BackToIdle()
+
+    private void IdleState()
     {
-        anim.SetBool("isATTACKING", false);
-        anim.SetBool("isHEAVYATTACKING", false);
-        anim.SetBool("isRUNNING", false);
-        anim.SetBool("isJUMPING", false);
-        anim.SetBool("isFALLING", false);
-        anim.SetBool("isGAURDING", false);
-        anim.SetBool("isDEAD", false);
-        anim.SetBool("isDASHING", false);
-        anim.SetBool("isSHADOWDASHING", false);
-    }
-
-    private IEnumerator Dashing(float duration)
-    {
-        canDash = false;
-        dashing = true;
-        BackToIdle();
-        anim.SetBool("isDASHING", true);
-        targetVelocity.x = dashForce * transform.localScale.x * -1; 
-        yield return new WaitForSeconds(duration);
-        BackToIdle();
-        dashing = false;
-        currentMasterState = masterState.free;
-        GravityChange(0,1f);
-
-    }
-    private IEnumerator GravityChange(float amount, float duration)
-    {
-        RB.gravityScale = amount;
-        yield return new WaitForSecondsRealtime(duration);
-        RB.gravityScale = 7;
-    }
-    private void idle()
-    {
-        if (moveHorizontal != 0)
+        if (Mathf.Abs(moveHorizontal) > 0.2f)
         {
-            currentMovementState = movementState.walking;
+            currentMovementState = MovementStates.Walking;
+            WalkingState(); 
+            return;
         }
-        else if (!isGrounded && RB.linearVelocity.y <= -10 && currentMovementState != movementState.jumping)
+        else if (playerBody.linearVelocity.y < 0 && !isGrounded)
         {
-            BackToIdle();
-            anim.SetBool("isFALLING", true);
-            currentMovementState = movementState.falling;
-        }
-        else
-        {
-            targetVelocity.x = 0;
+            currentMovementState = MovementStates.Falling;
+            FallingState();
+            return;
         }
 
+        playerVelocity.x = 0;
+        resetAnimation();
+        playerBody.gravityScale = normalGravity;
     }
 
-    public IEnumerator InterruptAction(float duration, bool dead = false)
+    private void WalkingState()
     {
-        if (dead)
+        if (Mathf.Abs(moveHorizontal) < 0.2f)
         {
-            BackToIdle();
-            anim.SetBool("isDEAD",true);
+            currentMovementState = MovementStates.Idle;
+            IdleState();
+            return;
         }
-        targetVelocity.x = 0;
-        yield return new WaitForSecondsRealtime(duration);
-        BackToIdle();
-        currentMasterState = masterState.free;
+        else if (playerBody.linearVelocity.y < 0 && !isGrounded)
+        {
+            currentMovementState = MovementStates.Falling;
+            FallingState();
+            return;
+        }
+
+        playerVelocity.x = moveHorizontal * walkSpeed;
+        resetAnimation();
+        playerAnim.SetBool("isRUNNING", true);
+        playerBody.gravityScale = normalGravity;
     }
 
-    private void HandleMovement()
-    {         
-        targetVelocity.x = speed * moveHorizontal;
-        if (moveHorizontal < -0.1f)
-            transform.localScale = new Vector3(1, 1, 1);
-        else if (moveHorizontal > 0.1f)
-            transform.localScale = new Vector3(-1, 1, 1);
+    private void JumpingState()
+    {
+        // Can stick to wall while jumping up if they hit a wall
+        if (isWall && !isGrounded && !hasUsedWallStuck)
+        {
+            currentMovementState = MovementStates.WallStuck;
+            currentWallStuckTime = wallStuckDuration;
+            hasUsedWallStuck = true;
+            return;
+        }
+
+        if (playerBody.linearVelocity.y <= 0)
+        {
+            currentMovementState = MovementStates.Falling;
+            FallingState();
+            return;
+        }
+
+        playerVelocity.x = moveHorizontal * walkSpeed;
+        resetAnimation();
+        playerAnim.SetBool("isJUMPING", true);
+        playerBody.gravityScale = normalGravity;
+
+        if (Input.GetButtonUp("Jump") && playerBody.linearVelocity.y > 0)
+        {
+            playerBody.linearVelocity = new Vector2(playerBody.linearVelocity.x, playerBody.linearVelocity.y * 0.5f);
+            playerBody.gravityScale = fallGravity;
+        }
     }
 
-    private void GroundCheck()
+    private void FallingState()
     {
         if (isGrounded)
         {
-            coyoteTimer = 0.2f;
-            if (!dashing)
-            {
-                if (currentMovementState == movementState.falling)
-                {
-                    BackToIdle();
-                    currentMovementState = movementState.idle;
-                }
-            }
-            canDash = true;
+            currentMovementState = MovementStates.Idle;
+            IdleState();
+            return;
         }
-        else
+
+        // Stick to wall while falling
+        if (isWall && !hasUsedWallStuck)
         {
-            coyoteTimer -= Time.deltaTime;
-            if(currentMovementState != movementState.jumping)
-                currentMovementState = movementState.falling;
+            currentMovementState = MovementStates.WallStuck;
+            currentWallStuckTime = wallStuckDuration;
+            hasUsedWallStuck = true;
+            return;
         }
+
+        playerVelocity.x = moveHorizontal * (walkSpeed * 1.2f);
+        resetAnimation();
+        playerAnim.SetBool("isFALLING", true);
+        playerBody.gravityScale = fallGravity;
     }
 
-    public void ApplyKnockback(float pushForceX, float pushForceY)
+    private void WallStuckState()
     {
-        RB.linearVelocity = Vector2.zero; 
-        RB.AddForce(new Vector2(pushForceX, pushForceY), ForceMode2D.Impulse);
+        // Physics lock
+        playerVelocity.x = 0;
+        playerBody.linearVelocity = Vector2.zero;
+        playerBody.gravityScale = 0f;
+        
+        resetAnimation();
+        playerAnim.SetBool("isWALLSTUCK", true);
+        
+        currentWallStuckTime -= Time.deltaTime;
+        
+        // Break out if time runs out, wall disappears, or they touch ground
+        if (currentWallStuckTime <= 0 || !isWall || isGrounded)
+        {
+            currentMovementState = MovementStates.Falling;
+            playerBody.gravityScale = fallGravity;
+            playerAnim.SetBool("isWALLSTUCK", false);
+        }
     }
 }
