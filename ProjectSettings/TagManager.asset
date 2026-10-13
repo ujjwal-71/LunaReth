@@ -8,6 +8,7 @@ TagManager:
   - PlayerWeapons
   - Enemies
   - EnemiesWeapon
+  - Kunai
   layers:
   - Default
   - TransparentFX

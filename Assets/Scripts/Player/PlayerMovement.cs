@@ -151,7 +151,7 @@ public class Movement : MonoBehaviour
             // Flip the player immediately so they face away from the wall
             playerDirection *= -1;
             transform.localScale = new Vector3(playerDirection, 1, 1);
-            moveHorizontal = playerDirection; // Give initial momentum
+            moveHorizontal = playerDirection;
             playerVelocity.x = playerDirection * walkSpeed;
         }
         else

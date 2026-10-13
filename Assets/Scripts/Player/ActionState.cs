@@ -66,7 +66,7 @@ public class ActionState : MonoBehaviour
                 {
                     // Spawn it slightly in front of the player
                     float direction = transform.localScale.x > 0 ? 1f : -1f;
-                    Vector3 spawnPos = transform.position + new Vector3(direction * 1f, 0, 0);
+                    Vector3 spawnPos = transform.position + new Vector3(direction * 1f, 0.8f, 0);
                     
                     activeKunai = Instantiate(kunaiPrefab, spawnPos, Quaternion.identity);
                     
