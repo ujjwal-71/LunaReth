@@ -24,6 +24,13 @@ public class ActionState : MonoBehaviour
 
     [Header("Flying Raijin (Minato Teleport)")]
     public GameObject kunaiPrefab;
+    [Tooltip("Optional throw point on the character's hand. If empty, a point near the upper body is used.")]
+    public Transform kunaiThrowPoint;
+    [Tooltip("Layers that can block the kunai at the instant it is thrown.")]
+    public LayerMask kunaiBlockingLayers;
+    [Min(0f)] public float kunaiWallClearance = 0.08f;
+    [Tooltip("Adds a small upward arc to the kunai's initial throw velocity.")]
+    public float kunaiThrowArc = 2f;
     private GameObject activeKunai;
     public float aoeKnockbackRadius = 3f;
     public int aoeStunDamage = 10;
@@ -64,14 +71,36 @@ public class ActionState : MonoBehaviour
                 // 1. THROW KUNAI
                 if (kunaiPrefab != null)
                 {
-                    // Spawn it slightly in front of the player
                     float direction = transform.localScale.x > 0 ? 1f : -1f;
-                    Vector3 spawnPos = transform.position + new Vector3(direction * 1f, 0.8f, 0);
-                    
+                    Vector2 origin = kunaiThrowPoint != null
+                        ? (Vector2)kunaiThrowPoint.position
+                        : (Vector2)transform.position + new Vector2(0f, 0.8f);
+                    Vector2 forward = new Vector2(direction, 0f);
+                    float clearance = kunaiWallClearance;
+
+                    // Start inside the character's near side, then move the spawn point
+                    // outward only as far as the first wall allows. This avoids placing
+                    // the projectile beyond a wall when the player is pressed against it.
+                    Vector2 spawnPos = origin + forward * 0.15f;
+                    if (kunaiBlockingLayers.value != 0 && clearance > 0f)
+                    {
+                        RaycastHit2D wallHit = Physics2D.Raycast(origin, forward, clearance, kunaiBlockingLayers);
+                        if (wallHit.collider != null)
+                            spawnPos = wallHit.point - forward * 0.03f;
+                    }
+
                     activeKunai = Instantiate(kunaiPrefab, spawnPos, Quaternion.identity);
-                    
-                    // Match player's facing direction
                     activeKunai.transform.localScale = new Vector3(direction, 1, 1);
+
+                    KunaiProjectile projectile = activeKunai.GetComponent<KunaiProjectile>();
+                    if (projectile != null)
+                    {
+                        // Reuse the projectile's configured surface mask so the
+                        // spawn clearance matches the surfaces it can stick to.
+                        if (kunaiBlockingLayers.value == 0)
+                            kunaiBlockingLayers = projectile.stickableLayers;
+                        projectile.Launch(forward, kunaiThrowArc);
+                    }
                 }
             }
             else

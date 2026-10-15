@@ -11,6 +11,7 @@ public class KunaiProjectile : MonoBehaviour
 
     private Rigidbody2D rb;
     private bool isStuck = false;
+    private bool hasLaunched = false;
 
     private void Start()
     {
@@ -25,10 +26,31 @@ public class KunaiProjectile : MonoBehaviour
         // Destroy automatically after 4 seconds if teleport isn't used
         Destroy(gameObject, despawnTime);
         
-        // Give it initial forward velocity based on rotation or scale
-        // Assumes ActionState sets the proper scale/rotation when spawning
-        float direction = transform.localScale.x > 0 ? 1f : -1f;
-        rb.linearVelocity = new Vector2(direction * speed, 0f);
+        // Keep compatibility with any scene or prefab that instantiates the kunai directly.
+        if (!hasLaunched)
+        {
+            float direction = transform.localScale.x > 0 ? 1f : -1f;
+            Launch(new Vector2(direction, 0f), 0f);
+        }
+    }
+
+    public void Launch(Vector2 direction, float upwardArc = 0f)
+    {
+        if (rb == null)
+            rb = GetComponent<Rigidbody2D>();
+
+        if (rb == null || isStuck)
+            return;
+
+        hasLaunched = true;
+        direction = direction.sqrMagnitude > 0.001f ? direction.normalized : Vector2.right;
+        rb.linearVelocity = direction * speed + Vector2.up * upwardArc;
+
+        // Rotate the sprite's forward axis to match the launch vector. Horizontal
+        // facing is carried by velocity, so avoid also mirroring its scale here.
+        float angle = Mathf.Atan2(rb.linearVelocity.y, rb.linearVelocity.x) * Mathf.Rad2Deg;
+        transform.localScale = new Vector3(1f, 1f, 1f);
+        transform.rotation = Quaternion.Euler(0f, 0f, angle);
     }
 
     private void Update()
