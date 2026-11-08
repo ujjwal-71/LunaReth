@@ -11,7 +11,6 @@ public class KunaiProjectile : MonoBehaviour
 
     private Rigidbody2D rb;
     private bool isStuck = false;
-    private bool hasLaunched = false;
 
     private void Start()
     {
@@ -23,15 +22,8 @@ public class KunaiProjectile : MonoBehaviour
         // Prevent tunneling (going inside walls/ground) at high speeds
         rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
         
-        // Destroy automatically after 4 seconds if teleport isn't used
+        // Destroy automatically after despawnTime if teleport isn't used
         Destroy(gameObject, despawnTime);
-        
-        // Keep compatibility with any scene or prefab that instantiates the kunai directly.
-        if (!hasLaunched)
-        {
-            float direction = transform.localScale.x > 0 ? 1f : -1f;
-            Launch(new Vector2(direction, 0f), 0f);
-        }
     }
 
     public void Launch(Vector2 direction, float upwardArc = 0f)
@@ -42,7 +34,6 @@ public class KunaiProjectile : MonoBehaviour
         if (rb == null || isStuck)
             return;
 
-        hasLaunched = true;
         direction = direction.sqrMagnitude > 0.001f ? direction.normalized : Vector2.right;
         rb.linearVelocity = direction * speed + Vector2.up * upwardArc;
 
@@ -86,41 +77,37 @@ public class KunaiProjectile : MonoBehaviour
     {
         if (isStuck) return;
 
-        Debug.Log($"Kunai Hit: [{hitObj.name}]. It is on Layer: [{LayerMask.LayerToName(hitObj.layer)}], Tag: [{hitObj.tag}]");
-
         // Check layers by name just in case Stickable Layers isn't set in the Inspector!
         int groundLayer = LayerMask.NameToLayer("Ground");
         int wallLayer = LayerMask.NameToLayer("wall");
 
         if (hitObj.layer == groundLayer || hitObj.layer == wallLayer || (stickableLayers.value & (1 << hitObj.layer)) > 0)
         {
-            StickToSurface(hitTransform);
+            Stick(hitTransform);
         }
         else if (hitObj.CompareTag("Enemies"))
         {
-            StickToSurface(hitTransform);
-        }
-        else
-        {
-            Debug.LogWarning($"Kunai did not stick to [{hitObj.name}] because its Layer isn't 'Ground' or 'Wall', and its Tag isn't 'Enemy'!");
+            Stick(hitTransform);
         }
     }
 
-    private void StickToSurface(Transform targetTransform)
+    private void Stick(Transform targetTransform)
     {
         isStuck = true;
         
-        // Disable the collider so it stops hitting things
-        Collider2D coll = GetComponent<Collider2D>();
-        if (coll != null) coll.enabled = false;
-
-        // The ultimate way to stop it from falling: Destroy the Rigidbody completely!
+        // Stop physics simulation cleanly without destroying the component
         if (rb != null)
         {
-            Destroy(rb); 
+            rb.linearVelocity = Vector2.zero;
+            rb.bodyType = RigidbodyType2D.Kinematic;
+            rb.simulated = false;
         }
+
+        // Disable collider so it doesn't trigger additional hits
+        Collider2D coll = GetComponent<Collider2D>();
+        if (coll != null) coll.enabled = false;
         
-        // Parent to the object so it moves WITH the enemy!
+        // Parent to the object so it moves WITH the enemy or platform
         transform.SetParent(targetTransform);
 
         // Tilt it slightly so it looks like it thudded into the surface hard

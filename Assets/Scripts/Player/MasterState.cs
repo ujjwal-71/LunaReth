@@ -18,42 +18,49 @@ public class MasterState : MonoBehaviour
 
     [Header("Dash Settings")]
     public float dashSpeed = 25f;
-    public float dashDuration = 0.2f;
+    [Tooltip("Total Dash Lockout Time: Set to (Dash Animation Length + Extra Recovery Pause). Player cannot move or act during this entire duration.")]
+    public float dashTimer = 0.4f;
+    [Tooltip("Active forward slide duration before momentum stops (e.g. 0.2s). The remainder of dashTimer acts as the recovery pose.")]
+    public float dashSlideDuration = 0.2f;
     public float dashCooldown = 0.5f;
-    private float lastDashTime = -100f;
 
-    [Header("Components")]
     private Rigidbody2D rb;
     private Animator anim;
-    private Movement movementScript;
     private ActionState actionScript;
 
     private Coroutine activeRoutine;
     private string originalTag;
+    private float lastDashTime = -100f;
+    private float storedGravity;
 
     public MasterStateType CurrentState => currentState;
+
+    /// <summary>
+    /// True when player is allowed to move horizontally and jump.
+    /// False during Dash, Stun, Knockback, Death, and active Attack/Guard actions.
+    /// </summary>
+    public bool CanMove => currentState == MasterStateType.Free && (actionScript == null || !actionScript.IsActing);
+
+    /// <summary>
+    /// True when player can initiate new attacks, guards, or combat arts.
+    /// </summary>
+    public bool CanAct => currentState == MasterStateType.Free;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        movementScript = GetComponent<Movement>();
         actionScript = GetComponent<ActionState>();
         
-        // Save the original tag (e.g. "Player") so we can return to it after dashing
-        originalTag = gameObject.tag; 
-        if (string.IsNullOrEmpty(originalTag)) 
-        {
-            originalTag = "Player"; // Fallback just in case!
-        }
-        
+        originalTag = gameObject.tag;
+        storedGravity = rb.gravityScale;
+
         SetState(MasterStateType.Free);
     }
 
     private void Update()
     {
-        // Only allow dashing if we are free to move
-        if (currentState == MasterStateType.Free)
+        if (CanAct)
         {
             if (Input.GetButtonDown("Dash") && Time.time >= lastDashTime + dashCooldown)
             {
@@ -62,34 +69,24 @@ public class MasterState : MonoBehaviour
         }
     }
 
-
-
     public void SetState(MasterStateType newState)
     {
         currentState = newState;
 
         if (currentState == MasterStateType.Free)
         {
-            if (movementScript != null) movementScript.enabled = true;
-            if (actionScript != null) actionScript.enabled = true;
-            
-            // Make sure we lose the Ghost tag when returning to normal
-            if (!string.IsNullOrEmpty(originalTag))
-            {
-                gameObject.tag = originalTag; 
-            }
+            gameObject.tag = originalTag;
+            // Restore gravity in case a previous state zeroed it
+            rb.gravityScale = storedGravity;
         }
         else
         {
-            if (movementScript != null) movementScript.enabled = false;
-            if (actionScript != null) actionScript.enabled = false;
-            
-            ResetAnimatorBools();
+            ResetAnim();
         }
     }
 
     // ==========================================
-    // REUSABLE ROUTINES & TRIGGERS
+    // DASH
     // ==========================================
 
     public void TriggerDash()
@@ -101,51 +98,83 @@ public class MasterState : MonoBehaviour
     private IEnumerator DashRoutine()
     {
         SetState(MasterStateType.Dashing);
-        
-        // 1. Give IFrames by changing tag!
-        gameObject.tag = "Ghost"; 
-        
-        if (anim != null) anim.SetBool("isDASHING", true);
+        anim.SetBool("isDASHING", true);
 
-        // 2. Hollow Knight Dash Physics (Zero gravity, straight line)
         float direction = transform.localScale.x > 0 ? 1f : -1f;
-        float originalGravity = rb.gravityScale;
-        
+
+        // Zero gravity, straight horizontal line
         rb.gravityScale = 0f;
         rb.linearVelocity = new Vector2(direction * dashSpeed, 0f);
 
-        // 3. Wait for dash to finish
-        yield return new WaitForSeconds(dashDuration);
+        float slideTime = Mathf.Min(dashSlideDuration, dashTimer);
 
-        // 4. Restore everything
-        rb.gravityScale = originalGravity;
-        rb.linearVelocity = Vector2.zero; // Stop momentum immediately after dash
+        // 1. Active dash slide
+        yield return new WaitForSeconds(slideTime);
+
+        // 2. Stop momentum for the recovery pose
+        rb.linearVelocity = Vector2.zero;
+
+        // 3. Wait remaining duration (intentional end-lag recovery)
+        float recoveryTime = dashTimer - slideTime;
+        if (recoveryTime > 0f)
+        {
+            yield return new WaitForSeconds(recoveryTime);
+        }
+
         lastDashTime = Time.time;
-        
-        if (anim != null) anim.SetBool("isDASHING", false);
+        anim.SetBool("isDASHING", false);
         SetState(MasterStateType.Free);
     }
 
+    // ==========================================
+    // RECOIL (doesn't interrupt combat state)
+    // ==========================================
+
     /// <summary>
-    /// Can be used for BOTH enemy hit knockback AND attack recoil!
+    /// Applies a physics recoil pushback (e.g. on landing sword hits)
+    /// WITHOUT interrupting attack states, combos, or inputs.
     /// </summary>
-    public void ApplyKnockback(float pushForceX, float pushForceY, float recoveryTime = 0.2f)
+    public void ApplyRecoil(float velocityX, float velocityY)
     {
-        if (activeRoutine != null) StopCoroutine(activeRoutine);
-        activeRoutine = StartCoroutine(KnockbackRoutine(pushForceX, pushForceY, recoveryTime));
+        if (currentState == MasterStateType.Dead)
+            return;
+
+        rb.linearVelocity = new Vector2(velocityX, velocityY);
     }
 
-    private IEnumerator KnockbackRoutine(float forceX, float forceY, float recoveryTime)
+    // ==========================================
+    // KNOCKBACK (takes damage, enemy hits, hazards)
+    // ==========================================
+
+    /// <summary>
+    /// Used when the player takes damage or gets launched by an enemy.
+    /// Locks player into KnockedBack state for recoveryTime.
+    /// </summary>
+    public void ApplyKnockback(float velocityX, float velocityY, float recoveryTime = 0.2f)
+    {
+        if (currentState == MasterStateType.Dead)
+            return;
+
+        if (activeRoutine != null) StopCoroutine(activeRoutine);
+        activeRoutine = StartCoroutine(KnockbackRoutine(velocityX, velocityY, recoveryTime));
+    }
+
+    private IEnumerator KnockbackRoutine(float velocityX, float velocityY, float recoveryTime)
     {
         SetState(MasterStateType.KnockedBack);
-        
-        rb.linearVelocity = Vector2.zero; // Wipe current velocity
-        rb.AddForce(new Vector2(forceX, forceY), ForceMode2D.Impulse);
+
+        // Restore gravity so knockback arcs naturally
+        rb.gravityScale = storedGravity;
+        rb.linearVelocity = new Vector2(velocityX, velocityY);
 
         yield return new WaitForSeconds(recoveryTime);
         
         SetState(MasterStateType.Free);
     }
+
+    // ==========================================
+    // STUN (posture break)
+    // ==========================================
 
     public void TriggerStun(float duration)
     {
@@ -156,9 +185,16 @@ public class MasterState : MonoBehaviour
     private IEnumerator StunRoutine(float duration)
     {
         SetState(MasterStateType.Stunned);
+        rb.linearVelocity = Vector2.zero;
+        rb.gravityScale = storedGravity;
+
         yield return new WaitForSeconds(duration);
         SetState(MasterStateType.Free);
     }
+
+    // ==========================================
+    // DEATH
+    // ==========================================
 
     public void TriggerDeath(float duration)
     {
@@ -169,21 +205,25 @@ public class MasterState : MonoBehaviour
     private IEnumerator DeathRoutine(float duration)
     {
         SetState(MasterStateType.Dead);
-        if (anim != null) anim.SetBool("isDEAD", true);
+        anim.SetBool("isDEAD", true);
+        rb.linearVelocity = Vector2.zero;
         
         yield return new WaitForSeconds(duration);
     }
 
-    public void ResetAnimatorBools()
+    // ==========================================
+    // ANIM CLEANUP
+    // ==========================================
+
+    public void ResetAnim()
     {
-        if (anim == null) return;
-        anim.SetBool("isHEAVYATTACKING", false);
         anim.SetBool("isGAURDING", false);
         anim.SetBool("isRUNNING", false);
         anim.SetBool("isJUMPING", false);
         anim.SetBool("isFALLING", false);
         anim.SetBool("isDEAD", false);
         anim.SetBool("isDASHING", false);
-        anim.SetBool("isSHADOWDASHING", false);
+        anim.SetBool("isWALLSTUCK", false);
+        anim.SetInteger("AttackIndex", 0);
     }
 }

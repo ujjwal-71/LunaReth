@@ -1,188 +1,148 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ActionState : MonoBehaviour
 {
     [Header("Components")]
     private Animator anim;
-    private Movement playerMovement;
-    private _attributes attributes; // Ensure you have _attributes attached
+    private MasterState masterState;
+    private _attributes attributes;
+    private PlayerAttack[] playerAttacks = new PlayerAttack[0];
 
-    [Header("Combo Settings")]
-    public float comboWindow = 0.6f; 
-    private float lastAttackTime;
-    private int comboStep = 0; 
-
-    [Header("Charge Settings")]
-    public float chargeTimeRequired = 0.5f; 
-    private float currentChargeTime = 0f;
-    private bool isCharging = false;
-
-    [Header("Combat Art System")]
-    public AnimatorOverrideController overrideController;
+    [Header("Combat Arts")]
     public AnimationClip equippedCombatArt; 
     public int combatArtSpiritCost = 5; 
 
-    [Header("Flying Raijin (Minato Teleport)")]
-    public GameObject kunaiPrefab;
-    [Tooltip("Optional throw point on the character's hand. If empty, a point near the upper body is used.")]
-    public Transform kunaiThrowPoint;
-    [Tooltip("Layers that can block the kunai at the instant it is thrown.")]
-    public LayerMask kunaiBlockingLayers;
-    [Min(0f)] public float kunaiWallClearance = 0.08f;
-    [Tooltip("Adds a small upward arc to the kunai's initial throw velocity.")]
-    public float kunaiThrowArc = 2f;
-    private GameObject activeKunai;
-    public float aoeKnockbackRadius = 3f;
-    public int aoeStunDamage = 10;
-    public float selfTeleportKnockback = 10f;
+    [Header("Defense & Deflect")]
+    [Tooltip("Time window in seconds after pressing Guard that counts as a Perfect Deflect.")]
+    public float perfectDeflectWindow = 0.2f;
 
-    private void Start()
+    [Header("Deathblow Execution")]
+    public float executionRange = 2f;
+    public int finisherDamage = 999;
+
+    [Header("Attacks & Combos")]
+    [Tooltip("Duration (in seconds) the Attack button must be held to trigger Heavy Attack instead of Light Attack.")]
+    public float heavyChargeDuration = 0.5f;
+    [Tooltip("Window at start of an attack (in seconds) where pressing Guard cancels the swing into a Deflect.")]
+    public float attackCancelWindow = 0.18f;
+    [Tooltip("Input buffer window (in seconds) to queue attacks or guards during recovery.")]
+    public float inputBufferDuration = 0.15f;
+    [Tooltip("Idle duration (in seconds) after swinging before combo sequence resets back to step 1.")]
+    public float comboResetTimeout = 1.0f;
+
+    // ==========================================
+    // Internal Physics & Visual Constants
+    // ==========================================
+    private const float finisherOffset = 0.8f;
+    private const float guardSpamThreshold = 0.35f;
+    private const float guardSpamResetDelay = 0.5f;
+
+    private AnimatorOverrideController overrideController;
+    private float lastAttackTime;
+    private int comboStep = 0;
+    private float currentChargeTime = 0f;
+    private bool isCharging = false;
+    private float guardStartTime = -100f;
+    private float lastGuardPressTime = -100f;
+    private int guardSpamCount = 0;
+    private float attackBufferTimer = 0f;
+    private float guardBufferTimer = 0f;
+
+    /// <summary>
+    /// True when player is mid-swing or actively guarding.
+    /// </summary>
+    public bool IsActing => (anim != null) && (anim.GetInteger("AttackIndex") > 0 || anim.GetBool("isGAURDING"));
+
+    private void Awake()
     {
         anim = GetComponent<Animator>();
-        playerMovement = GetComponent<Movement>();
+        masterState = GetComponent<MasterState>();
         attributes = GetComponent<_attributes>();
+        playerAttacks = GetComponentsInChildren<PlayerAttack>(true);
         
-        if (anim.runtimeAnimatorController != null)
-        {
-            overrideController = new AnimatorOverrideController(anim.runtimeAnimatorController);
-            anim.runtimeAnimatorController = overrideController;
-        }
+        overrideController = new AnimatorOverrideController(anim.runtimeAnimatorController);
+        anim.runtimeAnimatorController = overrideController;
     }
 
     private void Update()
     {
+        UpdateBuffers();
+
+        // If player is in a locked master state (Dashing, Stunned, KnockedBack, Dead), ignore action inputs
+        if (!masterState.CanAct)
+        {
+            if (comboStep > 0 && !isCharging)
+            {
+                comboStep = 0;
+                anim.SetInteger("AttackIndex", 0);
+            }
+            return;
+        }
+
         HandleGuard();
-        HandleAttackAndCharge();
+        HandleAttack();
         HandleCombatArt();
-        HandleFlyingRaijin(); // <--- NEW!
         
-        ResetComboIfWindowPassed(); 
-
-        ManageMovementState();
+        ResetCombo();
+        UpdateMovement();
     }
 
-    private void HandleFlyingRaijin()
+    private void UpdateBuffers()
     {
-        // "X" button triggers the throw/teleport
-        if (Input.GetKeyDown(KeyCode.X))
+        if (attackBufferTimer > 0f)
+            attackBufferTimer -= Time.deltaTime;
+
+        if (guardBufferTimer > 0f)
+            guardBufferTimer -= Time.deltaTime;
+
+        if (Input.GetButtonDown("Attack"))
+            attackBufferTimer = inputBufferDuration;
+
+        if (Input.GetButtonDown("Gaurd"))
+            guardBufferTimer = inputBufferDuration;
+    }
+
+    private void UpdateMovement()
+    {
+        if (IsActing)
         {
-            if (activeKunai == null)
-            {
-                // 1. THROW KUNAI
-                if (kunaiPrefab != null)
-                {
-                    float direction = transform.localScale.x > 0 ? 1f : -1f;
-                    Vector2 origin = kunaiThrowPoint != null
-                        ? (Vector2)kunaiThrowPoint.position
-                        : (Vector2)transform.position + new Vector2(0f, 0.8f);
-                    Vector2 forward = new Vector2(direction, 0f);
-                    float clearance = kunaiWallClearance;
-
-                    // Start inside the character's near side, then move the spawn point
-                    // outward only as far as the first wall allows. This avoids placing
-                    // the projectile beyond a wall when the player is pressed against it.
-                    Vector2 spawnPos = origin + forward * 0.15f;
-                    if (kunaiBlockingLayers.value != 0 && clearance > 0f)
-                    {
-                        RaycastHit2D wallHit = Physics2D.Raycast(origin, forward, clearance, kunaiBlockingLayers);
-                        if (wallHit.collider != null)
-                            spawnPos = wallHit.point - forward * 0.03f;
-                    }
-
-                    activeKunai = Instantiate(kunaiPrefab, spawnPos, Quaternion.identity);
-                    activeKunai.transform.localScale = new Vector3(direction, 1, 1);
-
-                    KunaiProjectile projectile = activeKunai.GetComponent<KunaiProjectile>();
-                    if (projectile != null)
-                    {
-                        // Reuse the projectile's configured surface mask so the
-                        // spawn clearance matches the surfaces it can stick to.
-                        if (kunaiBlockingLayers.value == 0)
-                            kunaiBlockingLayers = projectile.stickableLayers;
-                        projectile.Launch(forward, kunaiThrowArc);
-                    }
-                }
-            }
-            else
-            {
-                // 2. TELEPORT TO KUNAI
-                transform.position = activeKunai.transform.position;
-                
-                // Destroy it so we can throw another one later
-                Destroy(activeKunai);
-                activeKunai = null;
-                
-                // Trigger the special attack animation
-                anim.SetTrigger("specialAttack");
-                
-                // 3. AoE Damage/Knockback to Enemies
-                Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, aoeKnockbackRadius);
-                foreach (Collider2D enemy in hitEnemies)
-                {
-                    if (enemy.CompareTag("Enemies"))
-                    {
-                        EnemyBase enemyStats = enemy.GetComponent<EnemyBase>();
-                        if (enemyStats != null)
-                        {
-                            enemyStats.stunBar(aoeStunDamage);
-                        }
-                    }
-                }
-                
-                // 4. Safety Knockback for Player
-                MasterState master = GetComponent<MasterState>();
-                if (master != null)
-                {
-                    float pushDirection = transform.localScale.x > 0 ? -1f : 1f;
-                    // Push player backward slightly after teleporting
-                    master.ApplyKnockback(pushDirection * selfTeleportKnockback, 5f, 0.2f);
-                }
-            }
+            // Clear movement anims so we don't moonwalk while attacking or guarding
+            anim.SetBool("isRUNNING", false);
+            anim.SetBool("isJUMPING", false);
+            anim.SetBool("isFALLING", false);
         }
     }
 
-    private void ManageMovementState()
+    private void HandleAttack()
     {
-        // Disable movement if we are currently attacking or guarding
-        bool isDoingAction = anim.GetInteger("AttackIndex") > 0 || anim.GetBool("isGAURDING");
-        
-        if (playerMovement != null)
+        if (anim.GetBool("isGAURDING"))
+            return;
+
+        // Finisher execution check
+        if (Input.GetButtonDown("Attack") || attackBufferTimer > 0f)
         {
-            playerMovement.enabled = !isDoingAction;
-            if (isDoingAction)
+            if (TryFinisher())
             {
-                // Clear movement anims so we don't moonwalk while attacking
-                anim.SetBool("isRUNNING", false);
-                anim.SetBool("isJUMPING", false);
-                anim.SetBool("isFALLING", false);
+                attackBufferTimer = 0f;
+                return;
             }
         }
-    }
 
-    private void HandleAttackAndCharge()
-    {
-        // If guarding, don't allow attacks
-        if (anim.GetBool("isGAURDING")) return;
-
-        // Start Charging
         if (Input.GetButtonDown("Attack"))
         {
             isCharging = true;
             currentChargeTime = 0f;
         }
 
-        // Keep Charging
         if (Input.GetButton("Attack") && isCharging)
-        {
             currentChargeTime += Time.deltaTime;
-        }
 
-        // Release Button - Execute
         if (Input.GetButtonUp("Attack") && isCharging)
         {
             isCharging = false;
 
-            if (currentChargeTime >= chargeTimeRequired)
+            if (currentChargeTime >= heavyChargeDuration)
             {
                 PerformHeavyAttack();
             }
@@ -191,12 +151,56 @@ public class ActionState : MonoBehaviour
                 PerformLightAttack(); 
             }
             
-            currentChargeTime = 0f; 
+            attackBufferTimer = 0f;
+            currentChargeTime = 0f;
         }
+        // Attack buffer: if an attack was buffered while recovering, fire the instant the player is neutral
+        else if (attackBufferTimer > 0f && comboStep == 0 && !isCharging)
+        {
+            attackBufferTimer = 0f;
+            PerformLightAttack();
+        }
+    }
+
+    private bool TryFinisher()
+    {
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, executionRange);
+        foreach (Collider2D col in colliders)
+        {
+            EnemyBase enemy = col.GetComponentInParent<EnemyBase>();
+            if (enemy == null || !enemy.CanBeFinished)
+                continue;
+
+            float direction = Mathf.Sign(enemy.transform.position.x - transform.position.x);
+            if (direction == 0f)
+                direction = 1f;
+
+            transform.localScale = new Vector3(direction, 1f, 1f);
+
+            // Snap player right in front of the enemy for clean visual weapon alignment
+            Vector3 targetSnapPos = enemy.transform.position - new Vector3(direction * finisherOffset, 0f, 0f);
+            targetSnapPos.y = transform.position.y; // Keep current ground plane
+            transform.position = targetSnapPos;
+
+            anim.SetTrigger("specialAttack");
+            enemy.ExecuteFinisher(finisherDamage);
+
+            // Brief invincibility during the finisher execution
+            attributes.TakeDamage(0, Vector2.zero, 0f);
+
+            PlayerAttack attack = GetComponentInChildren<PlayerAttack>();
+            if (attack != null)
+                StartCoroutine(attack.HitPause(0.12f));
+
+            return true;
+        }
+
+        return false;
     }
 
     private void PerformLightAttack()
     {
+        ResetHitTargets();
         lastAttackTime = Time.time;
         
         if (comboStep == 0) comboStep = 1;
@@ -208,25 +212,94 @@ public class ActionState : MonoBehaviour
 
     private void PerformHeavyAttack()
     {
-        comboStep = 3; // Let's use 3 for Heavy Attack in your animator logic
+        ResetHitTargets();
+        comboStep = 3; // AttackIndex 3 = Heavy Attack
         anim.SetInteger("AttackIndex", comboStep);
         lastAttackTime = Time.time; 
     }
 
-    private void ResetComboIfWindowPassed()
+    private void ResetHitTargets()
     {
-        if (comboStep != 0 && Time.time > lastAttackTime + comboWindow && !isCharging)
+        if (playerAttacks.Length == 0)
+            playerAttacks = GetComponentsInChildren<PlayerAttack>(true);
+
+        foreach (PlayerAttack attack in playerAttacks)
+        {
+            attack.ResetHitTargets();
+        }
+    }
+
+    private void ResetCombo()
+    {
+        if (comboStep == 0 || isCharging)
+            return;
+
+        AnimatorStateInfo state = anim.GetCurrentAnimatorStateInfo(0);
+        bool isAttackState = state.IsName("Attack1") || state.IsName("Attack2") || state.IsName("HeavyAttack") || state.IsName("ActiveCombatArt");
+
+        // When the attack animation clip finishes its swing (normalizedTime >= 1.0f) and isn't transitioning to another attack, return to neutral
+        if (isAttackState && state.normalizedTime >= 1.0f && !anim.IsInTransition(0))
+        {
+            comboStep = 0;
+            anim.SetInteger("AttackIndex", 0);
+        }
+        // Safety timeout in case transition/name changes
+        else if (Time.time > lastAttackTime + comboResetTimeout)
         {
             comboStep = 0;
             anim.SetInteger("AttackIndex", 0);
         }
     }
 
+    public bool IsInParryWindow
+    {
+        get
+        {
+            if (!anim.GetBool("isGAURDING")) return false;
+
+            // Sekiro anti-spam window decay:
+            // 0 recent spam taps = full 0.20s window
+            // 1 rapid tap = 0.10s
+            // 2+ rapid taps = 0.05s
+            float activeWindow = guardSpamCount == 0 
+                ? perfectDeflectWindow 
+                : (guardSpamCount == 1 ? perfectDeflectWindow * 0.5f : 0.05f);
+
+            return Time.time <= guardStartTime + activeWindow;
+        }
+    }
+
+    public void OnSuccessfulDeflect()
+    {
+        // Precise deflect immediately clears spam penalty
+        guardSpamCount = 0;
+    }
+
     private void HandleGuard()
     {
+        // 1. Sekiro Attack Feint / Startup Cancel:
+        // Within the early startup windup of an attack, pressing Guard cancels the attack directly into Deflect
+        bool isAttacking = anim.GetInteger("AttackIndex") > 0;
+        bool canFeint = isAttacking && (Time.time <= lastAttackTime + attackCancelWindow);
+
+        if ((Input.GetButtonDown("Gaurd") || guardBufferTimer > 0f) && canFeint)
+        {
+            comboStep = 0;
+            isCharging = false;
+            currentChargeTime = 0f;
+            anim.SetInteger("AttackIndex", 0);
+            guardBufferTimer = 0f;
+            TriggerGuardPress();
+        }
+        else if (Input.GetButtonDown("Gaurd"))
+        {
+            guardBufferTimer = 0f;
+            TriggerGuardPress();
+        }
+
         if (Input.GetButton("Gaurd"))
         {
-            if (!anim.GetBool("isGAURDING")) 
+            if (!anim.GetBool("isGAURDING") && anim.GetInteger("AttackIndex") == 0) 
             {
                 anim.SetInteger("GuardStance", Random.Range(1, 3)); 
                 anim.SetBool("isGAURDING", true);
@@ -242,35 +315,39 @@ public class ActionState : MonoBehaviour
         }
     }
 
+    private void TriggerGuardPress()
+    {
+        // Sekiro anti-spam check: rapid taps within threshold increase spam count
+        if (Time.time < lastGuardPressTime + guardSpamThreshold)
+            guardSpamCount++;
+        else if (Time.time >= lastGuardPressTime + guardSpamResetDelay)
+            guardSpamCount = 0;
+
+        lastGuardPressTime = Time.time;
+        guardStartTime = Time.time;
+    }
+
     private void HandleCombatArt()
     {
-        // Pressing Guard and Attack together, or whatever button you prefer
+        // Hold Guard and press Attack to spend Spirit on the equipped Combat Art.
         if (Input.GetButton("Gaurd") && Input.GetButtonDown("Attack"))
         {
-            if (attributes != null && attributes.currentSpirit >= combatArtSpiritCost)
+            if (attributes.currentSpirit >= combatArtSpiritCost)
             {
                 attributes.UseSpirit(combatArtSpiritCost);
-                SwapCombatArtAnimation();
+                ResetHitTargets();
+                SetCombatArt();
                 anim.SetTrigger("TriggerCombatArt");
                 
                 comboStep = 0;
                 anim.SetInteger("AttackIndex", 0);
             }
-            else
-            {
-                Debug.Log("Not enough Spirit!");
-            }
         }
     }
 
-    public void SwapCombatArtAnimation()
+    public void SetCombatArt()
     {
-        if (equippedCombatArt != null && overrideController != null)
-        {
-            // The string here MUST match the exact name of the placeholder clip 
-            // inside your ActiveCombatArt node in the Animator.
-            overrideController["CombatArtPlaceholder"] = equippedCombatArt;
-        }
+        // This clip name must match the placeholder in the Animator's Combat Art state.
+        overrideController["CombatArtPlaceholder"] = equippedCombatArt;
     }
-
 }

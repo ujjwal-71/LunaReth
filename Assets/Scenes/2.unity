@@ -1802,7 +1802,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7971d70975f95fa4f9d7a6ead3c6743e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  attackPower: 0
+  attackPower: 10
   stunAmount: 0
   stunPower: 0
 --- !u!1 &236800374
@@ -9787,6 +9787,7 @@ GameObject:
   - component: {fileID: 1557473228}
   - component: {fileID: 1557473227}
   - component: {fileID: 1557473230}
+  - component: {fileID: 1557473232}
   m_Layer: 6
   m_Name: Erihen
   m_TagString: Enemies
@@ -9980,6 +9981,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   MaxStun: 100
   MaxHealth: 100
+  postureRecoveryRate: 12
+  postureRecoveryDelay: 1.5
   groundRay: {fileID: 810801535}
   frontRay: {fileID: 1044998809}
   playerTransform: {fileID: 3473896366308312530}
@@ -9997,6 +10000,23 @@ MonoBehaviour:
   walkSpeed: 5
   chaseSpeed: 8
   isGuarded: 0
+--- !u!114 &1557473232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1557473225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97347207bd3cfe4428f5ae2fc463cb90, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyContactDamage
+  contactDamage: 10
+  knockbackX: 7
+  knockbackY: 5
+  stunDuration: 0.25
+  contactCooldown: 1
 --- !u!1 &1575814041
 GameObject:
   m_ObjectHideFlags: 0

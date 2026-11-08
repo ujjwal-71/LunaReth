@@ -437,11 +437,16 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ae51cf51dab31f47805fda788b2fcfa, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Attack
-  playerRigid: {fileID: 881794104269688467}
-  playerTransform: {fileID: 7821472032237926410}
-  attackDamage: 0
-  stunAmount: 0
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerAttack
+  attackDamage: 10
+  postureDamage: 10
+  enemyKnockbackX: 5
+  enemyKnockbackY: 2
+  enemyHitstun: 0.15
+  playerRecoilX: 2
+  playerRecoilY: 0
+  recoilRecovery: 0.08
+  hitPauseDuration: 0.05
 --- !u!1 &8136084859877222618
 GameObject:
   m_ObjectHideFlags: 0

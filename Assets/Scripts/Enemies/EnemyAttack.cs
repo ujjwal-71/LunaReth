@@ -1,38 +1,64 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
+/// <summary>
+/// Attached to the Enemy's single AttackHitbox child GameObject.
+/// In animations, simply keyframe the Collider2D on/off during swing frames.
+/// Before each swing, EnemyBase updates this component with the active attack's stats.
+/// </summary>
 public class EnemyAttack : MonoBehaviour
 {
-    [Header("Stats")]
+    [Header("Active Attack Stats")]
     public int attackPower = 10;
-    public float knockbackForceX = 15f;
-    public float knockbackForceY = 5f;
+    public float knockbackForceX = 8f;
+    public float knockbackForceY = 3f;
     
     [Header("Parry Reaction")]
-    public int stunPowerToSelfIfParried = 20;
+    [FormerlySerializedAs("stunPowerToSelfIfParried")]
+    public int parryStunDamage = 20;
+
+    /// <summary>
+    /// Called by EnemyBase before executing an attack to configure this hitbox dynamically.
+    /// </summary>
+    public void SetAttackStats(int damage, float knockX, float knockY, int parryDamage)
+    {
+        attackPower = damage;
+        knockbackForceX = knockX;
+        knockbackForceY = knockY;
+        parryStunDamage = parryDamage;
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // Ensure we only hit the Player
-        if (!other.CompareTag("Player")) return;
+        // Ignore the player's weapon collider; it is not a damage target.
+        if (other.CompareTag("PlayerWeapons"))
+            return;
 
-        _attributes playerStats = other.GetComponent<_attributes>();
-        EnemyBase enemyStats = GetComponentInParent<EnemyBase>();
+        // Find the player's attributes component up the hierarchy.
+        _attributes player = other.GetComponentInParent<_attributes>();
+        EnemyBase enemy = GetComponentInParent<EnemyBase>();
 
-        if (playerStats == null) return;
+        if (player == null)
+            return;
 
-        // Calculate knockback direction (push player away from the enemy)
-        float pushDirection = Mathf.Sign(playerStats.transform.position.x - transform.position.x);
+        // Push the player away from the enemy's body center
+        float enemyX = enemy != null ? enemy.transform.position.x : transform.position.x;
+        float pushDirection = Mathf.Sign(player.transform.position.x - enemyX);
+        if (pushDirection == 0f)
+            pushDirection = 1f;
+
         Vector2 knockback = new Vector2(pushDirection * knockbackForceX, knockbackForceY);
 
-        // Attempt to damage the player. If they are Guarding, TakeDamage returns TRUE.
-        bool wasParried = playerStats.TakeDamage(attackPower, knockback);
+        // Player's attributes script decides whether this attack hits, is blocked, or is deflected.
+        _attributes.DefenseOutcome outcome = player.TakeDamage(attackPower, knockback);
 
-        if (wasParried)
+        if (outcome == _attributes.DefenseOutcome.Deflected)
         {
-            Debug.Log("Enemy got Parried! Stun the Enemy!");
-            if (enemyStats != null)
+            if (enemy != null)
             {
-                enemyStats.stunBar(stunPowerToSelfIfParried);
+                // A clean deflect damages the attacker's posture and knocks them back.
+                enemy.TakePostureDamage(parryStunDamage);
+                enemy.ApplyKnockback(-pushDirection * 8f, 3f, 0.4f);
             }
         }
     }

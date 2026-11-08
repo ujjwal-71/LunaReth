@@ -113,8 +113,15 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ae51cf51dab31f47805fda788b2fcfa, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Attack
-  attackDamage: 0
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerAttack
+  attackDamage: 10
+  postureDamage: 10
+  enemyKnockbackX: 5
+  enemyKnockbackY: 2
+  enemyHitstun: 0.15
+  playerRecoilX: 2
+  playerRecoilY: 0
+  recoilRecovery: 0.08
   hitPauseDuration: 0.05
 --- !u!1 &4595309858972037199
 GameObject:
@@ -128,6 +135,10 @@ GameObject:
   - component: {fileID: 1049208596231516862}
   - component: {fileID: 6139202928760725133}
   - component: {fileID: 2225368061031462550}
+  - component: {fileID: 1428152429471531434}
+  - component: {fileID: 3202845129494476181}
+  - component: {fileID: 1972494303891171726}
+  - component: {fileID: 6554884376710807882}
   m_Layer: 7
   m_Name: Samurai
   m_TagString: Player
@@ -145,8 +156,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 18.99, y: 0.55, z: 0}
-  m_LocalScale: {x: -1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 9145876108264167661}
   - {fileID: 1319172220921977974}
@@ -203,9 +214,9 @@ SpriteRenderer:
   m_SortingLayer: 4
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 4723107735738678597, guid: 3aa58b19e444dee4c8b490adcc3081c2, type: 3}
+  m_Sprite: {fileID: -4913982344839117222, guid: 3f8cfdb2996578e45bb35f9ac5335615, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 1
+  m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 2.64, y: 3.2}
@@ -247,17 +258,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.08466, y: 1.3494}
+  m_Offset: {x: 0.38556862, y: -0.24552965}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0}
-    oldSize: {x: 2.4, y: 2.909091}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 5.12, y: 7.68}
     newSize: {x: 2.64, y: 3.2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.80353, y: 2.6659}
+  m_Size: {x: 1.2307854, y: 4.772006}
   m_EdgeRadius: 0
 --- !u!50 &2225368061031462550
 Rigidbody2D:
@@ -286,6 +297,120 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!114 &1428152429471531434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4595309858972037199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b13043a7dbac8e34c80b9d12794e632b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MasterState
+  currentState: 0
+  dashSpeed: 50
+  dashDuration: 0.2
+  dashCooldown: 0.5
+--- !u!114 &3202845129494476181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4595309858972037199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ceeaef2d2be89b4fb0bc485288fa128, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ActionState
+  comboWindow: 0.6
+  chargeTimeRequired: 0.5
+  overrideController: {fileID: 0}
+  equippedCombatArt: {fileID: 0}
+  combatArtSpiritCost: 5
+  kunaiPrefab: {fileID: 6159744981795115272, guid: 9934f81c5b1ed7743994b5554c858c90, type: 3}
+  kunaiThrowPoint: {fileID: 0}
+  kunaiBlockingLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  kunaiWallClearance: 0.08
+  kunaiThrowArc: 2
+  kunaiSpiritCost: 2
+  kunaiCooldown: 1
+  aoeKnockbackRadius: 3
+  aoeDamage: 10
+  aoeStunDamage: 10
+  aoeKnockbackX: 8
+  aoeKnockbackY: 3
+  teleportRecoil: 10
+  executionRange: 2
+  finisherDamage: 999
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  finisherOffset: 0.8
+  perfectDeflectWindow: 0.2
+--- !u!114 &1972494303891171726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4595309858972037199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf987586ce800204bbdaabc87b8e6d19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Movement
+  legs: {fileID: 1319172220921977974}
+  ground:
+    serializedVersion: 2
+    m_Bits: 8
+  wall:
+    serializedVersion: 2
+    m_Bits: 512
+  walkSpeed: 10
+  jumpForce: 25
+  groundAcceleration: 90
+  groundDeceleration: 110
+  airAcceleration: 55
+  airDeceleration: 18
+  apexGravityMultiplier: 0.65
+  fallGravityMultiplier: 1.25
+  jumpCutMultiplier: 0.5
+  apexVelocityThreshold: 2
+  normalGravity: 6
+  fallGravity: 8
+  terminalVelocity: -50
+  coyoteTimeMax: 0.15
+  jumpBufferMax: 0.15
+  wallStuckDuration: 4
+  wallJumpForce: {x: 20, y: 25}
+  wallJumpControlLockoutDuration: 0.12
+--- !u!95 &6554884376710807882
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4595309858972037199}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f2709bbe37eaf5f43aebada06d5b7e25, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6425789245765544400
 GameObject:
   m_ObjectHideFlags: 0
@@ -311,7 +436,7 @@ Transform:
   m_GameObject: {fileID: 6425789245765544400}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.36, y: -2.85, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -720,7 +845,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 1
+      scalar: 0.8
       minScalar: 0.1
       maxCurve:
         serializedVersion: 2
