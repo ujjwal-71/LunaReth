@@ -38,6 +38,12 @@ public class _attributes : MonoBehaviour
         Ignored
     }
 
+    // VFX / Audio Events
+    public event System.Action OnDeflected;
+    public event System.Action OnBlocked;
+    public event System.Action OnHitTaken;
+    public event System.Action OnPostureBroken;
+
     private void Awake()
     {
         currentHealth = maxHealth;
@@ -89,6 +95,7 @@ public class _attributes : MonoBehaviour
                 // A perfect deflect resets anti-spam penalty, uses a tiny recoil, and avoids health and posture damage.
                 actionState.OnSuccessfulDeflect();
                 masterState.ApplyRecoil(knockbackForce.x * 0.1f, 0f);
+                OnDeflected?.Invoke();
                 return DefenseOutcome.Deflected;
             }
             else
@@ -96,6 +103,7 @@ public class _attributes : MonoBehaviour
                 // A regular block protects health but adds pressure to the posture meter.
                 int postureDamage = damageAmount * 2;
                 GainPosture(postureDamage, knockbackForce);
+                OnBlocked?.Invoke();
                 return DefenseOutcome.Blocked;
             }
         }
@@ -110,6 +118,7 @@ public class _attributes : MonoBehaviour
         {
             nextDamageTime = Time.time + iFrameDuration;
             masterState.ApplyKnockback(knockbackForce.x, knockbackForce.y, stunDuration);
+            OnHitTaken?.Invoke();
         }
 
         return DefenseOutcome.Hit;
@@ -136,6 +145,7 @@ public class _attributes : MonoBehaviour
         currentPosture = 0;
         postureRemainder = 0f;
         anim.SetBool("isGAURDING", false);
+        OnPostureBroken?.Invoke();
         masterState.TriggerStun(postureStunDuration);
     }
 

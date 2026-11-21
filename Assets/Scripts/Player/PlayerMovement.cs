@@ -64,6 +64,13 @@ public class Movement : MonoBehaviour
     private float wallStuckTimer = 0f;
     private bool wasWallStuck = false;
     private float nextWallStickTime = 0f;
+    private bool wasGrounded = false;
+
+    // VFX / Audio Events
+    public event System.Action OnGroundJump;
+    public event System.Action<Vector2> OnWallJump;
+    public event System.Action OnLand;
+    public event System.Action OnWallCling;
 
     private Rigidbody2D playerBody;
     private Animator playerAnim;
@@ -105,6 +112,12 @@ public class Movement : MonoBehaviour
         // Ground Check
         Vector2 groundOrigin = legs != null ? (Vector2)legs.position : (Vector2)transform.position;
         isGrounded = Physics2D.OverlapCircle(groundOrigin, 0.4f, ground);
+
+        if (!wasGrounded && isGrounded && playerBody.linearVelocity.y <= 0.1f)
+        {
+            OnLand?.Invoke();
+        }
+        wasGrounded = isGrounded;
 
         // Wall Check from body center
         Vector2 bodyCenter = playerCol != null ? (Vector2)playerCol.bounds.center : (Vector2)transform.position + Vector2.up * 0.8f;
@@ -204,6 +217,7 @@ public class Movement : MonoBehaviour
 
         playerBody.linearVelocity = new Vector2(playerBody.linearVelocity.x, jumpForce);
         currentMovementState = MovementStates.Jumping;
+        OnGroundJump?.Invoke();
     }
 
     private void ExecuteWallJump()
@@ -228,6 +242,7 @@ public class Movement : MonoBehaviour
 
         wallJumpLockoutTime = Time.time + wallJumpLockoutDuration;
         currentMovementState = MovementStates.Jumping;
+        OnWallJump?.Invoke(wallNormal);
     }
 
     private void HandleHorizontalInput()
@@ -268,6 +283,7 @@ public class Movement : MonoBehaviour
                 {
                     wallStuckTimer = wallStuckDuration;
                     wasWallStuck = true;
+                    OnWallCling?.Invoke();
                 }
 
                 // Face toward the wall

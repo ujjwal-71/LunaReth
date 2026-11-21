@@ -28,6 +28,9 @@ public class PlayerAttack : MonoBehaviour
 
     private static int activeHitPauses;
 
+    // VFX / Audio Events
+    public event System.Action<Vector2> OnAttackHitLanded;
+
     private void Awake()
     {
         playerState = GetComponentInParent<MasterState>();
@@ -93,6 +96,7 @@ public class PlayerAttack : MonoBehaviour
 
         enemy.TakeDamage(attackDamage);
         enemy.TakePostureDamage(postureDamage);
+        OnAttackHitLanded?.Invoke(enemy.transform.position);
 
         float enemyDirection = Mathf.Sign(enemy.transform.position.x - playerState.transform.position.x);
         if (enemyDirection == 0f)

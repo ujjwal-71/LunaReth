@@ -35,6 +35,12 @@ public class MasterState : MonoBehaviour
 
     public MasterStateType CurrentState => currentState;
 
+    // VFX / Audio Events
+    public event System.Action OnDashStarted;
+    public event System.Action OnDashEnded;
+    public event System.Action OnStunned;
+    public event System.Action OnDeath;
+
     /// <summary>
     /// True when player is allowed to move horizontally and jump.
     /// False during Dash, Stun, Knockback, Death, and active Attack/Guard actions.
@@ -99,6 +105,7 @@ public class MasterState : MonoBehaviour
     {
         SetState(MasterStateType.Dashing);
         anim.SetBool("isDASHING", true);
+        OnDashStarted?.Invoke();
 
         float direction = transform.localScale.x > 0 ? 1f : -1f;
 
@@ -123,6 +130,7 @@ public class MasterState : MonoBehaviour
 
         lastDashTime = Time.time;
         anim.SetBool("isDASHING", false);
+        OnDashEnded?.Invoke();
         SetState(MasterStateType.Free);
     }
 
@@ -185,6 +193,7 @@ public class MasterState : MonoBehaviour
     private IEnumerator StunRoutine(float duration)
     {
         SetState(MasterStateType.Stunned);
+        OnStunned?.Invoke();
         rb.linearVelocity = Vector2.zero;
         rb.gravityScale = storedGravity;
 
@@ -206,6 +215,7 @@ public class MasterState : MonoBehaviour
     {
         SetState(MasterStateType.Dead);
         anim.SetBool("isDEAD", true);
+        OnDeath?.Invoke();
         rb.linearVelocity = Vector2.zero;
         
         yield return new WaitForSeconds(duration);

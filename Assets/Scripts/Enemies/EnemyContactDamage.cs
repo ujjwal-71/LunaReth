@@ -49,4 +49,3 @@ public class EnemyContactDamage : MonoBehaviour
             nextContactTime = Time.time + contactCooldown;
     }
 }
-

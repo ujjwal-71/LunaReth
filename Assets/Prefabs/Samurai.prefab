@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 3181227303999129788}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.75, y: 2.17, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.12, y: 0.12, z: 0}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -118,10 +118,7 @@ MonoBehaviour:
   postureDamage: 10
   enemyKnockbackX: 5
   enemyKnockbackY: 2
-  enemyHitstun: 0.15
   playerRecoilX: 2
-  playerRecoilY: 0
-  recoilRecovery: 0.08
   hitPauseDuration: 0.05
 --- !u!1 &4595309858972037199
 GameObject:
@@ -133,12 +130,17 @@ GameObject:
   m_Component:
   - component: {fileID: 6312203593824125371}
   - component: {fileID: 1049208596231516862}
-  - component: {fileID: 6139202928760725133}
   - component: {fileID: 2225368061031462550}
+  - component: {fileID: 2171698088974944257}
+  - component: {fileID: 8212662782046613430}
   - component: {fileID: 1428152429471531434}
   - component: {fileID: 3202845129494476181}
   - component: {fileID: 1972494303891171726}
   - component: {fileID: 6554884376710807882}
+  - component: {fileID: 2489528507209318316}
+  - component: {fileID: 198174726093445420}
+  - component: {fileID: 5669969998233753546}
+  - component: {fileID: 1587125609388603400}
   m_Layer: 7
   m_Name: Samurai
   m_TagString: Player
@@ -214,62 +216,16 @@ SpriteRenderer:
   m_SortingLayer: 4
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -4913982344839117222, guid: 3f8cfdb2996578e45bb35f9ac5335615, type: 3}
+  m_Sprite: {fileID: -2311659948842064771, guid: 39313b8061aa54c4abf61ceb3ce8bc6e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2.64, y: 3.2}
+  m_Size: {x: 5.12, y: 7.68}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!61 &6139202928760725133
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4595309858972037199}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 6200000, guid: cef682e710329f640b4f091b4930f5ab, type: 2}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0.38556862, y: -0.24552965}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5.12, y: 7.68}
-    newSize: {x: 2.64, y: 3.2}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 1.2307854, y: 4.772006}
-  m_EdgeRadius: 0
 --- !u!50 &2225368061031462550
 Rigidbody2D:
   serializedVersion: 5
@@ -297,6 +253,42 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!114 &2171698088974944257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4595309858972037199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bacb5179284f26c49ac9257e56b62649, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerNinjutsu
+  kunaiPrefab: {fileID: 6159744981795115272, guid: 9934f81c5b1ed7743994b5554c858c90, type: 3}
+  kunaiThrowPoint: {fileID: 7444662980728022438}
+  kunaiBlockingLayers:
+    serializedVersion: 2
+    m_Bits: 512
+  kunaiSpiritCost: 2
+  kunaiCooldown: 1
+  aoeKnockbackRadius: 3
+  aoeDamage: 10
+  aoeStunDamage: 10
+--- !u!114 &8212662782046613430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4595309858972037199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36c3a0cad9b15564daaf21c3f0e4158d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerRespawn
+  hazardDamage: 15
+  safePlace: {x: 0, y: 0}
 --- !u!114 &1428152429471531434
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -311,7 +303,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MasterState
   currentState: 0
   dashSpeed: 50
-  dashDuration: 0.2
+  dashTimer: 0.4
+  dashSlideDuration: 0.2
   dashCooldown: 0.5
 --- !u!114 &3202845129494476181
 MonoBehaviour:
@@ -325,33 +318,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ceeaef2d2be89b4fb0bc485288fa128, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ActionState
-  comboWindow: 0.6
-  chargeTimeRequired: 0.5
-  overrideController: {fileID: 0}
-  equippedCombatArt: {fileID: 0}
+  equippedCombatArt: {fileID: 7400000, guid: 4da095ddea423164cb87e68aae1780fb, type: 2}
   combatArtSpiritCost: 5
-  kunaiPrefab: {fileID: 6159744981795115272, guid: 9934f81c5b1ed7743994b5554c858c90, type: 3}
-  kunaiThrowPoint: {fileID: 0}
-  kunaiBlockingLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  kunaiWallClearance: 0.08
-  kunaiThrowArc: 2
-  kunaiSpiritCost: 2
-  kunaiCooldown: 1
-  aoeKnockbackRadius: 3
-  aoeDamage: 10
-  aoeStunDamage: 10
-  aoeKnockbackX: 8
-  aoeKnockbackY: 3
-  teleportRecoil: 10
-  executionRange: 2
-  finisherDamage: 999
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  finisherOffset: 0.8
   perfectDeflectWindow: 0.2
+  executionRange: 2
+  finisherDamage: 100
+  heavyChargeDuration: 0.5
+  attackCancelWindow: 0.18
+  inputBufferDuration: 0.15
+  comboResetTimeout: 1
 --- !u!114 &1972494303891171726
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -372,23 +347,15 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   walkSpeed: 10
-  jumpForce: 25
-  groundAcceleration: 90
-  groundDeceleration: 110
-  airAcceleration: 55
-  airDeceleration: 18
-  apexGravityMultiplier: 0.65
-  fallGravityMultiplier: 1.25
-  jumpCutMultiplier: 0.5
-  apexVelocityThreshold: 2
-  normalGravity: 6
-  fallGravity: 8
-  terminalVelocity: -50
-  coyoteTimeMax: 0.15
-  jumpBufferMax: 0.15
-  wallStuckDuration: 4
+  jumpForce: 30
+  jumpHoldDuration: 0.2
+  defaultGravity: 5
+  fallGravity: 10
+  coyoteTime: 0.15
+  jumpBufferTime: 0.15
+  wallStuckDuration: 1
+  wallReStickCooldown: 0.8
   wallJumpForce: {x: 20, y: 25}
-  wallJumpControlLockoutDuration: 0.12
 --- !u!95 &6554884376710807882
 Animator:
   serializedVersion: 7
@@ -411,6 +378,92 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2489528507209318316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4595309858972037199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77abe89eb4007c144831a6072c86be1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_attributes
+  maxHealth: 100
+  iFrameDuration: 0.65
+  maxSpirit: 20
+  maxPosture: 100
+  postureRecoveryRate: 20
+  postureStunDuration: 2
+--- !u!114 &198174726093445420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4595309858972037199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb09ed71654e4644e8287c2dbe47902c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerVFXController
+  feetTransform: {fileID: 1319172220921977974}
+  weaponTransform: {fileID: 9145876108264167661}
+--- !u!114 &5669969998233753546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4595309858972037199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4ecd55d862a5b949b67ebe4fa287fc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerGhostTrail
+  spawnInterval: 0.035
+  fadeDuration: 0.22
+  primaryColor: {r: 0.85, g: 0.18, b: 0.18, a: 0.65}
+  secondaryColor: {r: 0.95, g: 0.95, b: 0.98, a: 0.55}
+  alternateColors: 1
+--- !u!70 &1587125609388603400
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4595309858972037199}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: -0.0015878677, y: -0.11986077}
+  m_Size: {x: 0.80942345, y: 2.3202784}
+  m_Direction: 0
 --- !u!1 &6425789245765544400
 GameObject:
   m_ObjectHideFlags: 0
@@ -436,7 +489,7 @@ Transform:
   m_GameObject: {fileID: 6425789245765544400}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.36, y: -2.85, z: 0}
+  m_LocalPosition: {x: 0, y: -1.35, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -500,7 +553,7 @@ Transform:
   m_GameObject: {fileID: 7675803215393163370}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0, z: -0.008194798, w: -0.9999665}
-  m_LocalPosition: {x: 0, y: 1.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: -1, y: 1, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -606,9 +659,9 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
-  looping: 1
+  looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -5358,7 +5411,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10308, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 2320354d88695564ba27da4ef493fe6a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
